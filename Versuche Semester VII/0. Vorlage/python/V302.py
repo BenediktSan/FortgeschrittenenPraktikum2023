@@ -8,6 +8,8 @@ import scipy.constants as const
 import sympy
 import os
 from tabulate import tabulate
+from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
+
 
 if os.path.exists("build") == False:
     os.mkdir("build")
@@ -29,7 +31,7 @@ if os.path.exists("build/plots") == False:
 plt.figure()
 plt.plot(f,U/(10),"x",label="Messwerte")
 plt.plot(x,func(x,omega0) )
-plt.xscale('log')
+#plt.xscale('log')
 plt.xlabel(r"$\Omega=\frac{\nu}{\nu_0}$")
 plt.ylabel(r"$\frac{U_Br}{U_0}$")
 #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
