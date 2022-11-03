@@ -9,6 +9,7 @@ import sympy
 import os
 from tabulate import tabulate
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
+from scipy.signal import find_peaks
 
 if os.path.exists("build") == False:
     os.mkdir("build")
@@ -43,6 +44,9 @@ test_2theta, test_I = np.genfromtxt("python/data/test.UXD",skip_header= 57, unpa
 ###Theoriewerte###
 
 dicke = 20 # in mm
+lam = 1.54e-10      #K-alpha Linie
+n = 1 - 7.6e-6 + 1.54e-8j*141/(4*np.pi)
+k = 2*np.pi / lam
 
 #Silizium
 
@@ -83,28 +87,50 @@ def rel_abw(theo,a):
 def gauss(x, mu, sigma, A, B):
     return A / ( np.sqrt(2 * np.pi * sigma) ) * np.exp( -(( x -mu )**2 / (2*sigma**2)) + B ) 
 
-def geometrie_corr(I, alpha, alpha_g, beam_width):
+def geometrie_corr(I, alpha, alpha_g, beam_width,D):
     I_corr = np.zeros(np.size(I))
     G = 1
     for i in range(np.size(I)):
         #print(alpha[i],"\t", alpha_g)
         if( np.abs(alpha_g) > alpha[i]):
-            G = np.sin(alpha[i] * np.pi/180) / beam_width
+            G = D * np.sin(alpha[i] * np.pi/180) / beam_width
         else:
             G = 1
         #print(G)
-        I_corr[i] = I[i] * G
+        I_corr[i] = I[i] / G
+        I_corr[0] = I[0]
     return I_corr
 
-def parrat():
-    
-    return
+
+def dispersion(k, rho_e):
+    r_0 = const.value("classical electron radius")
+    return 2* np.pi * rho_e * r_0/k**2
 
 
 
+def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
+    n2 = 1. - delta2
+    n3 = 1. - delta3
+
+    a_i = a_i * np.pi/180
+
+    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos(a_i)**2))
+    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos(a_i)**2))
+    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos(a_i)**2))
+
+    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * sigma1**2)
+    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * sigma2**2)
+
+    x2 = np.exp(-2j * kz2 * z2) * r23
+    x1 = (r12 + x2) / (1 + r12 * x2)
+    R_parr = np.abs(x1)**2
+
+    return R_parr
 
 
 
+def theorie_sil(alpha):
+    return (np.abs((k * np.sin(alpha)- k*np.sqrt(n**2-np.cos(alpha)**2))/(k * np.sin(alpha)+ k*np.sqrt(n**2-np.cos(alpha)**2))))**2
 
 
 
@@ -112,20 +138,21 @@ def parrat():
 
 ###Gauß-Fit###
 
-param1, cov1 = curve_fit(gauss, detectorscan, detectorscan_I)
+param1, cov1 = curve_fit(gauss, detectorscan, detectorscan_I, p0 = (-0.0144, 0.04, 33.6, 9.5))
 
 cov1 = np.sqrt(np.diag(cov1))
 uparam1 = unp.uarray(param1, cov1)
 
 FWHM = 2 * np.sqrt(2 * np.log(2)) * uparam1[1]
+gauss_max = gauss(param1[0], *param1)
 print(f"\n---Gauss-Fit--- \nmu = {noms(uparam1[0]):.4f} \pm {stds(uparam1[0]):.4f} \nsigma = {noms(uparam1[1]):.4f} \pm {stds(uparam1[1]):.4f}")
 print(f"A = {noms(uparam1[2]):.4f} \pm {stds(uparam1[2]):.4f} \nB = {noms(uparam1[3]):.4f} \pm {stds(uparam1[3]):.4f}  \n")
-print(f"I_max Fit = {gauss(param1[0] , *param1):.4f}")
+print(f"I_max Fit = {gauss_max:.4f}")
 print(f"FWHM = {noms(FWHM):.4f} \pm {stds(FWHM):.4f}")
 
 x1 = np.linspace(-0.5,0.5,1000)
 FWHM_plot_1 = np.linspace(param1[0] - noms(FWHM)/2, param1[0] + noms(FWHM)/2, 100)
-FWHM_plot_2 = np.ones((100)) * 1/2 * gauss(param1[0] , *param1)
+FWHM_plot_2 = np.ones((100)) * 1/2 * gauss_max
 
 plt.figure()
 plt.plot(detectorscan, detectorscan_I,"x",label="Messwerte")
@@ -186,6 +213,7 @@ alpha_g2 = just_rock1_2theta[-4]
 alpha_ges = 1/2 *(alpha_g1 - alpha_g2)
 
 print(f"Geometriewinkel = {alpha_g1} & {alpha_g2} in Grad\nGemittelt = {alpha_ges}")
+rel_abw(np.arcsin(((beam_width) / dicke))* 180/np.pi, np.abs(alpha_ges))
 
 plt.figure()
 plt.plot(just_rock1_2theta, just_rock1_I,"x",label="Messwerte")
@@ -209,8 +237,11 @@ plt.savefig("build/plots/dreieck.pdf")
 print("\n\n---Geometriefaktor---")
 
 
-refl_I_corr = geometrie_corr(refl_I, refl_2theta, alpha_ges, beam_width)
+refl_I_corr = geometrie_corr(refl_I, refl_2theta, alpha_ges, beam_width, dicke)
+diffus_I_corr = geometrie_corr(diffus_I, diffus_2theta, alpha_ges, beam_width, dicke)
 
+
+corr_data = refl_I_corr - diffus_I_corr
 
 
 
@@ -220,19 +251,138 @@ refl_I_corr = geometrie_corr(refl_I, refl_2theta, alpha_ges, beam_width)
 print("\n\n---Reflekitvitäts & Diffuser Scan---")
 
 plt.figure()
-plt.plot(diffus_2theta, diffus_I,"x",label="Diffuserscan")
-plt.plot(refl_2theta, refl_I, "x", label="Refklektivitäätsscan")
-plt.plot(refl_2theta, refl_I - diffus_I, "x", label="korrigierte Daten")
-#plt.plot(refl_2theta, refl_I_corr, "x", label="Reflektivitätsscan korrigiert")
-#plt.yscale('log')
-plt.ylabel(r"Intensität")
+plt.plot(diffus_2theta, diffus_I/ gauss_max, label="normierter Diffuserscan")
+plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitäätsscan")
+plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
+plt.plot(refl_2theta, theorie_sil(refl_2theta * np.pi /180), label = "Theoriekurve Silizium")
+plt.yscale('log')
+plt.ylabel(r"Reflektivität")
 plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
 #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
 #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
 plt.tight_layout()
 plt.legend()
-plt.savefig("build/plots/refl.pdf")
+plt.savefig("build/plots/refl1.pdf")
 
 
 
 
+
+
+
+
+
+###Darstellung des relevanten Bereichs
+print("\n\n---Peak Abstände & Schichtdicke---")
+
+thresh1 = 40
+thresh2 = 160
+
+peaks, peak_heights = find_peaks(corr_data[thresh1:thresh2]/ gauss_max, height = 0.00094)
+diff = np.zeros(np.size(peaks) -1)
+
+for i in range(0,np.size(peaks) - 1):
+    diff[i] = refl_2theta[peaks[i+1]] - refl_2theta[peaks[i]]   #ohne thresh1, wegen gleichbleibendem Abstand der Punkte
+
+print(diff)
+diff_mittel = np.sum(diff)/np.size(diff)
+schichtdicke = lam/(2*diff_mittel * np.pi/180)
+print(f"\ngemittelter Peak Abstand {diff_mittel} Grad\nSchichtdicke = {schichtdicke}")
+
+
+print(f"\nWerte an den Grenzen. alpha \in  {refl_2theta[thresh1]} & {refl_2theta[thresh2]}")
+
+plt.figure()
+plt.plot(refl_2theta[thresh1:thresh2], corr_data[thresh1:thresh2]/ gauss_max, label="korrigierte Daten")
+plt.plot(refl_2theta[peaks + thresh1], corr_data[peaks + thresh1]/ gauss_max,"rx", label = "Maxima")
+plt.yscale('log')
+plt.ylabel(r"Reflektivität")
+plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.legend()
+plt.savefig("build/plots/refl2.pdf")
+
+
+
+
+
+
+
+###Dispersion###
+print(f"\n\n---Dispersion---")
+
+
+
+
+
+
+
+###Kritischer Winkel###
+print(f"\n\n---Kritscher Winkel---")
+
+alpha_crit_theo = np.sqrt(2 * sil_del) * 180/np.pi # in Grad
+print(f"\nTheorie kritischer Winkel = {alpha_crit_theo}")
+
+
+alpha_crit, crit_height = find_peaks(refl_I[:thresh1 +10]/ gauss_max)
+print(f"kritische Winkel = {refl_2theta[ alpha_crit]}")
+rel_abw(alpha_crit_theo, refl_2theta[ alpha_crit[1]])
+
+
+
+###Parrat###
+print(f"\n\n---Paratt---")
+print(f"Fit-Params direkt aus der V44.py nehmen")
+
+n1 = 1 #Luft
+delta2 = 11.15*10**(-6)
+delta3 = 10.5*10**(-6)
+sigma1 = 6*10**(-10) # m
+sigma2 = 13*10**(-10) # m 
+z2 = 8.55*10**(-8) # m   #verändert die Frequenz
+
+
+#params_par, cov_par = curve_fit(parrat_rau, refl_2theta[thresh1:thresh2+ 60], corr_data[thresh1:thresh2+ 60]/gauss_max, p0 = (12*10**(-6), 10*10**(-6), 6*10**(-10), 12*10**(-10), 8.55*10**(-8) ))
+#cov_par = np.sqrt(np.diag(cov_par))
+#uparam2 = unp.uarray(params_par, cov_par)
+#print(uparam2)
+
+
+plt.figure()
+plt.plot(refl_2theta[thresh1:], parrat_rau(refl_2theta[thresh1:], delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
+#plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
+plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
+plt.yscale('log')
+plt.ylabel(r"Reflektivität")
+plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.legend()
+plt.savefig("build/plots/paratt.pdf")
+
+print("Vergleich dicken. zuerst bestimmt = theo")
+rel_abw(schichtdicke, z2)
+
+
+
+#def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
+#    n2 = 1. - delta2
+#    n3 = 1. - delta3
+#
+#    a_i = a_i * np.pi/180
+#
+#    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos(a_i)**2))
+#    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos(a_i)**2))
+#    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos(a_i)**2))
+#
+#    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * sigma1**2)
+#    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * sigma2**2)
+#
+#    x2 = np.exp(-2j * kz2 * z2) * r23
+#    x1 = (r12 + x2) / (1 + r12 * x2)
+#    R_parr = np.abs(x1)**2
+#
+#    return R_parr
