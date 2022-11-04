@@ -7,7 +7,6 @@ from scipy.optimize import curve_fit
 import scipy.constants as const
 import sympy
 import os
-from tabulate import tabulate
 from uncertainties.unumpy import (nominal_values as noms, std_devs as stds)
 from scipy.signal import find_peaks
 
@@ -53,14 +52,14 @@ k = 2*np.pi / lam
 sil_rho = 20 * 10**(-6) # per metre**2
 sil_del = 7.6 * 10**(-6)
 sil_mu = 8600 #per metre
-sil_alp = 0.174 # degree
+sil_alpha = 0.174 # degree
 
 #Polyester
 
 poly_rho = 9.5 * 10**(-6) # per metre**2
 poly_del = 3.5 * 10**(-6)
 poly_mu = 400 #per metre
-poly_alp = 0.153 # degree
+poly_alpha = 0.153 # degree
 
 #####RECHNUNGEN#######
 
@@ -84,8 +83,8 @@ def rel_abw(theo,a):
     print(f"Relative Abweichung in Prozent: {noms(c) * 100 :.4f} \pm {stds(c) * 100 :.5f}\n")
 
 
-def gauss(x, mu, sigma, A, B):
-    return A / ( np.sqrt(2 * np.pi * sigma) ) * np.exp( -(( x -mu )**2 / (2*sigma**2)) + B ) 
+def gauss(x, mu, sigma, A ):
+    return A / ( np.sqrt(2 * np.pi * sigma) ) * np.exp( -(( x -mu )**2 / (2*sigma**2)) ) 
 
 def geometrie_corr(I, alpha, alpha_g, beam_width,D):
     I_corr = np.zeros(np.size(I))
@@ -129,16 +128,20 @@ def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
 
 
 
-def theorie_sil(alpha):
-    return (np.abs((k * np.sin(alpha)- k*np.sqrt(n**2-np.cos(alpha)**2))/(k * np.sin(alpha)+ k*np.sqrt(n**2-np.cos(alpha)**2))))**2
+#def theorie_sil(alpha):
+#    return (np.abs((k * np.sin(alpha)- k*np.sqrt(n**2-np.cos(alpha)**2))/(k * np.sin(alpha)+ k*np.sqrt(n**2-np.cos(alpha)**2))))**2
 
 
-
-
+def theorie_sil(alpha, alpha_crit, mu, lam):
+    k = 2* np.pi /lam
+    beta = mu/(2*k)
+    R = ( alpha - np.sqrt( alpha**2 - alpha_crit**2 + 2 * 1j  * beta) ) / ( alpha + np.sqrt( alpha**2 - alpha_crit**2 + 2 * 1j  * beta) )
+    R = R * np.conjugate(R)
+    return R 
 
 ###Gauß-Fit###
 
-param1, cov1 = curve_fit(gauss, detectorscan, detectorscan_I, p0 = (-0.0144, 0.04, 33.6, 9.5))
+param1, cov1 = curve_fit(gauss, detectorscan, detectorscan_I, p0 = (-0.0144, 0.04, 33.6))
 
 cov1 = np.sqrt(np.diag(cov1))
 uparam1 = unp.uarray(param1, cov1)
@@ -146,7 +149,7 @@ uparam1 = unp.uarray(param1, cov1)
 FWHM = 2 * np.sqrt(2 * np.log(2)) * uparam1[1]
 gauss_max = gauss(param1[0], *param1)
 print(f"\n---Gauss-Fit--- \nmu = {noms(uparam1[0]):.4f} \pm {stds(uparam1[0]):.4f} \nsigma = {noms(uparam1[1]):.4f} \pm {stds(uparam1[1]):.4f}")
-print(f"A = {noms(uparam1[2]):.4f} \pm {stds(uparam1[2]):.4f} \nB = {noms(uparam1[3]):.4f} \pm {stds(uparam1[3]):.4f}  \n")
+print(f"A = {noms(uparam1[2]):.4f} \pm {stds(uparam1[2]):.4f} \n")
 print(f"I_max Fit = {gauss_max:.4f}")
 print(f"FWHM = {noms(FWHM):.4f} \pm {stds(FWHM):.4f}")
 
@@ -250,11 +253,14 @@ corr_data = refl_I_corr - diffus_I_corr
 ###Reflektivitäts & Diffuser Scan###
 print("\n\n---Reflekitvitäts & Diffuser Scan---")
 
+alpha_crit_theo = np.sqrt(2 * sil_del) * 180/np.pi # in Grad #nur hier fürs plotten der THeo. kommt später nochmal
+
+
 plt.figure()
 plt.plot(diffus_2theta, diffus_I/ gauss_max, label="normierter Diffuserscan")
-plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitäätsscan")
+plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitätsscan")
 plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
-plt.plot(refl_2theta, theorie_sil(refl_2theta * np.pi /180), label = "Theoriekurve Silizium")
+plt.plot(refl_2theta, theorie_sil(refl_2theta , alpha_crit_theo, sil_mu, lam) , label = "Theoriekurve Silizium")
 plt.yscale('log')
 plt.ylabel(r"Reflektivität")
 plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
@@ -275,7 +281,7 @@ plt.savefig("build/plots/refl1.pdf")
 ###Darstellung des relevanten Bereichs
 print("\n\n---Peak Abstände & Schichtdicke---")
 
-thresh1 = 40
+thresh1 = 40        #Grenzen um nur bestimmten BEreih zu betrachten (Nach Anfangsbums und vorm ausfasern der Daten)
 thresh2 = 160
 
 peaks, peak_heights = find_peaks(corr_data[thresh1:thresh2]/ gauss_max, height = 0.00094)
@@ -313,7 +319,7 @@ plt.savefig("build/plots/refl2.pdf")
 ###Dispersion###
 print(f"\n\n---Dispersion---")
 
-
+print("???????")
 
 
 
@@ -363,26 +369,35 @@ plt.tight_layout()
 plt.legend()
 plt.savefig("build/plots/paratt.pdf")
 
+
+
+
+
+print(f"\n\n---Abweichungen---")
+
 print("Vergleich dicken. zuerst bestimmt = theo")
 rel_abw(schichtdicke, z2)
 
+print("Delta. erst Poly dann Si")
+rel_abw(poly_del, delta2)
+rel_abw(sil_del, delta3)
 
 
-#def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
-#    n2 = 1. - delta2
-#    n3 = 1. - delta3
-#
-#    a_i = a_i * np.pi/180
-#
-#    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos(a_i)**2))
-#    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos(a_i)**2))
-#    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos(a_i)**2))
-#
-#    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * sigma1**2)
-#    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * sigma2**2)
-#
-#    x2 = np.exp(-2j * kz2 * z2) * r23
-#    x1 = (r12 + x2) / (1 + r12 * x2)
-#    R_parr = np.abs(x1)**2
-#
-#    return R_parr
+
+
+#plt.figure()
+#plt.plot(diffus_2theta, diffus_I/ gauss_max, label="normierter Diffuserscan")
+#plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitäätsscan")
+#plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
+#plt.plot(refl_2theta, theorie_sil(refl_2theta * np.pi /180), label = "Theoriekurve Silizium")
+#plt.plot(refl_2theta[thresh1:], parrat_rau(refl_2theta[thresh1:], delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
+#plt.yscale('log')
+#plt.ylabel(r"Reflektivität")
+#plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
+##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+#plt.tight_layout()
+#plt.legend()
+#plt.savefig("build/plots/refl1.pdf")
+
+

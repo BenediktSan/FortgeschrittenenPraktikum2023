@@ -1,22 +1,167 @@
 \newpage 
 \section{Auswertung}
 
-        \begin{table}[ht]
-          \centering
-          \small
-          \caption{Messdaten zur Wien-Robinson-Brücke}
-          \label{tab:tab2}
-          \begin{tabular}{S [table-format=5.0] S [table-format=1.3]}
-           \toprule
-           {$\nu \mathbin{\scalebox{1.5} / } \si{\hertz}$} & $\text{Amplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$\\
-           \midrule
-          \end{tabular}
-        \end{table} 
+\noindent Für die Messungen wurde eine $Cu$-Röntgenröhre verwendet. 
+Daher wird im Folgenden für die Wellenlänge der Röntgenstrahlung die Wellenlänge des $K_\alpha$-Übergangs, mit $\lambda = \SI{1.541e-10}{\metre}$, genutzt.
 
 
-        \begin{figure}
-            \centering
-            \includegraphics[width=0.6\textwidth]{build/plots/plot1.pdf}
-            \caption{Messdaten zur Wien-Robinson-Brücke}
-          \label{fig:plot1}
-        \end{figure}
+\subsection{Detektorscan}
+
+\noindent
+Zunächst wird mit Hilfe des Detektorscans die maximale Intensität des Röntgenstrahls und die Halbwertsbreite bestimmt.
+Dafür wird auf die in Abbildung \ref{img:gauss} dargestellten Messwerte mit einer Gauss-Funktion der Form
+\begin{equation}
+  I_\t{G}(\alpha_i) = \frac{A}{\sqrt{2 \pi \sigma^2}} \text{exp}\left(- \frac{(\alpha_i - \mu)^2}{2\sigma^2}\right)
+\end{equation}
+ein Fit berechnet. Die Parameter der Ausgleichsrechnung ergeben sich zu 
+\begin{align*}
+  \mu &= \SI{-0.0144(00005)}{\degree} \\
+  \mu &= \SI{0.0448(00005)}{\degree} \\
+  A &= \SI{ 444895.9705( 34777836)}{} \quad .
+\end{align*}
+Daraus lassen sich die maximale Intensität und die Halbwertsbreite zu 
+\begin{align*}
+  I_\t{G}(\mu) &= I_\t{max} =  838646.2462\\
+  \t{FWHM} &= 2  \sqrt{2 \ln(2)  } \cdot \sigma = \SI{0.1055(00012)}{\degree}
+\end{align*}
+bestimmen. $I_\t{max} $ wird dabei im Weiteren zum Normieren von Messwerten genutzt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{build/plots/gauss.pdf}
+    \caption{Die gemessenen Intensitäten des Detektorscans gegen den Winkel aufgetragen. 
+    Zusätzlich sind noch die Halbwertsbreite des Gauss-Fits und der Gauss-Fit eingezeichnet.}
+  \label{img:gauss}
+\end{figure}
+
+
+\subsection{Erster z-Scan}
+
+Über die in Abbildung \ref{img:gauss} dargestellten Messwerte des ersten $z$-Scans lässt sich grafisch die Breite des Röntgenstrahls abschätzen.
+Dabei wird angenommen, dass der Abstand über dem die Intensität von $I_\t{max}$ auf $0$ fällt, der Strahlbreite entspricht. 
+Dies lässt sich darüber erklären, dass der Strahl zuerst gar nicht und dann vollkommen auf die Probe trifft.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{build/plots/z1_scan.pdf}
+  \caption{Die gemessenen Intensitäten des $z$-Scans, die damit korrespondierenden $z$-Komponenten und die grafisch ermittelte Strahlbreite eingezeichnet.}
+\label{fig:gauss}
+\end{figure}
+
+\noindent
+Für den Start- und den Endpunkt werden die Punkte 
+\begin{align*}
+  z_1 &= \SI{-0.08}{\milli\metre}\\
+  z_2 &= \SI{0.2}{\milli\metre}
+\end{align*}
+abgelesen. Damit gilt für die Strahlbreite
+\begin{equation*}
+  \increment z = \SI{0.28}{\milli\metre} \quad .
+\end{equation*}
+Aus der Strahlbreite lässt sich über Gleichung \ref{eqn:G} der Geometriewinkel $\alpha_\t{g}$, bei dem bei Drehung der gesamte Strahl die Probe trifft, bestimmen.
+Dabei ergibt sich 
+\begin{equation*}
+  \alpha_\t{g,1} = \arcsin \left(\frac{\increment z}{D}\right) = \SI{0.802}{\degree} \quad .
+\end{equation*}
+$D$ steht dabei für die Länge der Probe.
+
+\subsection{Rockingscan}
+
+\noindent
+Alternativ lässt sich der Geometriewinkel über die Messwerte des Rockingscans, welche in Abbildung \ref{img:dreieck} grafisch dargestellt sind, bestimmen.
+Dabei entspricht der halbierte Abstand der äußeren Ränder des in der Abbildung zu erkennenen \enquote{Dreiecks} dem Geometriewinkel. 
+Dies lässt sich damit erklären, dass bei einem bestimmten Einfallswinke des Strahls, nicht mehr der gesamte Strahl die Probe trifft und deswegen der Detektor hinter der Probe eine Intensität misst.\\
+Die grafisch bestimmten Punkte 
+\begin{align*}
+  \alpha_1 &= \SI{-0.76}{\degree}\\
+  \alpha_2 &= \SI{088}{\degree}
+\end{align*}
+sind in der Abbildung noch einmal hervorgehoben. Gemittelt ergibt sich nun
+\begin{equation*}
+  \alpha_\t{g,2} = \frac{|\alpha_1| + |\alpha_2|}{2} = \SI{0.82}{\degree} \quad .
+\end{equation*} 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{build/plots/dreieck.pdf}
+  \caption{Die gemessenen Intensitäten des ersten Rockingscans gegen die Winkel aufgetragen. 
+  Die zur Bestimmung des Geometriewinkel genutzten Punkte sind besonders hervorgehoben. }
+\label{img:dreieck}
+\end{figure}
+
+
+\subsection{Reflektivitäts- und Diffuserscan}
+
+\noindent
+Beim Reflektivitätsscan misst der Detektor die von der Probe zurückgeworfene Strahlung. 
+Über das Normieren der gemessenen Intensität auf die maximale Intensität $I_\t{max}$ lässt sich die Reflektivität betrachten. 
+Um Rückstreueffekte herauszurechnen werden die ebenfalls normierten Ergebnisse des Diffusenscans von denen der Reflektivität abgezogen.
+Des Weiteren werden die gemessenen Intensitäten noch über den Geometriefaktor $G$, nach Gleichung \ref{eqn:G} korrigiert, 
+um zu berücksichtigen dass nicht der gesamte Strahl die Probe trifft.\\
+Dies ist in Abbildung \ref{img:refl1} grafisch dargestellt, wobei die Korrektur mit $G$ nur für die komplett korrigierte Reflektivität durchgeführt wurde.
+Dort ist zusätzlich noch die Theoriekurve der Fresnelreflektivität von Silizium $R_\t{F}$ abgebildet. Diese ergibt sich aus der Funktion
+\begin{equation*}
+  R_\t{F}(\alpha) = \left| \frac{\alpha - \sqrt{\alpha^2 - \alpha_\t{c}^2 +2i\beta }}{\alpha + \sqrt{\alpha^2 - \alpha_\t{c}^2 +2i\beta }} \right| ^2 \quad,
+\end{equation*}
+mit $\alpha_\t{c}$ als kritischen Winkel unter dem es zur Totalreflexion kommt und $\beta = \frac{\mu \lambda}{2 \pi}$. 
+Hierbei ist $\lambda$ wiederum die Wellenlänge und $\mu$\cite{V44} der Absorptionskoeffizient.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{build/plots/refl1.pdf}
+  \caption{Die normierten Messwerte des Reflektivitäts- und Diffusenscans. 
+  Des Weiteren sind die vom Diffusenscan bereinigten und mit $G$ korrigierten Werte der Reflektivitätsmessung aufgetragen, 
+  so wie die theoretische Fresnelreflektivität von Silizium.}
+\label{img:refl1}
+\end{figure}
+
+\noindent Aus den korrigierten Daten lässt sich die Schichtdicke von Silizium bestimmen. Dafür wird die Wellenlänge der Kiessig-Oszillationen benötigt.
+Um diese zu erhalten, werden, wie in Abbildung \ref{img:refl2} dargestellt, die korrigierten Daten, auf einem Intervall, welches nach den kritischen Winkeln beginnt, 
+und vor dem Ausfasern der Daten endet. Hier wurde $\alpha \in [0.2,0.8]$ genutzt.\\
+Nun wurden mit der Funktion \textit{scipy.find\_peaks} die Maxima der Oszillationen bestimmt, 
+ihre Abstände berechnet und gemittelt und über die Gleichung \ref{eqn:bragg} die Dicke der Fläche bestimmt.\\
+Für den gemittelten Abstand ergibt sich $\increment \alpha = \SI{0.046}{\degree}$, was zu einer Schichtdicke von $d_1 = \SI{ 9.68e-8}{\metre}$ führt.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{build/plots/refl2.pdf}
+  \caption{Die Reflektivität im Intervall $\alpha \in [0.2,0.8]$ mit den von \textit{scipy.find\_peaks} gefundenen Maxima, grafisch dargestellt. }
+\label{img:refl2}
+\end{figure}
+
+\noindent
+Außerdem lässt sich mit den in Abbildung \ref{img:refl1} dargestellten Messwerten der kritische Winkel $\alpha_\t{c}$ bestimmen, unter dem es zur Totalreflexion kommt. 
+Dafür wird mit der Funktion \textit{scipy.find\_peaks} das Maxima, bei dem es zu einer starken Reflexion kommt, welches vor den Kiessig-Oszillationen liegt, ausgelesen.
+Dabei ergibt sich $\alpha_\t{c} = \SI{0.2}{\degree}$. Er lässt sich außerdem mit
+\begin{equation*}
+  \alpha_\text{c,theo} \approx \sqrt{2 \delta} = \SI{0.223}{\degree}
+\end{equation*}
+berechnen. Wobei $\delta$ \cite{V44} die Dispersion bei der Brechung berücksichtigt.
+Die über $\frac{\alpha_\text{c,theo} -\alpha_\text{c}}{\alpha_\text{c,theo}}$ berechnete relative Abweichung, liefert für den kritischen Winkel $\increment \alpha = 10.46$.
+
+
+
+\subsection{Parratt-Algorithmus}
+
+\noindent
+Über den Parratt-Algorithmus lässt sich das Dispersionsprofil der Probe bestimmen. 
+Dazu gehört die Dicke der Schichten $d$, die Dispersion $\delta$ und die Rauigkeit $\sigma$. 
+Um das Dispersionsprofil zu bestimmen wurden die korrigierten Messwerte nach den kritischen Winkeln, also ab $\alpha = \SI{0.2}{\degree}$, genutzt.
+Auf diese wurde die über den Parratt-Algorithmus berechnete Reflektivität grafisch aufgetragen.
+Anschließend wird die Funktion über manuelles variieren der Parameter möglichts genau an die gemessene Reflektivität angepasst.
+Das Ergebnis ist in Abbildung \ref{img:parratt} dargestellt.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{build/plots/paratt.pdf}
+  \caption{Die Messdaten der Reflektivität mit den auf ihnen gebildeten Ausgleichsfunktion des Parratt-Algorithmus.  }
+\label{img:parratt}
+\end{figure}
+
+\noindent 
+Für die Parameter ergibt sich dabei 
+\begin{align*}
+  \delta_\t{Poly}       &= \SI{11.15e-6}{}\\
+  \delta_\t{Si}         &= \SI{10.5e-6}{}\\
+  \sigma_\t{Luft, Poly} &= \SI{6e-10}{\metre}\\ 
+  \sigma_\t{Poly, Si}   &= \SI{13e-10}{\metre} \\ 
+  d_2                   &= \SI{8.55e-8 }{\metre} \quad .
+\end{align*} 
+
