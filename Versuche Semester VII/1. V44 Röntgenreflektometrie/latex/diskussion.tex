@@ -1,26 +1,40 @@
 \newpage
 \section{Diskussion}
-
-
+Die Durchführung des Versuchs lief ohne Probleme ab. Die Justagemessungen haben erwarteten Ergebnisse geliefert. 
+Der aus dem Rockingscan bestimmte Geometriewinkel $\alpha_\t{g,2} = \SI{0.82}{\degree} $ besitzt nur eine relative Abweichung von 
+$\SI{2.223}{\percent}$ von dem errechneten Wert $\alpha_\t{g,1}= \SI{0.802}{\degree}$. 
+Dies ist ein sehr gutes Ergebnis, welches zeigt, dass die Justagemessungen erfolgreich waren.\\
+Die in Abbildung \ref{img:refl1} dargestellte theoretische Reflektivität einer glatten Siliziumoberfläche stimmt nur ungefähr mit den Messwerten überein, 
+da sie eine etwas stärkere Krümmung besitzt. Ein Ansatz um dies zu erklären wäre, dass die Theoriekurve für eine glatte Oberfläche gilt, was für die reale Oberfläche nicht gilt.
+Dies könnte zu der leicht unterschiedlichen Krümmung der Kurve führen.\\
+Die manuelle Ausgleichsrechnung für den Parratt-Algorithmus hat viele Probleme hervorgebracht. Zum einen haben gängige Fit-Algorithmen keine passenden Ergebnisse geliefert.
+Zum anderen war das manuelle Anpassen der Parameter schwierig, da das Variieren eines Parameters die Kurve sehr stark in vielen Eigenschaften verändern kann.
+Das nacheinander Variieren war deswegen nicht möglich, wodurch das Fiten chaotisch war und nie ein wirklich zufriedenstellenes Ergebnis erreicht wurde.
+Die in Tabelle \ref{tab:rel} aufgetragenen Ergebnisse und relativen Abweichungen der Theoriewerte\cite{V44} unterstreichen dies auch. 
+Die Dispersion von Silizium zeigt eine starke Abweichung von dem Referenzwert. 
+Dafür das nur ein ungenauer Fit durchgeführt wurde, ist die von Silizium aber überraschend nah an der Theorie und liefert ein gutes Ergebnis.
 
 \begin{table}[ht]
     \centering
-    \caption{Relative Aweichung von den Theoriewerten für die einzelnen Messungen}
+    \caption{Relative Abweichung von den Theoriewerten \protect\cite{V44} für die einzelnen Parameter des Parratt-Algorithmus.}
     \label{tab:rel}
-        \begin{tabular}{S [table-format=4.0] S [table-format=2.0] S [table-format=1.4]}
+        \begin{tabular}{S [table-format=4.4] S [table-format=4.4] S [table-format=4.4] S [table-format=4.4]}
         \toprule
-            {$\text{Brückenart}$} &{Messgröße}& {$\text{relative Abweichung von der Theorie} $} \\
+            {Größe} & {Fit-Parameter} &{Theoriewert}& {$\text{relative Abweichung} $} \\
         \midrule
-            $\text{Wheatstone}$  & $R_{1}$ & $\SI{0.0023}{\percent}$\\
-                                 & $R_{2}$ & $\SI{0.75}{\percent}$\\
+        $\delta_\t{Poly}$ & $\SI{11.15e-6}{}$  & $\SI{7.6e-6}{}$ & $\SI{218.571}{\percent}$\\
+        $\delta_\t{Si}$   & $\SI{10.5e-6}{}$   & $\SI{3.5e-6}{}$ & $\SI{38.158}{\percent}$\\
             \hline
-            $\text{Kapazität}$  & $R$ & $\SI{-0.0027}{\percent}$\\
-                                & $C$ & $\SI{-0.41}{\percent}$\\
-            \hline
-            $\text{Maxwell}$ & $R$&     $\SI{7.72}{\percent}$\\
-                       & $L$&     $\SI{5.07}{\percent}$\\
-            \hline
+        ${d}$             & $\SI{8.55e-8}{}$   & $\SI{9.68e-8}{}$ & $\SI{11.714}{\percent}$\\
         \bottomrule
     \end{tabular}
+    \label{tab:rel}
 \end{table} 
+
+\noindent
+Die Schichtdicke $d$ des Parratt-Algorithmus wird mit der aus den Kiessig-Oszillationen berechneten verglichen. 
+Die beiden besitzen auch nur eine sehr geringe Abweichung voneinander, obwohl der Parratt-Fit problematisch war und, 
+wie in Abbildung \ref{img:refl2} zu erkennen, die Funktion \textit{scipy.find\_peaks} auch Maxima angegeben hat, die nicht zu den gesuchten gehören.\\
+Alles in allem hat der Versuch gute Ergebnisse geliefert, vor allem im Anbetracht des chaotischen Parratt-Fits.
+\newpage
 
