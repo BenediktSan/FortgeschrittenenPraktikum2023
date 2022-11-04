@@ -6,7 +6,7 @@ all: build/Protokoll_V44.pdf
 
 
 build/plots/plot1.pdf:	|build
-	python python/V44.py
+#	python python/V44.py
 
 
 
