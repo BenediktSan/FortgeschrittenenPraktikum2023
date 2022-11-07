@@ -12,7 +12,7 @@
     \subsection{Brechung}
 
         \noindent
-        Trifft eine elektromagnetische Welle auf eine Grenzfläche zweier Medien, die verschieden Brechungsindizes $n_1 \neq n_2$ haben, findet Brechung
+        Trifft eine elektromagnetische Welle auf eine Grenzfläche zweier Medien, die verschiedene Brechungsindizes $n_1 \neq n_2$ haben, findet Brechung
         statt. Nach dem Snelliusschen Brechungsgesetz 
         \begin{equation*}
             \frac{n_1}{n_2} = \frac{\cos(\alpha_2)}{\cos(\alpha_1)}
@@ -60,12 +60,12 @@
         \begin{figure}
             \centering
             \includegraphics[width=\textwidth]{latex/images/reflectivity.png}
-            \caption{Die Reflektivität eines Siliziumwafers mit einer $\SI{800}{\angstrom}$ dicken Polystyrolschicht aufgetragen gegen den Einfallswinkel der Röntgenstrahlung}
+            \caption{Die Reflektivität eines Siliziumwafers mit einer $\SI{800}{\angstrom}$ dicken Polystyrolschicht aufgetragen gegen den Einfallswinkel der Röntgenstrahlung. \cite{alte}}
             \label{fig:bsp_kiessig}
         \end{figure}
         In dem vergrößerten Bereich sind zwei Winkel $\alpha_\text{c}$ aufgetragen, welche für die Totalreflexion der Röntgenstrahlung an der Polystyrolschicht 
         und an dem Siliziumwafer stehen. Anschließend fällt die Reflektivität ab. Dabei werden die sogenannten Kiessig-Oszillationen 
-        sichtbar. Aus dem Abstand aufeinanderfolgender Minima (oder Maxima) kann die Dicke der obersten Schicht ermittelt werden, da der Gangunterschied 
+        sichtbar. Aus dem Abstand aufeinanderfolgender Minima (oder Maxima) können Schichtdicken ermittelt werden, da der Gangunterschied 
         der interferierenden Wellen für destruktive Interferenz ein Vielfaches von $\frac{\pi}{2}$ sein muss. 
         Es folgt
         \begin{equation}
@@ -77,7 +77,11 @@
         \begin{figure}%
             \centering%
             \includegraphics[width=0.5\textwidth]{latex/images/layers.png}%
-            \caption{Schematische Darstellung eines Mehrschichtensystems mit $N+1$ Schichten.}%
+            \caption{Schematische Darstellung eines Mehrschichtensystems mit $N+1$ Schichten. An der ersten Schicht trifft der Strahl unter dem Winkel 
+            $\alpha_1$ ein mit $T_1 = \num{1}$. An jeder Grenze zweier Schichten, beispielsweise an der Höhe $z_{j+1}$, kommt von oben der durch die letzte 
+            Schicht transmittierte Strahl mit $T_{j-1}$ und der an der nächsten Schicht reflektierte Strahl $R_{j}$ an. Der an dieser Grenze reflektierte 
+            Anteil wird mit $R_{j-1}$ bezeichnet und der transmittierte Teil mit $T_j$. Die letzte Schicht ist so dick, dass an der letzten 
+            Grenzfläche kein reflektierter Anteil $R_{N+1}$ ankommt. \cite{alte}}%
             \label{fig:layers}%
         \end{figure}
         \noindent
