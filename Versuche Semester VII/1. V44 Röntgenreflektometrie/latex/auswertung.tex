@@ -1,7 +1,7 @@
 \newpage 
 \section{Auswertung}
 
-\noindent Für die Messungen wurde eine $Cu$-Röntgenröhre verwendet. 
+\noindent Für die Messungen wurde eine $\ce{Cu}$-Röntgenröhre verwendet. 
 Daher wird im Folgenden für die Wellenlänge der Röntgenstrahlung die Wellenlänge des $K_\alpha$-Übergangs, mit $\lambda = \SI{1.541e-10}{\metre}$, genutzt.
 
 
@@ -9,14 +9,14 @@ Daher wird im Folgenden für die Wellenlänge der Röntgenstrahlung die Wellenl�
 
 \noindent
 Zunächst wird mit Hilfe des Detektorscans die maximale Intensität des Röntgenstrahls und die Halbwertsbreite bestimmt.
-Dafür wird auf die in Abbildung \ref{img:gauss} dargestellten Messwerte mit einer Gauss-Funktion der Form
+Dafür wird auf die in Abbildung \ref{img:gauss} dargestellten Messwerte mit einer Gauß-Funktion der Form
 \begin{equation}
   I_\t{G}(\alpha_i) = \frac{A}{\sqrt{2 \pi \sigma^2}} \text{exp}\left(- \frac{(\alpha_i - \mu)^2}{2\sigma^2}\right)
 \end{equation}
 ein Fit berechnet. Die Parameter der Ausgleichsrechnung ergeben sich zu 
 \begin{align*}
   \mu &= \SI{-0.0144(00005)}{\degree} \\
-  \mu &= \SI{0.0448(00005)}{\degree} \\
+  \sigma &= \SI{0.0448(00005)}{\degree} \\
   A &= \SI{ 444895.9705( 34777836)}{} \quad .
 \end{align*}
 Daraus lassen sich die maximale Intensität und die Halbwertsbreite zu 
@@ -30,12 +30,12 @@ bestimmen. $I_\t{max} $ wird dabei im Weiteren zum Normieren von Messwerten genu
     \centering
     \includegraphics[width=0.6\textwidth]{build/plots/gauss.pdf}
     \caption{Die gemessenen Intensitäten des Detektorscans gegen den Winkel aufgetragen. 
-    Zusätzlich sind noch die Halbwertsbreite des Gauss-Fits und der Gauss-Fit eingezeichnet.}
+    Zusätzlich sind noch die Halbwertsbreite des Gauß-Fits und der Gauß-Fit eingezeichnet.}
   \label{img:gauss}
 \end{figure}
 
 
-\subsection{Erster z-Scan}
+\subsection{Erster Z-Scan}
 
 Über die in Abbildung \ref{img:gauss} dargestellten Messwerte des ersten $z$-Scans lässt sich grafisch die Breite des Röntgenstrahls abschätzen.
 Dabei wird angenommen, dass der Abstand über dem die Intensität von $I_\t{max}$ auf $0$ fällt, der Strahlbreite entspricht. 
@@ -43,7 +43,7 @@ Dies lässt sich darüber erklären, dass der Strahl zuerst gar nicht und dann v
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/z1_scan.pdf}
-  \caption{Die gemessenen Intensitäten des $z$-Scans, die damit korrespondierenden $z$-Komponenten und die grafisch ermittelte Strahlbreite eingezeichnet.}
+  \caption{Die gemessenen Intensitäten des Z-Scans, die damit korrespondierenden $z$-Komponenten und die grafisch ermittelte Strahlbreite eingezeichnet.}
 \label{fig:gauss}
 \end{figure}
 
@@ -57,7 +57,7 @@ abgelesen. Damit gilt für die Strahlbreite
 \begin{equation*}
   \increment z = \SI{0.28}{\milli\metre} \quad .
 \end{equation*}
-Aus der Strahlbreite lässt sich über Gleichung \ref{eqn:G} der Geometriewinkel $\alpha_\t{g}$, bei dem bei Drehung der gesamte Strahl die Probe trifft, bestimmen.
+Aus der Strahlbreite lässt sich über Gleichung \eqref{eqn:G} der Geometriewinkel $\alpha_\t{g}$, bei dem bei Drehung der gesamte Strahl die Probe trifft, bestimmen.
 Dabei ergibt sich 
 \begin{equation*}
   \alpha_\t{g,1} = \arcsin \left(\frac{\increment z}{D}\right) = \SI{0.802}{\degree} \quad .
@@ -69,7 +69,7 @@ $D$ steht dabei für die Länge der Probe.
 \noindent
 Alternativ lässt sich der Geometriewinkel über die Messwerte des Rockingscans, welche in Abbildung \ref{img:dreieck} grafisch dargestellt sind, bestimmen.
 Dabei entspricht der halbierte Abstand der äußeren Ränder des in der Abbildung zu erkennenen \enquote{Dreiecks} dem Geometriewinkel. 
-Dies lässt sich damit erklären, dass bei einem bestimmten Einfallswinke des Strahls, nicht mehr der gesamte Strahl die Probe trifft und deswegen der Detektor hinter der Probe eine Intensität misst.\\
+Dies lässt sich damit erklären, dass bei einem bestimmten Einfallswinkel des Strahls, nicht mehr der gesamte Strahl die Probe trifft und deswegen der Detektor hinter der Probe eine Intensität misst.\\
 Die grafisch bestimmten Punkte 
 \begin{align*}
   \alpha_1 &= \SI{-0.76}{\degree}\\
@@ -88,13 +88,13 @@ sind in der Abbildung noch einmal hervorgehoben. Gemittelt ergibt sich nun
 \end{figure}
 
 
-\subsection{Reflektivitäts- und Diffuserscan}
+\subsection{Reflektivitäts- und Diffuser Scan}
 
 \noindent
 Beim Reflektivitätsscan misst der Detektor die von der Probe zurückgeworfene Strahlung. 
 Über das Normieren der gemessenen Intensität auf die maximale Intensität $I_\t{max}$ lässt sich die Reflektivität betrachten. 
-Um Rückstreueffekte herauszurechnen werden die ebenfalls normierten Ergebnisse des Diffusenscans von denen der Reflektivität abgezogen.
-Des Weiteren werden die gemessenen Intensitäten noch über den Geometriefaktor $G$, nach Gleichung \ref{eqn:G} korrigiert, 
+Um Rückstreueffekte herauszurechnen werden die ebenfalls normierten Ergebnisse des diffusen Scans von denen der Reflektivität abgezogen.
+Des Weiteren werden die gemessenen Intensitäten noch über den Geometriefaktor $G$, nach Gleichung \eqref{eqn:G} korrigiert, 
 um zu berücksichtigen dass nicht der gesamte Strahl die Probe trifft.\\
 Dies ist in Abbildung \ref{img:refl1} grafisch dargestellt, wobei die Korrektur mit $G$ nur für die komplett korrigierte Reflektivität durchgeführt wurde.
 Dort ist zusätzlich noch die Theoriekurve der Fresnelreflektivität von Silizium $R_\t{F}$ abgebildet. Diese ergibt sich aus der Funktion
@@ -107,17 +107,17 @@ Hierbei ist $\lambda$ wiederum die Wellenlänge und $\mu$\cite{V44} der Absorpti
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/refl1.pdf}
-  \caption{Die normierten Messwerte des Reflektivitäts- und Diffusenscans. 
-  Des Weiteren sind die vom Diffusenscan bereinigten und mit $G$ korrigierten Werte der Reflektivitätsmessung aufgetragen, 
+  \caption{Die normierten Messwerte des Reflektivitäts- und diffusen Scans. 
+  Des Weiteren sind die vom diffusen Scan bereinigten und mit $G$ korrigierten Werte der Reflektivitätsmessung aufgetragen, 
   so wie die theoretische Fresnelreflektivität von Silizium.}
 \label{img:refl1}
 \end{figure}
 
 \noindent Aus den korrigierten Daten lässt sich die Schichtdicke von Silizium bestimmen. Dafür wird die Wellenlänge der Kiessig-Oszillationen benötigt.
 Um diese zu erhalten, werden, wie in Abbildung \ref{img:refl2} dargestellt, die korrigierten Daten, auf einem Intervall, welches nach den kritischen Winkeln beginnt, 
-und vor dem Ausfasern der Daten endet. Hier wurde $\alpha \in [0.2,0.8]$ genutzt.\\
+und vor dem Ausfasern der Daten endet. Hier wurde $\alpha \in [\SI{0.2}{\degree},\SI{0.8}{\degree}]$ genutzt.\\
 Nun wurden mit der Funktion \textit{scipy.find\_peaks} die Maxima der Oszillationen bestimmt, 
-ihre Abstände berechnet und gemittelt und über die Gleichung \ref{eqn:bragg} die Dicke der Fläche bestimmt.\\
+ihre Abstände berechnet und gemittelt und über die Gleichung \eqref{eqn:bragg} die Dicke der Fläche bestimmt.\\
 Für den gemittelten Abstand ergibt sich $\increment \alpha = \SI{0.046}{\degree}$, was zu einer Schichtdicke von $d_1 = \SI{ 9.68e-8}{\metre}$ führt.
 
 \begin{figure}[H]
@@ -146,7 +146,7 @@ Die über $\frac{\alpha_\text{c,theo} -\alpha_\text{c}}{\alpha_\text{c,theo}}$ b
 Dazu gehört die Dicke der Schichten $d$, die Dispersion $\delta$ und die Rauigkeit $\sigma$. 
 Um das Dispersionsprofil zu bestimmen wurden die korrigierten Messwerte nach den kritischen Winkeln, also ab $\alpha = \SI{0.2}{\degree}$, genutzt.
 Auf diese wurde die über den Parratt-Algorithmus berechnete Reflektivität grafisch aufgetragen.
-Anschließend wird die Funktion über manuelles variieren der Parameter möglichts genau an die gemessene Reflektivität angepasst.
+Anschließend wird die Funktion über manuelles Variieren der Parameter möglichst genau an die gemessene Reflektivität angepasst.
 Das Ergebnis ist in Abbildung \ref{img:parratt} dargestellt.
 \begin{figure}[H]
   \centering
