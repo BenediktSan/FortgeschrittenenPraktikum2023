@@ -13,7 +13,7 @@
     \sisetup{table-format=1.1}
     \begin{tabular}{S S[table-format=3.1] S S[table-format=3.1]}
       \toprule
-      \multicolumn{2}{c}{Aufsteigend}\multicolumn{2}{c}{Absteigend}
+      \multicolumn{2}{c}{Aufsteigend} & \multicolumn{2}{c}{Absteigend}\\
       \cmidrule(lr){1-2}\cmidrule(lr){3-4}
       {$I \mathbin{/} \si{\ampere}$} & {$B \mathbin{/} \si{\milli\tesla}$} & {$I \mathbin{/} \si{\ampere}$} & {$B \mathbin{/} \si{\milli\tesla}$} \\
       \midrule
@@ -57,36 +57,74 @@
     \label{fig:mag}%
   \end{figure}%
 
+\subsection{Theoretische Berechnung der Land\'{e}-Faktoren}
+
+  \noindent 
+  Die rote Linie ergibt sich aus dem Übergang $\ce{^1P_1} \leftrightarrow \ce{^1D_2}$ der $\ce{Cd}$-Lampe, die blaue Linie aus 
+  $\ce{^3S_1} \leftrightarrow \ce{^3P_1}$. Aus der Notation sind L, S und J 
+  abzulesen und daraus kann der Land\'{e}-Faktor $g_{j}$ berechnet werden.  
+  \begin{table}[H]
+    \centering
+    \caption{Die Werte für L, S und J der jeweiligen Zustände und der daraus berechnete Land\'{e}-Faktor.}
+    \begin{tabular}{c c c c c}
+      \toprule
+       & L & S & J & $g$ \\ 
+      \midrule
+       $\ce{^1P_1}$ & 1 & 0 & 1 & 1 \\
+       $\ce{^1D_2}$ & 2 & 0 & 2 & 1 \\
+       \\ 
+       $\ce{^3S_1}$ & 0 & 1 & 1 & 2 \\
+       $\ce{^3P_1}$ & 1 & 1 & 1 & 1,5\\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+  Unter dem Einfluss eines Magnetfeldes hebt sich ein Teil der Entartung auf. Die Aufspaltung $\Delta E$ der Zeeman-Linien ist durch 
+  \begin{equation*}
+    \Delta E = \mu_\text{B} B \cdot g_{ij}
+  \end{equation*}
+  gegeben, wobei $\mu_\text{B}$ das Bohrsche Magneton ist und $g_{ij} = \left(m_ig_i - m_jg_j\right)$ der Land\'{e}-Faktor des Überganges. 
+  Für den Übergang ergibt sich dann:
+  \begin{table}
+    \centering
+    \caption{Die Land\'{e}-Faktoren der Übergange.}
+    \begin{tabular}{c | c c c }
+      \toprule
+      {} & {$\Delta m = \num{-1}$} & {$\Delta m = \num{0}$} & {$\Delta m = \num{1}$}\\
+      \midrule
+      rot & 1 & 0 & -1 \\
+      blau & 1,5 & -0,5 & \\
+      & 2 & 0 & -2 \\
+      &  & 0,5 &-1,5 \\ 
+      \bottomrule            
+    \end{tabular}
+  \end{table}
+
 \subsection{Rote Spektrallinie}
 
   \noindent Es wird das Experiment gemäß der Durchführung \ref{sec:durch_rot} aufgebaut. Die Wellenlänge des roten Lichtes beträgt 
   $\lambda = \SI{480}{\nano\metre}$, der Brechungsindex für dieses Licht $n = \num{1.4635}$ \cite{V27}. Die Lummer-Gehrke-Platte hat die 
   Maße $L = \SI{120}{\milli\metre}$ und $d = \SI{4}{\milli\metre}$. Damit ergibt sich für ihr Auflösungsvermögen $ A = \num{209128.591}$. 
   Das Dispersionsgebiet berechnet sich nach \eqref{} zu $\Delta \lambda_\text{D} = \SI{489.13}{\nano\metre}$. \\ 
-  
-  \noindent 
-  Die rote Linie ergibt sich aus dem Übergang $\che{^1P_1} \leftrightarrow \che{^1D_2}$ der $\che{Cd}$-Lampe. Es gilt somit 
-  \begin{table}
-    \centering
-    \begin{tabular}{c c c c c}
-      \toprule
-      
-      
-    \end{tabular}
-  \end{table}
 
+  \noindent 
+  Es wird nun ein Foto gemacht während kein Magnetfeld eingeschaltet ist (\autoref{fig:pic_rot_0}), aus welchem die Abstände $\Delta s_i$ 
+  abgelesen werden. Anschließend wird das Magnetfeld so hoch gestellt, sodass eine Aufspaltung der Linien zu sehen ist (\autoref{fig:pic_rot_B}). 
+  Hier werden die Abstände $\delta s_i$ abgelesen.  
+  Das zweite Foto wird bei einem Strom von $I = \SI{8}{\ampere}$ aufgenommen, welches nach \eqref{bfield} einem Magnetfeld von $\SI{583.50(7143)}{\milli\tesla}$
+  entspricht. \\
+  Die aus den Fotos abgelesenen Abstände sind in der \autoref{tab:rotsigmas} aufgelistet. 
   \begin{figure}%
     \begin{subfigure}{0.48\textwidth}%
       \centering%
-      \includegraphics{../pictures/IMG_0005.JPG}%
+      \includegraphics[width=\textwidth]{pictures/IMG_0005.JPG}%
       \caption{Für $B = \num{0}$.}%
       \label{fig:pic_rot_0}%
     \end{subfigure}%
     \hfill%
-    \begin{subfigure}{0.48}%
+    \begin{subfigure}{0.48\textwidth}%
       \centering%
-      \includegraphics{../pictures/IMG_0006.JPG}%
-      \caption{Für $B = \SI{583.49}{\milli\tesla}$.}%
+      \includegraphics[width=\textwidth]{pictures/IMG_0006.JPG}%
+      \caption{Für $B = \SI{583.50(7143)}{\milli\tesla}$.}%
       \label{fig:pic_rot_B}%
     \end{subfigure}%
     \caption{Die Aufnahmen der roten Spektrallinie mit und ohne Magnetfeld.}%
@@ -123,15 +161,13 @@
   angewendet, wobei 
   \begin{equation*}
     \Delta \tilde{s}_i = \frac{\Delta s_i + \Delta s_{i+1}}{2}\, .
-  \end{equation*}
-  Das Dispersionsgebiet $\Delta \lambda_\text{D}$ beträgt $\SI{489.13}{\nano\metre}$. 
+  \end{equation*} 
   Anschließend wird aus den $\delta \lambda_i$ der Mittelwert berechnet, welcher sich zu 
   \begin{equation*}
     \delta \lambda = \SI{115(5)}{\nano\metre}
   \end{equation*}
-  ergeben. 
-  Mit dem Magnetfeld $B= \SI{583.49}{\milli\tesla}$, welches aus dem gemessenen Strom $I = \SI{}{\ampere}$ mit der Gleichung \eqref{eqn:bfield} berechnet wird, 
-  ergibt sich für den Land\'{e}-Faktor nach \eqref{}
+  ergibt. 
+  Daraus berechnet sich der Land\'{e}-Faktor nach \eqref{} zu 
   \begin{equation*}
     g_{\text{rot}, \sigma} = \num{1.02(5)}\, .
   \end{equation*}
@@ -139,23 +175,27 @@
  
 \subsection{Blaue Spektrallinie}
 
-  \noindent 
+  \noindent Die Wellenlänge des blauen Lichtes ist $\lambda = \SI{643.8}{\nano\metre}$, der Brechungsindex beträgt dann $n = \num{1.4567}$. 
+  Das Auflösungsvermögen der Lummer-Gehrke-Platte beträgt $A = \num{285458.06}$, das Dispersionsgebiet berechnet sich zu $\Delta \lambda_\text{D} = \SI{269.52}{\nano\metre}$
+  Bei der blauen Spektrallinie kann nicht nur der zirkular-polarisierte $\sigma$-Übergang gesehen werden, sonder auch der linear-polarisierte 
+  $\pi$-Übergang. 
 
-  \subsubsection{$\sigma$-Linie}
+  \subsubsection{-Linie}
 
     \noindent 
+    Beim zirkular-polarisierten $\sigma$ - Übergang gibt es allgemein eine Aufspaltung mit $g_{ij} = \num{2}$ und $g_{ij} = \num{1.5}$
 
     \begin{figure}%
       \begin{subfigure}{0.48\textwidth}%
         \centering%
-        \includegraphics{../pictures/IMG_0007.JPG}%
+        \includegraphics[width=\textwidth]{pictures/IMG_0007.JPG}%
         \caption{Für $B = \num{0}$.}%
         \label{fig:pic_blaus_0}%
       \end{subfigure}%
       \hfill%
-      \begin{subfigure}{0.48}%
+      \begin{subfigure}{0.48\textwidth}%
         \centering%
-        \includegraphics{../pictures/IMG_0008.JPG}%
+        \includegraphics[width=\textwidth]{pictures/IMG_0008.JPG}%
         \caption{Für $B = \SI{330.99}{\milli\tesla}$.}%
         \label{fig:pic_blaus_B}%
       \end{subfigure}%
@@ -190,19 +230,19 @@
       \end{tabular}
     \end{table}
 
-  \subsubsection{$\pi$-Linie}
+  \subsubsection{\texorpdfstring{$\pi$}{}-Linie}
 
     \begin{figure}%
       \begin{subfigure}{0.48\textwidth}%
         \centering%
-        \includegraphics{../pictures/IMG_0009.JPG}%
+        \includegraphics[width=\textwidth]{pictures/IMG_0009.JPG}%
         \caption{Für $B = \num{0}$.}%
         \label{fig:pic_blaup_0}%
       \end{subfigure}%
       \hfill%
-      \begin{subfigure}{0.48}%
+      \begin{subfigure}{0.48\textwidth}%
         \centering%
-        \includegraphics{../pictures/IMG_0010.JPG}%
+        \includegraphics[width=\textwidth]{pictures/IMG_0010.JPG}%
         \caption{Für $B = \SI{583.50(7143)}{\milli\tesla}$.}%
         \label{fig:pic_blaup_B}%
       \end{subfigure}%
