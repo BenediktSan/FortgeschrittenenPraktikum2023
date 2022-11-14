@@ -5,13 +5,15 @@ all: build/Protokoll_V27.pdf
 #hier Python-Skripte
 
 
-build/plots/hystere.pdf: python/V27.py matplotlibrc header-matplotlib.tex	|build
+build/plots/hyst.pdf: python/V27.py matplotlibrc header-matplotlib.tex	|build
 	TEXINPUTS=$$(pwd): python python/V27.py
 
 
 
+
+
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V27.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/hystere.pdf| build
+build/Protokoll_V27.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/hyst.pdf| build
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V27.tex
 	biber build/Protokoll_V27.bcf
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V27.tex

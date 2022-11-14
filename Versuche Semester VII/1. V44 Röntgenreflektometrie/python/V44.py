@@ -343,12 +343,19 @@ print(f"\n\n---Paratt---")
 print(f"Fit-Params direkt aus der V44.py nehmen")
 
 n1 = 1 #Luft
-delta2 = 11.15*10**(-6)
-delta3 = 10.5*10**(-6)
-sigma1 = 6*10**(-10) # m
-sigma2 = 13*10**(-10) # m 
+delta2 = 8*10**(-7)
+delta3 = 4*10**(-6)
+sigma1 = 3*10**(-9) # m
+sigma2 = 13*10**(-11) # m 
 z2 = 8.55*10**(-8) # m   #verändert die Frequenz
 
+
+
+#test mit hteo
+
+#delta2 = poly_del
+#delta3 = sil_del
+#z2 = schichtdicke
 
 #params_par, cov_par = curve_fit(parrat_rau, refl_2theta[thresh1:thresh2+ 60], corr_data[thresh1:thresh2+ 60]/gauss_max, p0 = (12*10**(-6), 10*10**(-6), 6*10**(-10), 12*10**(-10), 8.55*10**(-8) ))
 #cov_par = np.sqrt(np.diag(cov_par))
@@ -357,7 +364,7 @@ z2 = 8.55*10**(-8) # m   #verändert die Frequenz
 
 
 plt.figure()
-plt.plot(refl_2theta[thresh1:], parrat_rau(refl_2theta[thresh1:], delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
+plt.plot(refl_2theta, parrat_rau(refl_2theta, delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
 #plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
 plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
 plt.yscale('log')
