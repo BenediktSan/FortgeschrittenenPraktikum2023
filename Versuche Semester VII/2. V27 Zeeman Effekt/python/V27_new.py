@@ -88,7 +88,7 @@ def mag(I, a0, a1, a2, a3):
     return poly*10**(-3)
 
 def relab(ex,th):
-    return 1 - ex/th
+    return (1 - ex/th)*100
 
 print('________________________________ROT_______________________________________________________________________________')
 Ds , ds = np.genfromtxt('data/rot.txt', unpack=True)
@@ -117,7 +117,7 @@ dell_r = sum(dell_ra)/len(dell_ra)
 
 g_r = gg(dell_r, lr, B_r)
 
-print(f' dispersionsgebiet {disp_r}\n Auflösung {A}\n B = {B_r:.5f}\n\n delta l = {dell_r}\n\n g = {g_r}\n abw {relab(g_r,1)}' )
+print(f' dispersionsgebiet {disp_r}\n Auflösung {A}\n B = {B_r:.5f}\n\n delta l = {dell_r}\n\n g = {g_r}\n abw {relab(g_r,1):.2f}' )
 
 
 print('_________________________________________________BLAU SIGMA___________________________________________________________________________________')
@@ -148,7 +148,7 @@ dell_b = sum(dell_bsa)/len(dell_bsa)
 
 g_bs = gg(dell_b, lb, B_b)
 
-print(f' dispersionsgebiet {disp_b}\n Auflösung {A}\n B = {B_b:.5f}\n\n delta l = {dell_b}\n\n g = {g_bs}\n abw {relab(g_bs,1.75)}' )
+print(f' dispersionsgebiet {disp_b}\n Auflösung {A}\n B = {B_b:.5f}\n\n delta l = {dell_b}\n\n g = {g_bs}\n abw {relab(g_bs,1.75):.2f}' )
 
 print('____________________________________________________________BLAU PI_____________________________________________________________________________')
 
@@ -176,4 +176,4 @@ dell_bp = sum(dell_bpa)/len(dell_bpa)
 
 g_bp = gg(dell_bp, lb, B_bp)
 
-print(f' B = {B_bp:.5f}\n\n delta l = {dell_bp}\n\n g = {g_bp}\n abw {relab(g_bp,0.5)}' )
+print(f' B = {B_bp:.5f}\n\n delta l = {dell_bp}\n\n g = {g_bp}\n abw {relab(g_bp,0.5):.2f}' )

@@ -1,25 +1,34 @@
 \newpage
 \section{Diskussion}
 
+\noindent In dem Versuch wurde zuerst das Magnetfeld geeicht. Es wird eigentlich von einem linearen Zusammenhang ausgegangen, jedoch ist ein 
+Ploynom-Fit der kubischen Ordnung deutlich passender. Die Abflachung der Steigung erklärt sich durch die Erwärmung des Magneten. Es wurden eine 
+Hystere-Messung durchgeführt, die Werte bei der absteigenden Messung liegen immer etwas höher als ihre entsprechenden Werte. Dies kann mit einer 
+Restmagnetisierung erklärt werden. \\
+
+\noindent 
+Anschließend hat die Einstellung der Linsen und Blende eine sehr lange Zeit gedauert und erst nach einigem probieren ein zufriedenstellendes Ergebnis 
+geliefert. Das Machen der Fotos hat keine größeren Probleme aufgezeigt, jedoch musste aufgepasst werden, die Kamera beim Drücken des Auslösers nicht 
+zu stark zu bewegen. Dies ist wichtig um die $\Delta s_i$ den jeweiligen $\delta s_i$ zuordnen zu können. \\
+
+\noindent
+Die Berechnung der Land\'{e}-Faktoren liefert zufriedenstellende Ergebnisse, diese sind in \autoref{tab:rel} aufgelistet. Es ist zu sehen, dass 
+der berechnete Land\'{e}-Faktor für den $\sigma$ Übergang der blauen Spektrallinie am meisten von seinem Theoriewert abweicht. Dies liegt 
+daran, dass es sich hier um eine Überlagerung aus der $g = \num{2}$ und $g = \num{1.5}$ Aufspaltungen handelt. Somit ist das Ablesen der klaren 
+Grenzen der Linie in den Fotos schwierig. 
 
 
 \begin{table}[ht]
     \centering
-    \caption{Relative Aweichung von den Theoriewerten für die einzelnen Messungen}
+    \caption{Relative Abweichung von den Theoriewerten für die einzelnen Berechnungen}
     \label{tab:rel}
-        \begin{tabular}{S [table-format=4.0] S [table-format=2.0] S [table-format=1.4]}
+        \begin{tabular}{c S[table-format=1.2]@{${}\pm{}$}S[table-format=1.2] S[table-format=1.1] S[table-format=2.2]}
         \toprule
-            {$\text{Brückenart}$} &{Messgröße}& {$\text{relative Abweichung von der Theorie} $} \\
+        & \multicolumn{2}{c}{$g_\text{exp}$} & {$g_\text{theo}$} & {$\increment g \mathbin{/} \si{\percent} $} \\
         \midrule
-            $\text{Wheatstone}$  & $R_{1}$ & $\SI{0.0023}{\percent}$\\
-                                 & $R_{2}$ & $\SI{0.75}{\percent}$\\
-            \hline
-            $\text{Kapazität}$  & $R$ & $\SI{-0.0027}{\percent}$\\
-                                & $C$ & $\SI{-0.41}{\percent}$\\
-            \hline
-            $\text{Maxwell}$ & $R$&     $\SI{7.72}{\percent}$\\
-                       & $L$&     $\SI{5.07}{\percent}$\\
-            \hline
+        rot, $\sigma$ & 1.02 & 0.13 & 1 & 2.02\\
+        blau, $\sigma$ &  1.93 & 0.13 & 1.75 & 10.25 \\
+        blau, $\pi$ & 0.52 & 0.08 & 0.5 & 4.75 \\
         \bottomrule
     \end{tabular}
 \end{table} 
