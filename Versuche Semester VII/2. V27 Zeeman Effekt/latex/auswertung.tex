@@ -1,7 +1,7 @@
-\newpage 
+
 \section{Auswertung}
 
-\subsection{Eichung des Magnetfeldes}
+\subsection{Kalibrierung des Magnetfeldes}
 
   \noindent Um einen Wert für das Magnetfeld zu geben, wird dieses für verschiedene Stromstärken gemessen. 
   Die Messwerte sind in \autoref{tab:mag} zu finden. 
@@ -50,7 +50,7 @@
     a_1 & = \SI{92.153(2898)}{\milli\tesla\per\ampere} & a_0 & = \SI{6.404(2546)}{\milli\tesla}  \, .
   \end{align*}
 
-  \begin{figure}%
+  \begin{figure}[H]%
     \centering%
     \includegraphics[width=\textwidth]{build/plots/hyst.pdf}%
     \caption{Die Messwerte inklusive der Ausgleichsrechnung aus der Messung des Magnetfeldes.}%
@@ -61,14 +61,14 @@
 
   \noindent 
   Die rote Linie ergibt sich aus dem Übergang $\ce{^1P_1} \leftrightarrow \ce{^1D_2}$ der $\ce{Cd}$-Lampe, die blaue Linie aus 
-  $\ce{^3S_1} \leftrightarrow \ce{^3P_1}$. Aus der Notation sind L, S und J 
-  abzulesen und daraus kann der Land\'{e}-Faktor $g_{j}$ berechnet werden.  
+  $\ce{^3S_1} \leftrightarrow \ce{^3P_1}$. Aus der Notation sind $L$, $S$ und $J$ 
+  abzulesen und daraus kann der Land\'{e}-Faktor $g_{J}$ berechnet werden.  
   \begin{table}[H]
     \centering
-    \caption{Die Werte für L, S und J der jeweiligen Zustände und der daraus berechnete Land\'{e}-Faktor.}
+    \caption{Die Werte für $L$, $S$ und $J$ der jeweiligen Zustände und der daraus berechnete Land\'{e}-Faktor.}
     \begin{tabular}{c c c c c}
       \toprule
-       & L & S & J & $g$ \\ 
+       & $L$ & $S$ & $J$ & $g_J$ \\ 
       \midrule
        $\ce{^1P_1}$ & 1 & 0 & 1 & 1 \\
        $\ce{^1D_2}$ & 2 & 0 & 2 & 1 \\
@@ -78,13 +78,15 @@
       \bottomrule
     \end{tabular}
   \end{table}
+
+  \noindent
   Unter dem Einfluss eines Magnetfeldes hebt sich ein Teil der Entartung auf. Die Aufspaltung $\Delta E$ der Zeeman-Linien ist durch 
   \begin{equation*}
     \Delta E = \mu_\text{B} B \cdot g_{ij}
   \end{equation*}
   gegeben, wobei $\mu_\text{B}$ das Bohrsche Magneton ist und $g_{ij} = \left(m_ig_i - m_jg_j\right)$ der Land\'{e}-Faktor des Überganges. 
   Für den Übergang ergibt sich dann:
-  \begin{table}
+  \begin{table}[H]
     \centering
     \caption{Die Land\'{e}-Faktoren der Übergange.}
     \begin{tabular}{c | c c c }
@@ -99,18 +101,22 @@
     \end{tabular}
   \end{table}
 
+  \noindent
+  Somit wird bei der roten Spektrallinie nur eine zirkular polarisierte $\sigma$-Aufspaltung beobachtet werden. 
+  Währenddessen gibt es bei der blauen Spektrallinie eine kleine $\pi$-polarisierte Aufspaltung und $\num{2}$ verschieden starke $\sigma$-Aufspaltungen. 
+
 \subsection{Rote Spektrallinie}
 
-  \noindent Es wird das Experiment gemäß der Durchführung \ref{sec:durch_rot} aufgebaut. Die Wellenlänge des roten Lichtes beträgt 
+  \noindent Es wird das Experiment gemäß der Durchführung \ref{sec:durch} aufgebaut. Die Wellenlänge des roten Lichtes beträgt 
   $\lambda = \SI{480}{\nano\metre}$, der Brechungsindex für dieses Licht $n = \num{1.4635}$ \cite{V27}. Die Lummer-Gehrke-Platte hat die 
   Maße $L = \SI{120}{\milli\metre}$ und $d = \SI{4}{\milli\metre}$. Damit ergibt sich für ihr Auflösungsvermögen $ A = \num{209128.591}$. 
-  Das Dispersionsgebiet berechnet sich nach \eqref{} zu $\Delta \lambda_\text{D} = \SI{48.91}{\pico\metre}$. \\ 
+  Das Dispersionsgebiet berechnet sich nach \eqref{eqn:dispgebiet} zu $\Delta \lambda_\text{D} = \SI{48.91}{\pico\metre}$. \\ 
 
   \noindent 
-  Es wird nun ein Foto gemacht während kein Magnetfeld eingeschaltet ist (\autoref{fig:pic_rot_0}), aus welchem die Abstände $\Delta s_i$ 
+  Es wird nun ein Foto gemacht während kein Magnetfeld eingeschaltet ist (\autoref{fig:pic_rot_0}), aus welchem die Abstände $\Delta s_i$ zwischen benachbarten Linien
   abgelesen werden. Anschließend wird das Magnetfeld so hoch gestellt, sodass eine Aufspaltung der Linien zu sehen ist (\autoref{fig:pic_rot_B}). 
-  Hier werden die Abstände $\delta s_i$ abgelesen.  
-  Das zweite Foto wird bei einem Strom von $I = \SI{8}{\ampere}$ aufgenommen, welches nach \eqref{bfield} einem Magnetfeld von $\SI{583.50(7143)}{\milli\tesla}$
+  Hier werden die Abstände $\delta s_i$ der Aufspaltung abgelesen.  
+  Das zweite Foto wird bei einem Strom von $I = \SI{8}{\ampere}$ aufgenommen, welches nach \eqref{eqn:bfield} einem Magnetfeld von $\SI{583.50(7143)}{\milli\tesla}$
   entspricht. \\
   Die aus den Fotos abgelesenen Abstände sind in der \autoref{tab:rotsigmas} aufgelistet. 
   \begin{figure}%
@@ -154,10 +160,11 @@
   \end{table}
 
   \noindent Zu den abgelesenen Werten werden jeweils $\SI{10}{px}$ als Messunsicherheit gewählt. Da sich die Abstände von links nach rechts vergrößern,
-  wird die Formel \eqref{eqn:}
-  \begin{equation*}
+  wird die Formel 
+  \begin{equation}
     \delta \lambda_i = \frac{1}{2} \frac{\delta s_i}{\Delta \tilde{s}_i} \Delta \lambda_\text{D}
-  \end{equation*}
+    \label{eqn:deltalam}
+  \end{equation}
   angewendet, wobei 
   \begin{equation*}
     \Delta \tilde{s}_i = \frac{\Delta s_i + \Delta s_{i+1}}{2}\, .
@@ -167,7 +174,17 @@
     \delta \lambda = \SI{11.5(5)}{\pico\metre}
   \end{equation*}
   ergibt. 
-  Daraus berechnet sich der Land\'{e}-Faktor nach \eqref{} zu 
+  Zur Ermittlung des Land\'{e}-Faktors wird ein Ausdruck für die Energiedifferenz benötigt. Die Photonenergie wird in erster Ordnung approximiert zu 
+  \begin{equation*}
+    \Delta E \approx \frac{\partial E}{\partial \lambda} \delta \lambda = \frac{h \cdot \symup{c}}{\lambda^2}\, .
+  \end{equation*}
+  Dies wird in die Formel \eqref{eqn:anorm} eingesetzt, sodass sich 
+  \begin{equation}
+    g_{ij} = \delta \lambda \cdot \frac{h \symup{c}}{\mu_\t{B} B \lambda^2}
+    \label{eqn:gee}
+  \end{equation}
+  ergibt.
+  Daraus berechnet sich der Land\'{e}-Faktor zu 
   \begin{equation*}
     g_{\text{rot}, \sigma} = \num{1.02(5)}\, .
   \end{equation*}
@@ -176,7 +193,7 @@
 \subsection{Blaue Spektrallinie}
 
   \noindent Die Wellenlänge des blauen Lichtes ist $\lambda = \SI{643.8}{\nano\metre}$, der Brechungsindex beträgt dann $n = \num{1.4567}$. 
-  Das Auflösungsvermögen der Lummer-Gehrke-Platte beträgt $A = \num{285458.06}$, das Dispersionsgebiet berechnet sich zu $\Delta \lambda_\text{D} = \SI{26.952}{\pico\metre}$
+  Das Auflösungsvermögen der Lummer-Gehrke-Platte beträgt $A = \num{285458.06}$, das Dispersionsgebiet berechnet sich nach \eqref{eqn:dispgebiet} zu $\Delta \lambda_\text{D} = \SI{26.952}{\pico\metre}$.
   Bei der blauen Spektrallinie kann nicht nur der zirkular-polarisierte $\sigma$-Übergang gesehen werden, sonder auch der linear-polarisierte 
   $\pi$-Übergang. 
 
@@ -186,7 +203,7 @@
     Beim zirkular-polarisierten $\sigma$ - Übergang gibt es allgemein eine Aufspaltung mit $g_{ij} = \num{2}$ und eine mit $g_{ij} = \num{1.5}$. 
     Da sich diese feine Auflösung in dem Foto nicht absehen lässt, es wird nur eine Aufspaltung gesehen, wird für diesen $g_{ij} = \num{1.75}$ angenommen 
     als theoretischer Wert. \\ 
-    In der \autoref{fig:pic_blaus_0} sind die blauen Linien zu erkennen ohne Magnetfeld. Hier werden die $\Delta s_i$ abgelesen. In der \autoref{fig:pics_blaus_B} 
+    In der \autoref{fig:pic_blaus_0} sind die blauen Linien zu erkennen ohne Magnetfeld. Hier werden die $\Delta s_i$ abgelesen. In der \autoref{fig:pic_blaus_B} 
     ist die Aufspaltung in einem Magnetfeld zu sehen, es werden die $\delta s_i$ abgelesen. Diese Werte lassen sich in \autoref{tab:blausigma} finden. 
     Das Magnetfeld für die Aufspaltung ergibt sich nach \eqref{eqn:bfield} aus $I = \SI{3}{\ampere}$ zu $B = \SI{330.99 (1464)}{\milli\tesla}$. 
 
@@ -210,12 +227,12 @@
 
     \noindent 
     In \autoref{tab:blausigma} sind die abgelesenen Daten aus \autoref{fig:blaus}. Zur weiteren Rechnung werden eine Abweichung von $\SI{10}{px}$ angenommen. 
-    Um die Formel \eqref anzuwenden, werden die $\Delta s_i$ zu $\Delta \tilde{s}_i = \frac{1}{2} (\Delta s_i + \Delta s_{i+1})$ umgeformt. Aus den jeweils 
+    Um die Formel \eqref{eqn:deltalam} anzuwenden, werden die $\Delta s_i$ zu $\Delta \tilde{s}_i = \frac{1}{2} (\Delta s_i + \Delta s_{i+1})$ umgeformt. Aus den jeweils 
     ausgerechneten $\delta \lambda_i$ wird der Mittelwert berechnet, dieser ergibt sich zu 
     \begin{equation*}
       \delta \lambda = \SI{6.87(35)}{\pico\metre}\, .
     \end{equation*}
-    Damit berechnet sich der Land\'{e}-Faktor zu 
+    Damit berechnet sich der Land\'{e}-Faktor nach \eqref{eqn:gee} zu 
     \begin{equation*}
       g_{\text{blau}, \sigma} = \num{1.93(13)}\, .
     \end{equation*}
@@ -251,7 +268,7 @@
 
     \noindent 
     Der linear-polarisierte $\pi$-Übergang hat einen Land\'{e}-Faktor von $g = \num{0.5}$. In \autoref{fig:pic_blaup_0} ist die blaue $\pi$-Linie 
-    ohne Magnetfeld zu sehen, es werden die $\Delta s_i$ abgelesen. In \autoref{fig:pic_blaup_0} ist die Aufspaltung im Magnetfeld zu sehen, es wird 
+    ohne Magnetfeld zu sehen, es werden die $\Delta s_i$ abgelesen. In \autoref{fig:pic_blaup_B} ist die Aufspaltung im Magnetfeld zu sehen, es wird 
     $\delta s_i$ abgelesen. Die Werte sind in \autoref{tab:blaupi} aufgelistet. 
 
     \begin{figure}%
@@ -274,12 +291,12 @@
 
     \noindent
     Zu den Werten in \autoref{tab:blaupi} wird für die weitere Berechnung eine Abweichung von $\SI{10}{px}$ abgenommen. Desweiteren werden aus aneinanderliegenden 
-    $\Delta s_i$ die $\Delta \tilde{s}_i = \frac{1}{2} (\Delta s_i + \Delta s_{i+1})$ berechnet. Mit den letzteren werden nach Formel \eqref{} 
+    $\Delta s_i$ die $\Delta \tilde{s}_i = \frac{1}{2} (\Delta s_i + \Delta s_{i+1})$ berechnet. Mit den letzteren werden nach Formel \eqref{eqn:deltalam} 
     die $\delta \lambda_i$ berechnet, aus welchen sich dann der Mittelwert 
     \begin{equation*}
       \delta \lambda = \SI{3.29(30)}{\pico\metre}
     \end{equation*}
-    ergibt. Der hieraus berechnete Land\'{e}-Faktor beträgt 
+    ergibt. Der hieraus nach \eqref{eqn:gee} berechnete Land\'{e}-Faktor beträgt 
     \begin{equation*}
       g = \num{0.52(8)}\, .
     \end{equation*}

@@ -1,4 +1,5 @@
 \section{Versuchsaufbau und Durchführung}
+\label{sec:durch}
 
 \begin{figure}[H]
     \centering
@@ -6,19 +7,18 @@
     \caption{Der schematische Versuchsaufbau zur Untersuchung des Zeeman-Effekts \protect \cite{V27}.}
     \label{img:aufb}
 \end{figure}
-Der Aufbau des Versuchs ist in Abbildung \autoref{img:aufb} schematisch dargestellt.\\
+Der Aufbau des Versuchs ist in \autoref{img:aufb} schematisch dargestellt.\\
 Auf der linken Seite ist eine $\ce{Cd}$-Spektrallampe zwischen den Polen eines Magneten dargestellt. 
-Wenn aktiviert sendet diese einen Strahl aus, welcher anschließend von zwei Linsen entlang des Strahlengangs gebündelt und auf einen Spalt fokussiert wird.
+Wenn diese aktiviert ist,  sendet sie Licht aus, welcher anschließend von zwei Linsen entlang des Strahlengangs gebündelt und auf einen Spalt fokussiert wird.
 Nach dem Spalt wird der Strahl wieder parallelisiert und mit Hilfe eines Geradsichtprismas in seine Frequenzen aufgeteilt.
-Diese durchlaufen einen Polarisationsfilter, welcher die lineare- oder zirkulare-Polarisation des Lichts herausfiltert.
-Anschließend wird der Strahl so gebündelt, dass mit einem verschiebbaren Spalt eine der aufgespaltenen Farben gewählt werden kann. 
+Diese durchlaufen einen Polarisationsfilter, welcher die linearen Polarisationen des Lichts in vertikale und horizontale Richtung herausfiltert.
+Anschließend wird der Strahl so gebündelt, dass mit einem verschiebbaren Spalt eine der aufgespaltenen Spektrallinien gewählt werden kann. 
 Zuletzt wird der Strahl auf das Eintrittsprisma der Lummer-Gehrcke-Platte fokussiert.\\
-Diese erzeugt ein Interferenzmuster über das Vielfache reflektieren des Lichts im Inneren der Platte.
-Sie besteht aus einer Platte der Dicke $d$ und Länge $l$. 
+Durch das vielfache Reflektieren des Lichtstrahls im Inneren der Platte entsteht ein Interferenzmuster, welche die Dicke $d$ und Länge $l$ hat. 
 Das einfallende Strahlenbündel wird von der oberen und unteren Grenzfläche der Platte immer wieder fast vollständig reflektiert.
-Allerdings tritt an der oberen Grenzschicht immer ein kleiner Teil des Strahls in Richtung einer Kamera aus. 
+Allerdings tritt an der Grenzschicht immer ein kleiner Teil des Strahls in Richtung einer Kamera aus. 
 Dieser interferiert dort mit den anderen Strahlen, welche eine Reflexion später ausgetreten sind und somit einen kleinen Laufzeitunterschied besitzen.
-Diese Funktionsweise ist schematisch in Abbildung \autoref{img:platte} dargestellt.
+Diese Funktionsweise ist schematisch in \autoref{img:platte} dargestellt.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{latex/images/Platte.PNG}
@@ -29,7 +29,7 @@ Diese Funktionsweise ist schematisch in Abbildung \autoref{img:platte} dargestel
 \noindent
 Für den Gangunterschied der Beugungsmaxima $m$-ter Ordnung ergibt sich dabei als Bedingung
 \begin{equation}
-    2nd \cos (\beta) = m \lambda \quad ,
+    2nd \cos (\beta) = m \lambda \, ,
     \label{eqn:platte}
 \end{equation}
 wobei $n$ der Brechungsindex der Platte ist, $\beta$ der Refletionswinkel innerhalb der Platte und $\lambda$ die Wellenlänge des Strahlenbündels.\\
@@ -38,11 +38,12 @@ Damit sich unterschiedliche Ordnungen nicht überlagern, lässt sich ein Dispers
 in welchem die Messung möglich ist.
 Für dieses gilt
 \begin{equation}
-    \increment \lambda_\t{D} = \frac{\lambda^2}{2d}\frac{1}{\sqrt{n^2 -1}} \quad .
+    \increment \lambda_\t{D} = \frac{\lambda^2}{2d}\frac{1}{\sqrt{n^2 -1}} \, .
+    \label{eqn:dispgebiet}
 \end{equation} 
 Dies führt auch zum Auflösevermögen der Platte mit 
 \begin{equation*}
-    A = \frac{\lambda}{\increment \lambda} = \frac{L}{\lambda} (n^2 -1) \quad .
+    A = \frac{\lambda}{\increment \lambda} = \frac{L}{\lambda} (n^2 -1) \, .
 \end{equation*}
 
 
@@ -50,8 +51,8 @@ Dies führt auch zum Auflösevermögen der Platte mit
 Für die \textbf{Durchführung} wird zuerst die Stärke des Elektromagneten ausgemessen. 
 Dafür wird eine Hall-Sonde zwischen die Magnetpole eingebracht und anschließend in $\increment I = \SI{0.5}{\ampere}$ 
 Schritten bis zum Maximum hochgeregelt und anschließend wieder hinunter. Dabei werden die korrespondierenden Stärken des Magnetfeldes notiert.\\
-Anschließend wird die Spektrallampe wieder zwischen den Magnetpolen platziert werden.
+Anschließend wird die Spektrallampe wieder zwischen den Magnetpolen platziert.
 Nun wird der Aufbau so verstellt, dass die rote Wellenlänge mit $\lambda_\t{rot} = \SI{643.8}{\nano\metre}$ \cite{V27} Interferenzmuster auf der Kamera erzeugt.
-Dies wird mit der Kamera aufgenommen. Des Weiteren wird dies für die lineare Polarisation mit angeschaltetem Magnetfeld wiederholt.\\
-Für die blaue Wellenlänge mit $\lambda_\t{blau} = \SI{480}{\nano\metre}$ \cite{V27} wird das ganze wiederholt. 
+Dies wird mit der Kamera aufgenommen. Des Weiteren wird dies für die zirkulare Polarisation mit angeschaltetem Magnetfeld wiederholt.\\
+Für die blaue Wellenlänge mit $\lambda_\t{blau} = \SI{480}{\nano\metre}$ \cite{V27} wird das Ganze wiederholt. 
 Dabei werden die Interferenzmuster zuerst für beide Polarisationen ohne Magnetfeld aufgenommen und anschließend noch einmal für beide mit Magnetfeld.
