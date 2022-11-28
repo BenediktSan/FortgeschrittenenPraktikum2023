@@ -20,7 +20,7 @@
         Das aufgenommene Signal der Spule geht nach einer Verstärkung in einen SPplitter, genauso wie die hochfrequente (HF) Spannung für die Pulse. Diese werden dann so in einen Mischer gegeben, sodass sich 
         eine Spannung proportional zum Spin-Echo-Signal und dem Kosinuswinkel zwischen Referenz- und Probenspannung und eine hochfrequente Komponente einer Frequenz von etwa $2\omega_\text{L}$ ergeben. 
         In einen zweiten Mischer wird die Signalspannung aus dem anderen Splitterausgang mit der um $\SI{90}{\degree}$ verschobenen HF-Spannung gemischt. Hier ergibt sich als einziger Unterschied eine 
-        Propotionalität zum Sinuswinkel. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert.\\ Die Signale werden dann vom Computer aufgenommen oder am Oszilloskop angezeigt. 
+        Propotionalität zum Sinuswinkel. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert. Dieses Verfahren entspricht der Quadraturdetektion. \\ Die Signale werden dann vom Computer aufgenommen oder am Oszilloskop angezeigt. 
         Die Pulse werden mithilfe der Pulskarte, dem Frequenzgenerator, Schalter und Verstärker konfiguriert.
 
         \begin{figure}[H]
@@ -98,14 +98,29 @@
         
     \subsubsection{Diffusionsmessung}
 
-        \noindent 
+        \noindent Aufgrund der Inhomogenität des Feldes wird auf das bestimmte $T_2$ die Relaxation $T_2^{text{inhom}}$ aufaddiert, damit die effektive Abfallzeit $T_2^{\tex{eff}}$ ermittelt werden kann. 
+        Bei einem inhomogenen Feldgradienten kann die Diffusionskonstante $D$ ermittelt werden, da sich nun bei dem bekannten Feldgradienten $G$ eine Bewegung aus der Brownschen Molekularbewegung messbar eine andere Lamorfrequenz ergibt. 
+        Es ergibt sich ein exponentieller Zusammenhang 
+        \begin{equation*}
+            A ( 2 \tau ) = \exp(-\frac{2}{3} D \gamma^2 G2 \tau^3)
+        \end{equation*}
+        für das erste Echo. Hierbei ist $\gamma$ das gyromagnetische Verhältnis. 
+        Wird nun der Abstand $\tau$ zwischen dem $\SI{90}{\degree}$ und $\SI{180}{\degree}$-Puls erhöht kann die Funktion 
+        \begin{equation*}
+            M_y (t) = M_0 \exp\left(- \frac{2 \tau}{T_2}\right)\exp\left(- \frac{D \gamma^2 G^2 2 \tau^3}{3}\right)
+        \end{equation*}
+        an die Messwerte gefittet werden, solange der Zusammenhang 
+        \begin{equation*}
+            T_2^3 \gg \frac{3}{2 D \gamma^2 G^2}
+        \end{equation*}
+        gilt. 
 
-        
+
 \section{Durchführung}
 \label{sec:durchführung}
 
     \noindent Zu Beginn wird das nach NMR-Spektromenter, welches nach Abschnitt \ref{sec:Aufbau} aufgebaut wurde, justiert. Anschließend wird die $T_1$- Relaxationszeit gemssen, da diese für die Messung von $T_2$ bekannt 
-    sein sollte. Somit wird danach die Relaxationszeit $T_2$ gemessen.  Abschließend wird die Diffusionsmessung durchgeführt. Zur Illustration der Pulse und deren Abstände ist in \autoref{fig:schema_puls} eine Darstellund 
+    sein sollte. Somit wird danach die Relaxationszeit $T_2$ gemessen.  Abschließend wird die Diffusionsmessung durchgeführt. Zur Illustration der Pulse und deren Abstände ist in \autoref{fig:schema_puls} eine Darstellung
     derer. 
 
     \begin{figure}

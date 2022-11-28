@@ -1,10 +1,76 @@
 \section{Zielsetzung}
 
-    \noindent
-
-       
-  
+    \noindent In diesem Versuch sollen mit Hilfe des Verfahrens von gepulster Kernspinresonanz (NMR) die Relaxationszeiten und die Diffusionskonstante einer Probe gemessen werden. 
+    Dabei wird ein besonderer Wert auf die experimentelle Durchführung und auf die Pulsmethodik gelegt.  
 
 
+\section{Theorie}
+\label{sec:theorie}
+
+    \noindent Die Probe wird in ein möglichst homogenes Magnetfeld $\vec{B}_0$ gelegt, sodass sich nach dem Zeeman-Effekt die Energieniveaus aufspalten und sich eine endliche Magnetisierung 
+    \begin{equation*}
+        M = \sum_i \vec{\mu}_i\, ,
+    \end{equation*}
+    welche sich aus den einzelnen magnetischen Dipolmomenten $\vec{\mu}_i$ zusammenaddiert. Das Kernspinsystem befindet sich in der Ruhelage im thermodynamischen Gleichgewicht, die relativen Besetzungszahlen 
+    der Energiezustände ist proportional zum Boltzmann-Faktor.
+
+    \subsection{Das Vektorbild}
+
+        \noindent Da ein Zwei-Niveau-System betrachtet wird, kann das klassische Vektorbild genutzt werden. Es ergibt sich, ähnlich zu einer Kreiselbewegung, die Gleichung 
+        \begin{equation*}
+            \frac{\symup{d} \vec{\mu}}{\symup{d} t} = \gamma \vec{\mu} \times \vec{B}_0\, ,
+        \end{equation*}
+        wobei hier $\gamma$ für das gyromagnetische Verhältnis steht. \\ 
+
+        \noindent Da im Laborsystem das magnetische Dipolmoment um das in die $z$-Achse zeigende Magnetfeld präzediert, ist es sinnvoll eine Koordinatentransformation in ein rotierendes Koordinatensystem (RKS) 
+        der Kreisfrequenz $\vec{\omega}_\text{RKS}$ durchzuführen. Mit $\increment \vec{\omega} = \vec{\omega}_0 - \vec{omega}_\text{RKS}$ gilt dann 
+        \begin{equation*}
+            \left(\frac{\symup{d}}{\symup{d}t} \vec{\mu}\right)_\text{RKS} = \increment \vec{\omega} \times \vec{\mu}\, .
+        \end{equation*} 
+        Es ist leicht zu sehen, dass im Resonanzfall $\vec{\omega}_0 = \vec{omega}_\text{RKS}$ das magnetische Dipolmoment im RKS stationär ist. \\
+
+        \noindent Ein neues magnetisches Wechselfeld $\vec{B}_1$, welches senkrecht auf $\vec{B}_0$ steht mit einer Frequenz $\omega_\text{RW}\approx \omega_0$, kann Übergänge zwischen Energieniveaus anregen. 
+        Mit dem Gesamtmagnetfeld 
+        \begin{equation*}
+            \vec{B}(t) = \( B_1 \sin(\omega_\text{RW} t), \, B_1 \cos(\omega_\text{RW}t), \, B_0 \)^\top
+        \end{equation*}
+        kann die Präzessionsgleichung als 
+        \begin{equation*}
+            \left(\frac{\symup{d}}{\symup{d}t} \vec{\mu}\right)_\text{RKS} =\left(- \gamma \vec{B} \times \vec{\mu}\right)_\text{RKS}
+        \end{equation*}
+        geschrieben werden. Für die messbare Magnetisierung ergibt sich in Komponentenschreibweise schließlich: 
+        \begin{align*}
+            \left(\dot{M}_x\right)_{\text{RKS}} & = \left(- \increment \omega M_y + \omega_1M_z \right)_{\text{RKS}} \\
+            \left(\dot{M}_y\right)_{\text{RKS}} & = \left(\increment \omega M_x \right)_{\text{RKS}} \\
+            \left(\dot{M}_z\right)_{\text{RKS}} & = \left( - \omega_1 M_x \right)_{\text{RKS}} 
+        \end{align*} 
+
+    \subsection{Radiowellenpuls}
+
+        \noindent Mit Hilfe des RKS ($\vec{\omega}_0 = \vec{omega}_\text{RKS}$) kann die Zeitentwicklung der Magnetisierung nach einem Hochfrequenzpulses leicht berechnet werden. 
+        Sie präzediert um das $\vec{B}_1$-Feld mit $\vec{\omega}_1 = - \gamma \vec{B}_1$. 
+        Wird das Magnetfeld nun für eine Zeit $t_p$ angeschalten, so wird von einem Puls gesprochen. Für den \enquote{Drehwinkel} der Magnetisierung ergibt sich 
+        \begin{equation*}
+            \alpha = |\omega_1| t_p = \gamma B_1 t_p\, .
+        \end{equation*}
+        Mit einem $\SI{90}{\degree}_x$-Puls entspricht einem Puls, wo die Magnetisierung um die $x_\text{RKS}$ gedreht wird um den Drehwinkel $\SI{90}{\degree}$. 
 
 
+    \subsection{Relaxationseffekte}
+
+        \noindent Die longitudinale Relaxation, auch \textbf{Spin-Gitter-Relaxation} genannt, wird über $T_1$ charakterisiert. Aufgrund des anliegenden statischen Magnetfeldes gibt es eine 
+        endliche Magnetisierung. Die einzelnen magnetische Momente richten sich entlang des thermodynamischen Gleichgewichtes aus. Bei dieser Ausrichtung wird Energie an das System abgegeben. \\
+
+        \noindent Die transversale Relaxation, auch \textbf{Spin-Spin-Relaxation} genannt, wird duch $T_2$ charakterisiert. Ein $\SI{90}{\degree}$-Puls kippt die Magnetisierung in die $x$-$y$-Ebene. 
+        Durch die Spin-Gitter-Relaxation verlässt die Magnetisierung diese Ebene wieder, dabei gehen Phasenbeziehungen einzelner Spins verloren. Die Quermagnetisierun gmuss zerfallen, da es für $t \to \infty$ 
+        keine Magnetisierung senkrecht zu $\vec{B}_0$ gibt. Dieser Zerfall ist die Spin-Spin-Relaxation. Da sich die Gesamtenergie nicht ändert, aber Kohärenz verloren geht, wird auch von einem Entropieprozess 
+        gesprochen. 
+
+    \subsection{Die Blochgleichungen}
+
+        \noindent Die mathematische Beschreibung des Systems erfolgt über die messbare Magnetisierung und bei Beachtung der Relaxationsprozesse ergeben sich die Blochgleichungen: 
+        \begin{align*}
+            \left(\dot{M}_x\right)_{\text{RKS}} & = \left(- \increment \omega M_y + \omega_1M_z - \frac{1}{T_2} M_x\right)_{\text{RKS}} \\
+            \left(\dot{M}_y\right)_{\text{RKS}} & = \left(\increment \omega M_x - \frac{1}{T_2} M_y\right)_{\text{RKS}} \\
+            \left(\dot{M}_z\right)_{\text{RKS}} & = \left( - \omega_1 M_x - \frac{1}{T_1}(M_z - M_\infty)\right)_{\text{RKS}} 
+        \end{align*} 
