@@ -5,13 +5,13 @@ all: build/Protokoll_V49.pdf
 #hier Python-Skripte
 
 
-build/plots/plot1.pdf:	|build
+build/plots/T1.pdf:	|build
 	python python/V49.py
 
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V49.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/plot1.pdf| build
+build/Protokoll_V49.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/T1.pdf| build
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V49.tex
 	biber build/Protokoll_V49.bcf
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V49.tex
