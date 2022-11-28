@@ -10,27 +10,28 @@
 
         \begin{figure}[H]
             \centering
-            \includegraphics[width=0.3\textwidth]{images/schema_aufbau.png}
+            \includegraphics[width=0.3\textwidth]{latex/images/schema_aufbau.png}
             \caption{Der schematische Aufbau des Versuchs. \cite{finke}}
             \label{fig:schema_aufbau}
         \end{figure}
 
-        \noindent In \autoref{fig:blockschaltbild} ist das Blockschaltbild eines NMR-Spektrometers zu sehen, wobei jedoch der Magnet, der das homogene Magnetfeld erzeugt, nicht eingezeichnet. Durch dieses Magnetfeld 
-        spalten sich die Kerspin-Niveaus auf und eine Magnetisierung tritt auf. Die Spule ist, wie im obigen Bild um die Probe gelegen und wird zur Anregung und zur Messung genutzt. \\
-        Das aufgenommene Signal der Spule geht nach einer Verstärkung in einen SPplitter, genauso wie die hochfrequente (HF) Spannung für die Pulse. Diese werden dann so in einen Mischer gegeben, sodass sich 
+        \noindent In \autoref{fig:blockschaltbild} ist das Blockschaltbild eines NMR-Spektrometers zu sehen, wobei jedoch der Magnet, der das homogene Magnetfeld erzeugt, nicht eingezeichnet ist. Durch dieses Magnetfeld 
+        spalten sich die Kernspin-Niveaus auf und eine Magnetisierung tritt auf. Die Spule ist, wie im obigen Bild um die Probe gelegen und wird zur Anregung und zur Messung genutzt. \\
+        Das aufgenommene Signal der Spule geht nach einer Verstärkung in einen Splitter, genauso wie die hochfrequente (HF) Spannung für die Pulse. Diese werden dann so in einen Mischer gegeben, sodass sich 
         eine Spannung proportional zum Spin-Echo-Signal und dem Kosinuswinkel zwischen Referenz- und Probenspannung und eine hochfrequente Komponente einer Frequenz von etwa $2\omega_\text{L}$ ergeben. 
         In einen zweiten Mischer wird die Signalspannung aus dem anderen Splitterausgang mit der um $\SI{90}{\degree}$ verschobenen HF-Spannung gemischt. Hier ergibt sich als einziger Unterschied eine 
-        Propotionalität zum Sinuswinkel. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert. Dieses Verfahren entspricht der Quadraturdetektion. \\ Die Signale werden dann vom Computer aufgenommen oder am Oszilloskop angezeigt. 
+        Propotionalität zum Sinuswinkel. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert. Dieses Verfahren entspricht der Quadraturdetektion. \\ 
+        Die Signale werden dann vom Computer aufgenommen oder am Oszilloskop angezeigt. 
         Die Pulse werden mithilfe der Pulskarte, dem Frequenzgenerator, Schalter und Verstärker konfiguriert.
 
         \begin{figure}[H]
             \centering
-            \includegraphics{images/blockschaltbild_nmr.png}
+            \includegraphics[width=\textwidth]{latex/images/blockschaltbild_nmr.png}
             \caption{Blockschaltbild eines NMR-Spektrometers. Der Magnet, in dem sich die Probe befindet, ist nicht dargestellt. \cite{grundlagen}}
             \label{fig:blockschaltbild}
         \end{figure}
 
-        \noindent Damit der Empfangsverstärker bei den $\SI{90}{\degree}$ und $\SI{180}{\degree}$- Pulsen nicht übersteuert und zur Minimierung von Rauschen trennt der Richtkoppler Eingangs- und Ausgangssignal. 
+        \noindent Damit der Empfangsverstärker bei den $\SI{90}{\degree}$- und $\SI{180}{\degree}$- Pulsen nicht übersteuert und zur Minimierung von Rauschen trennt der Richtkoppler Eingangs- und Ausgangssignal. 
         Er wird oft durch eine Diodenbrücke dargestellt, die erst ab $\SI{0.6}{\volt}$ eine Leitfähigkeit besitzt. So kann das Ausgangssignal einfach auf den Empfangsverstärker, da das Signal zu gering ist. 
         Die Pulse haben eine deutlich höhere Spannung, sodass diese durch die Diodenbrücke nur ein wenig verkleinert werden. Die Rauschspannung des Sendeverstärkers wird so aber nicht an den Empfangsverstärker 
         gegeben. 
@@ -52,8 +53,8 @@
 
         \begin{figure}%
             \centering%
-            \includegraphics[width=0.3\textwidth]{images/t_1_messung.png}%
-            \caption{Das Inversion Recovery Verfahren zur MEssung der Spin-Gitter Relaxationszeit $T_1$. \cite{grundlagen}}%
+            \includegraphics[width=0.3\textwidth]{latex/images/t_1_messung.png}%
+            \caption{Das Inversion Recovery Verfahren zur Messung der Spin-Gitter Relaxationszeit $T_1$. \cite{grundlagen}}%
             \label{fig:T_1}%
         \end{figure}%
 
@@ -66,7 +67,7 @@
 
         \begin{figure}
             \centering
-            \includegraphics[width=0.8\textwidth]{images/Hahn_echo.png}
+            \includegraphics[width=0.8\textwidth]{latex/images/Hahn_echo.png}
             \caption{Zeitlicher Verlauf der Spin-Echo Methode. \cite{finke}}
             \label{fig:hahn}
         \end{figure}
@@ -85,7 +86,7 @@
 
         \begin{figure}
             \centering
-            \includegrahics[width=\textwidth]{images/carr_purcell.png}
+            \includegraphics[width=\textwidth]{latex/images/Carr_Purcell.png}
             \caption{Die Pulsfolge der Carr-Purcell-Methode. \cite{finke}}
             \label{fig:carr_purcell}
         \end{figure}
@@ -98,7 +99,7 @@
         
     \subsubsection{Diffusionsmessung}
 
-        \noindent Aufgrund der Inhomogenität des Feldes wird auf das bestimmte $T_2$ die Relaxation $T_2^{text{inhom}}$ aufaddiert, damit die effektive Abfallzeit $T_2^{\tex{eff}}$ ermittelt werden kann. 
+        \noindent Aufgrund der Inhomogenität des Feldes wird auf das bestimmte $T_2$ die Relaxation $T_2^{\text{inhom}}$ aufaddiert, damit die effektive Abfallzeit $T_2^{\text{eff}}$ ermittelt werden kann. 
         Bei einem inhomogenen Feldgradienten kann die Diffusionskonstante $D$ ermittelt werden, da sich nun bei dem bekannten Feldgradienten $G$ eine Bewegung aus der Brownschen Molekularbewegung messbar eine andere Lamorfrequenz ergibt. 
         Es ergibt sich ein exponentieller Zusammenhang 
         \begin{equation*}
@@ -119,13 +120,13 @@
 \section{Durchführung}
 \label{sec:durchführung}
 
-    \noindent Zu Beginn wird das nach NMR-Spektromenter, welches nach Abschnitt \ref{sec:Aufbau} aufgebaut wurde, justiert. Anschließend wird die $T_1$- Relaxationszeit gemssen, da diese für die Messung von $T_2$ bekannt 
+    \noindent Zu Beginn wird das nach NMR-Spektromenter, welches nach Abschnitt \ref{sec:Aufbau} aufgebaut wurde, justiert. Anschließend wird die $T_1$- Relaxationszeit gemessen, da diese für die Messung von $T_2$ bekannt 
     sein sollte. Somit wird danach die Relaxationszeit $T_2$ gemessen.  Abschließend wird die Diffusionsmessung durchgeführt. Zur Illustration der Pulse und deren Abstände ist in \autoref{fig:schema_puls} eine Darstellung
     derer. 
 
-    \begin{figure}
+    \begin{figure}[H]
         \centering
-        \includegraphics[width=0.4\textwidth]{images/schema_puls.png}
+        \includegraphics[width=0.4\textwidth]{latex/images/schema_puls.png}
         \caption{Schmematische Darstellung des Pulsprogrammes. \cite{V49}}
         \label{fig:schema_puls}
     \end{figure}
@@ -137,7 +138,7 @@
             \item Frequenz $F = \SI{21.7}{\mega\hertz}$
             \item Pulslänge $A = \SI{2}{\micro\second}$
             \item Anzahl der B-Pulse $N = \num{0}$ 
-            \item Periode $P = \SI{0.5}{\seond}$ 
+            \item Periode $P = \SI{0.5}{\second}$ 
             \item Shims $x = \num{-1.0}$, $y = \num{-5.0}$, $z = \num{3.7}$, $z^2 = \num{-2.4}$
         \end{itemize}
         Anschließend wird die Frequenz genauer eingestellt. Da die Detektion relativ zur Lamorfrequenz erfolgt, sollte bei einer richtig eingestellten Frequenz keine Oszillation zu sehen sein. 
@@ -151,7 +152,7 @@
 
         \noindent Es wird die Pulslänge A auf die des $\SI{180}{\degree}$-Puls gestellt und die B-Pulslänge auf die des $\SI{90}{\degree}$-Puls. Die Anzahl des B-Pulses beträgt $N = 1$. Die Periode 
         wird auf $ P = \SI{10}{\second}$ gestellt, aber für $\tau > \SI{1}{\second}$ wird $P$ mindestens auf $\tau + \SI{10}{\second}$ gestellt.\\ 
-        Es wird die Amplitude des FID nach dem B-Puls gemessen, mit Variablem $\tau$. Das kürzeste $\tau$ soll dabei so sein, dass noch keine Relaxation stattfindet, und das Längste so, dass die Magentisierung 
+        Es wird die Amplitude des FID nach dem B-Puls gemessen, mit Variablem $\tau$. Das kürzeste $\tau$ soll dabei so sein, dass noch keine Relaxation stattfindet, und das Längste so, dass die Magnetisierung 
         vollständig relaxiert ist. Dies entspricht einer Messung nach der Inversion Recovery Methode.
 
     \subsection{$T_2$-Messung}
