@@ -18,6 +18,19 @@ from scipy.signal import find_peaks
 #den Realteil und die dritte Spalte den Imaginärteil 
 times, real, imag= np.genfromtxt("python/data/echo_gradient.csv", skip_header= 5, unpack = True)
 
+
+plt.figure()
+plt.plot(times, real, label = "Realteil") 
+plt.plot(times, imag, label = "Imaginärteil" )
+plt.xlabel(r"$\tau$ $/$ $ms$")
+plt.ylabel(r"$U$ $/$ $V$")
+plt.tight_layout()
+plt.legend()
+plt.savefig("build/plots/signal.pdf")
+
+
+
+
 #Suchen des Echo-Maximums und alle Daten davor abschneiden 
 start = np.argmax(real) 
 times = times[start:] 
@@ -57,10 +70,13 @@ np.savetxt("build/plots/echo_gradient_fft.txt", np.array([freqs, np.real(fftdata
 peaks, peak_heights = find_peaks( -1 * np.real(fftdata), height = 18)
 print(np.real(fftdata)[peaks])
 
+lower = 5050
+upper = 5200
 
 
 lower = 5050
 upper = 5200
+plt.figure()
 plt.plot(freqs[lower:upper], np.real(fftdata)[lower:upper], label = "Fouriertransformierte Daten") 
 plt.plot(freqs[peaks], np.real(fftdata)[peaks], label = "Peakbreite" )
 plt.xlabel(r"$f$ $/$ $Hz$")
@@ -73,7 +89,7 @@ plt.savefig("build/plots/echo_gradient.pdf")
 
 ####G berechnen
 
-d = 4.2*10**-3 # in m
+d = 4.2*10**(-3) # in m
 gyro = 2.67*10**8 #für Protonen T/s
 d_f = 0 #Durchmesser Spektrum 
 

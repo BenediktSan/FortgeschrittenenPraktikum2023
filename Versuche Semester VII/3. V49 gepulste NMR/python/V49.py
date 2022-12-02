@@ -24,9 +24,18 @@ if os.path.exists("build/plots") == False:
 
 ########MESSWERTE#######
 
+#Theoriewerte
+
+visko =1002 * 10**(-6)  #pascal *  second
+T1_theo = unc.ufloat(3.09, 0.15) * 10**(3) #ms
+T2_theo = unc.ufloat(1.52, 0.09) #s
+
+D_theo = unc.ufloat(2.78, 0.04) * 10**(-9)# m^2/s
+
+r_theo = (1.69e-10) #m
 #Justage
 
-f = 21.73738 #Hz
+f = 21.73738 #MHz
 phase = 1040
 
 #shim?
@@ -94,7 +103,7 @@ cov1 = np.sqrt(np.diag(abs(cov1)))
 uparams1 = unp.uarray(params1, cov1)
 
 print(f"U_0 = {noms(uparams1[0]):.4f} \pm {stds(uparams1[0]):.4f} Volt\nT1 = {noms(uparams1[1]):.4f} \pm {stds(uparams1[1]):.4f} ms\nU_1 = {noms(uparams1[2]):.4f} \pm {stds(uparams1[2]):.4f} Volt\n")
-
+rel_abw(T1_theo, uparams1[1])
 
 x1 = np.linspace(t_1[0], t_1[-1], 1000)
 
@@ -132,6 +141,7 @@ cov2 = np.sqrt(np.diag(abs(cov2)))
 uparams2 = unp.uarray(params2, cov2)
 
 print(f"U_0 = {noms(uparams2[0]):.4f} \pm {stds(uparams2[0]):.4f} Volt\nT2 = {noms(uparams2[1]):.4f} \pm {stds(uparams2[1]):.4f} s\nU_1 = {noms(uparams2[2]):.4f} \pm {stds(uparams2[2]):.4f} Volt\n")
+rel_abw(T2_theo, uparams2[1])
 
 x2 = np.linspace(t_2_new[0], t_2_new[-1])
 
@@ -151,14 +161,38 @@ plt.savefig("build/plots/T2.pdf")
 
 
 
+
+#######t^3 divergenz#########
+print("\n\t##### t^3 DIvergenz ######")
+
+global T2 
+T2 = uparams2[1] * 10**(3) # in ms
+
+plt.figure()
+#plt.plot(t_2, U_2,".",label="Messwerte")
+plt.plot(np.log(U_diff) - 2*t_diff/noms(T2), t_diff**3, "x", label = "Messwerte")
+#plt.xscale('log')
+plt.xlabel(r"$\tau^3$ $/$ $(ms)^3$")
+plt.ylabel(r"ln$(U(\tau)) - 2\frac{\tau}{T_2}$")
+plt.tight_layout()
+plt.legend()
+plt.savefig("build/plots/diff1.pdf")
+
+
+
+
+
+
+
+
 #######DIFFUSIONSKONSTANTE#########
 print("\n\t##### Dffusionskonstante ######")
 
 
 G = 0.1203  #aus der fourier.py
 gyro = 2.67*10**8 #für Protonen T/s
-global T2 
-T2 = uparams2[1] * 10**(3) # in ms
+
+
 
 def fit_diff(t, a, b, c):
     #T2 = 3.9523
@@ -169,10 +203,12 @@ params3, cov3 = curve_fit(fit_diff, t_diff, U_diff, p0 = (1.46, 1677, 0.026))
 cov3 = np.sqrt(np.diag(abs(cov3)))
 uparams3 = unp.uarray(params3, cov3)
 
-D = 3 / (2 * uparams3[1] * 10**(-9) * gyro**2 * G**2) * 10**9
+D = 3 / (2 * uparams3[1] * 10**(-9) * gyro**2 * G**2) 
 
 print(f"U_0 = {noms(uparams3[0]):.4f} \pm {stds(uparams3[0]):.4f} Volt\nT3 = {noms(uparams3[1]):.4f} \pm {stds(uparams3[1]):.4f} (ms)^3\nU_1 = {noms(uparams3[2]):.4f} \pm {stds(uparams3[2]):.4f} Volt\n")
-print(f"D = {noms(D):.4f} \pm {stds(D):.4f}")
+print(f"D = {noms(D* 10**9):.4f} \pm {stds(D * 10**9):.4f} nano m^2/s")
+rel_abw(D_theo, D)
+
 x3 = np.linspace(t_diff[0], t_diff[-1])
 
 plt.figure()
@@ -184,10 +220,13 @@ plt.xlabel(r"$\tau$ $/$ $ms$")
 plt.ylabel(r"$U$ $/$ $V$")
 plt.tight_layout()
 plt.legend()
-plt.savefig("build/plots/diff1.pdf")
+plt.savefig("build/plots/diff2.pdf")
 
 
+r = const.k* Temp_2 / (6*np.pi * visko * D )
 
+print(f"Molekülradius = {r}")
+rel_abw(1.74e-10, r)
 
 
 
@@ -210,7 +249,7 @@ plt.savefig("build/plots/diff1.pdf")
 
 ######MESSDATEN##########
 
-
+#printer(t_1, U_1,"T1")
 #printer(t_2[U_2_peaks], U_2[U_2_peaks] ,"peaks")
 #printer(t_diff, U_diff ,"Diffusion")
 
