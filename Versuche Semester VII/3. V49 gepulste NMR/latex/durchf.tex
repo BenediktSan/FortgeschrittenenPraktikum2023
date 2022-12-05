@@ -43,7 +43,7 @@
 
     \subsubsection{Inversion Recovery}
 
-        Mit einem $\SI{180}{\degree}$ Puls wird $M_z$ invertiert und durch einen $\SI{90}{\degree}$-Puls nach der Zeit $t$ 
+        Mit einem $\SI{180}{\degree}$-Puls wird $M_z$ invertiert und durch einen $\SI{90}{\degree}$-Puls nach der Zeit $t$ 
         in messbare Quermagnetisierung umgewandelt. Die messbare FID-Amplitude ist ein Maß für die relaxierte $z$-Magnetisierung, es gilt 
         \begin{equation*}
             M_z(t) = M_\infty \left(1 - 2e^{-\frac{t}{T_1}}\right)\, .
@@ -60,14 +60,14 @@
 
     \subsubsection{Spin-Echo}
 
-        \noindent Hier wird die Magnetisierung erst mit einem $\SI{90}{\degree}$ Puls in die $y'$-Richtung gelegt, wie es in \autoref{fig:hahn} Teil \(a\) gezeigt ist. Dann präzedieren die Spins 
-        um die $z$-Achse. Da die einzelnen Spins alle leicht unterschiedliche Magnetfelder sehen, kommen sie bald aus der Phase, welches in \(b\) zu sehen ist. Die Spins sind soweit auseinandergelaufen, 
-        dass kein Induktionssignal mehr erzeugt wird. Zum Zeitpunkt $\tau$ nach dem ersten Puls wird ein $\SI{180}{\degree}$ geschalten, sodass die Spins alle einzeln invertiert werden \(c\). 
-        Die Spins laufen jetzt wieder zusammen, dass bei $2 \tau$ die Spins wieder alle in Phase liegen und ein Induktionssignal gemessen werden kann, wie es in \(d\) zu sehen ist.  
+        \noindent Hier wird die Magnetisierung erst mit einem $\SI{90}{\degree}$-Puls in die $y'$-Richtung gelegt, wie es in \autoref{fig:hahn} Teil (a) gezeigt ist. Dann präzedieren die Spins 
+        um die $z$-Achse. Da die einzelnen Spins alle leicht unterschiedliche Magnetfelder sehen, kommen sie bald aus der Phase, welches in (b) zu sehen ist. Die Spins sind soweit auseinandergelaufen, 
+        dass kein Induktionssignal mehr erzeugt wird. Zum Zeitpunkt $\tau$ nach dem ersten Puls wird ein $\SI{180}{\degree}$-Puls geschalten, sodass die Spins alle einzeln invertiert werden (c). 
+        Die Spins laufen jetzt wieder zusammen, dass bei $2 \tau$ die Spins wieder alle in Phase liegen und ein Induktionssignal gemessen werden kann, wie es in (d) zu sehen ist.  
 
         \begin{figure}
             \centering
-            \includegraphics[width=0.8\textwidth]{latex/images/Hahn_echo.png}
+            \includegraphics[width=0.7\textwidth]{latex/images/Hahn_echo.png}
             \caption{Zeitlicher Verlauf der Spin-Echo Methode. \cite{finke}}
             \label{fig:hahn}
         \end{figure}
@@ -86,7 +86,7 @@
 
         \begin{figure}
             \centering
-            \includegraphics[width=\textwidth]{latex/images/Carr_Purcell.png}
+            \includegraphics[width=0.7\textwidth]{latex/images/Carr_Purcell.png}
             \caption{Die Pulsfolge der Carr-Purcell-Methode. \cite{finke}}
             \label{fig:carr_purcell}
         \end{figure}
@@ -106,7 +106,7 @@
             A ( 2 \tau ) = \exp(-\frac{2}{3} D \gamma^2 G2 \tau^3)
         \end{equation*}
         für das erste Echo. Hierbei ist $\gamma$ das gyromagnetische Verhältnis. 
-        Wird nun der Abstand $\tau$ zwischen dem $\SI{90}{\degree}$ und $\SI{180}{\degree}$-Puls erhöht kann die Funktion 
+        Wird nun der Abstand $\tau$ zwischen dem $\SI{90}{\degree}$- und $\SI{180}{\degree}$-Puls erhöht kann die Funktion 
         \begin{equation*}
             M_y (t) = M_0 \exp\left(- \frac{2 \tau}{T_2}\right)\exp\left(- \frac{D \gamma^2 G^2 2 \tau^3}{3}\right)
         \end{equation*}
@@ -144,7 +144,7 @@
         Anschließend wird die Frequenz genauer eingestellt. Da die Detektion relativ zur Lamorfrequenz erfolgt, sollte bei einer richtig eingestellten Frequenz keine Oszillation zu sehen sein. 
         Danach wird die Phase so eingestellt, dass der Realteil den Großteil des Signals trägt und der Imaginärteil minimal wird. Jetzt werden die Shims so verändert, dass der auf dem Oszilloskop 
         sichtbare FID möglichst lange geht und auch noch nach $\SI{2}{\milli\second}$ gut erkennbar ist. Es wird also die Feldhomogenität des Gradienten maximiert. \\
-        Es werden die Pulszeiten für einen $\SI{90}{\degree}$ und $\SI{180}{\degree}$ Puls ermittelt. Dabei sollte zwischen den Zeiten ein Faktor 2 liegen, der $\SI{90}{\degree}$-Puls soll den 
+        Es werden die Pulszeiten für einen $\SI{90}{\degree}$- und $\SI{180}{\degree}$-Puls ermittelt. Dabei sollte zwischen den Zeiten ein Faktor 2 liegen, der $\SI{90}{\degree}$-Puls soll den 
         FID maximieren und der $\SI{180}{\degree}$-Puls soll den FID minimieren. \\
         Für die Untersuchung der Temperaturabhängigkeit wird noch die Temperatur in der Spule mit einem Thermoelement gemessen. 
         

@@ -14,7 +14,7 @@ build/plots/echo_gradient.pdf:	|build
 
 
 # hier weitere Abhängigkeiten für build/main.pdf deklarieren:
-build/Protokoll_V49.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex build/plots/T1.pdf build/plots/echo_gradient.pdf| build
+build/Protokoll_V49.pdf:  latex/auswertung.tex latex/theorie.tex latex/durchf.tex latex/diskussion.tex latex/anhang.tex build/plots/T1.pdf build/plots/echo_gradient.pdf| build
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V49.tex
 	biber build/Protokoll_V49.bcf
 	lualatex --output-directory=build --interaction=batchmode --halt-on-error latex/Protokoll_V49.tex

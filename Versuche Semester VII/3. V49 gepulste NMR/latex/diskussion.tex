@@ -3,7 +3,7 @@
 
 \noindent
 Eine große Fehlerquelle des Versuchs ist die Temperatur des Magneten die sich natürlich auch auf die der Probe auswirkt. 
-Da die Magnetfeldstärke stark vom Stromfluss abhängig ist und dieser von der Temperatur abhängt, ergibt sich ein großer Faktor der in der Auswertung nicht betrahtet wurde. 
+Da die Magnetfeldstärke stark vom Stromfluss abhängig ist und dieser von der Temperatur abhängt, ergibt sich ein großer Faktor der in der Auswertung nicht betrachtet wurde. 
 Die Temperatur des Magneten wirkt sich außerdem auf die Temperatur der Probe aus, was zu Schwankungen in Dichte, Viskosität und Diffusionskonstante führen kann. 
 Allerdings wurde nach allen Messungen diesselbe Temperatur von $T= \SI{20.8}{\degreeCelsius}$ zwischen den Magnetpolen gemessen. 
 Dies ist unerwartet, da für die Magneten nach langem Betrieb eine Temperatur deutlich über Raumtemperatur zu erwarten ist. 
@@ -35,17 +35,17 @@ Außerdem wurden für die Diffusionsmessung und die $T_1$-Messung die Werte dire
 In der Tabelle \ref{tab:rel} sind die relativen Abweichungen der Messwerte von den Literaturangaben aus den Quellen \cite{theo} und \cite{radius} dargestellt.
 Dabei ist zu erkennen, dass sich alle Werte in den korrekten Größenordnungen bewegen. Für die Relaxationszeit $T_1$ ist die relative Abweichung sehr gering. 
 Dies zeigt, das trotz nicht beachteter Verunreinigungen genaue Ergebnisse möglich sind. Da dies die erste Messung war, kann hier noch die Temperatur vernachlässigt werden. 
-Die Genauigkei ist außerdem überraschend, da die Messreihe nicht bis weit nach den Nulldurchgang der Spannungsamplitude fortgesetzt werden konnte. Dies ist in Abbildung \ref{img:T1} zu erkennen.\\
+Die Genauigkeit ist außerdem überraschend, da die Messreihe nicht bis weit nach den Nulldurchgang der Spannungsamplitude fortgesetzt werden konnte. Dies ist in Abbildung \ref{img:T1} zu erkennen.\\
 Für $T_2$ zeigt die größte Abweichung aller Ergebnisse, obwohl für den Fit hinreichend viele Maxima ausgelesen werden konnten. 
-Hier kann natürlich die Temoeratur ein Faktor für die Abweichung sein, sie erklärt aber keine so starke Abweichung. 
-Eine Erklärung könnte die Funktion \textit{scipy.find\_peaks} sein, die eventuell den geanauen Ort der Peaks gefunden hat. Dies ist allerdings unwahrscheinlich.\\
+Hier kann natürlich die Temperatur ein Faktor für die Abweichung sein, sie erklärt aber keine so starke Abweichung. 
+Eine Erklärung könnte die Funktion \textit{scipy.find\_peaks} sein, die eventuell nicht den genauen Ort der Peaks gefunden hat. Dies ist allerdings unwahrscheinlich.\\
 Wie zuvor erklärt kann für die Diffusionskonstante $D$ die Temperatur der Probe als Faktor ausgeschlossen werden. 
-Allerdings wurde beim überprüfen der $\tau^3$ Abhängigkeit der Messwerte festgestellt, dass diese nur auf Intervallen vorliegt, global allerdings nicht.
+Allerdings wurde beim Überprüfen der $\tau^3$ Abhängigkeit der Messwerte festgestellt, dass diese nur auf Intervallen vorliegt, global allerdings nicht.
 Dies ist in Abbildung \ref{img:diff1} zu finden. Dies könnte einer Erklärung für die Abweichungen sein. Außerdem wurde hier mit $T_2$ weitergerechnet 
 und die Breite der Röhre im Frequenzraum $d_\t{f}$ nur ungenau abgelesen.\\
 Der Molekülradius ist wiederum von $D$ abhängig, wodurch sich ein Teil der Abweichung erklären lässt. 
 Außerdem war die Diffusionsmessung die letzte durchgeführte Messung, wodurch die Temperatur dort den größten Einfluss haben sollte.
-Die Abweichungen von dem Literaturangaben und der dichtesten Kugelpackung könnten sich mit der Begründung über Fehlerfotpflanzung und die Temperatur erklären.
+Die Abweichungen von dem Literaturangaben und der dichtesten Kugelpackung könnten sich mit der Begründung über Fehlerfortpflanzung und die Temperatur erklären.
 
 
 \noindent

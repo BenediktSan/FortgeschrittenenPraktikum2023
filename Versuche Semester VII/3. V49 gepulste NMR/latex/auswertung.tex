@@ -8,12 +8,12 @@ Dabei wir zuerst die Frequenz des \enquote{rotating frames}, welches ungefähr d
   \omega &= \SI{21.73738}{\mega\hertz}\\
   \phi &= \SI{1040}{\degree} \quad .
 \end{align*}
-Des Weiteren wurden die Pulslägen für den $\SI{90}{\degree}$- und den $\SI{180}{\degree}$-Puls bestimmt. Dafür ergibt sich
+Des Weiteren wurden die Pulslägen für den $\SI{90}{\degree}$- und den $\SI{180}{\degree}$-Puls bestimmt. Dafür ergeben sich
 \begin{align*}
   \symup{\Delta} t_{90} &= \SI{2.64}{\micro\second}\\
   \symup{\Delta} t_{180} &= \SI{5.28}{\micro\second} \quad .
 \end{align*}
-Außerdem wurde zu allen Zeitpunkten diesselbe Temperatur 
+Außerdem wurde zu allen Zeitpunkten dieselbe Temperatur 
 \begin{equation*}
   T = \SI{20.8}{\degreeCelsius}
 \end{equation*}
@@ -28,7 +28,6 @@ Auf die Messdaten wird eine Ausgleichsfunktion der Form
 \begin{equation*}
   U\left(\tau\right) = U_0 \left(1-2\exp{\left(-\frac{\tau}{T_1}\right)}\right) + U_1
 \end{equation*}
-
 gefittet. Für die Parameter ergibt sich dabei
 \begin{align*}
   U_0 &= \SI{-1.6019(154)}{\volt}\\
@@ -82,7 +81,7 @@ Anschließend wird das Signal der Carr-Purcell-Mehode gezeigt.
 \subsubsection{Meiboom-Gill-Methode}
 
 \noindent
-Zur Bestimmung der Spin-Spin Relaxationszeit wurden mit der Funktion \textit{scipy.find\_peaks} die Maxima der $T2$-Messreihe ausgelesen. 
+Zur Bestimmung der Spin-Spin Relaxationszeit wurden mit der Funktion \textit{scipy.find\_peaks} die Maxima der $T_2$-Messreihe ausgelesen. 
 Die ursprüngliche Messreihe umfasst $\approx 20000$ Messwerte, die vom Oszilloskop in einer .csv Datei gespeichert wurden. 
 Das gesamte Signal des Oszilloskops ist in Abbildung \ref{img:Sig1} zu finden.
 \begin{figure}[H]
@@ -99,7 +98,7 @@ Auf diesen Daten wird eine Funktion der Form
 \begin{equation*}
   U\left(t\right) = U_0 \exp{\left(-\frac{2\tau}{T_2}\right)} + U_2
 \end{equation*}
-geffitet. Dies ergibt die Parameter
+gefittet. Dies ergibt die Parameter
 \begin{align*}
   U_0 &= \SI{-0.4435(118)}{\volt}\\
   T_2 &= \SI{3.9523(1939)}{\second}\\
@@ -121,7 +120,7 @@ Die Ausgleichsfunktion ist inklusive der ausgelesenen Maxima in Abbildung \ref{i
 
 
 \noindent
-Eine alternative zur Meiboom-Gill-Methode ist die Carr-Purcell-Methode. Bei der der $\symup{\Delta} t_{90}$-Puls und der $\symup{\Delta} t_{180}$-Puls die Gleiche Phase besitzen.
+Eine alternative zur Meiboom-Gill-Methode ist die Carr-Purcell-Methode. Bei der der $\symup{\Delta} t_{90}$-Puls und der $\symup{\Delta} t_{180}$-Puls die gleiche Phase besitzen.
 Eine Bestimmung der Relaxationszeit $T_2$ ist hieraus nicht möglich. Das gespeicherte Signal ist in Abbildung \ref{img:Sig2} zu finden.
 \begin{figure}[H]
   \centering
@@ -179,7 +178,7 @@ Die Steigungen sind in vor und nach dem Knick allerdings annähernd linear.
   \label{tab:diff}
   \begin{tabular}{S [table-format=4.1] S [table-format=1.4] | S [table-format=4.1] S [table-format=1.4]}
    \toprule
-   {$\tau \mathbin{\scalebox{1.5} / } \si{\milli\second}$} & $\text{Spannungsamplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$ &{$\tau \mathbin{\scalebox{1.5} / } \si{\milli\second}$} & $\text{Spannungsamplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$\\
+   {$\tau \mathbin{\scalebox{1.5} / } \si{\milli\second}$} & {$\text{Spannungsamplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$} &{$\tau \mathbin{\scalebox{1.5} / } \si{\milli\second}$} & {$\text{Spannungsamplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$}\\
    \midrule 
   0.1 & 1.5   & 17   & 0.11  \\
   0.5 & 1.487 & 18   & 0.073 \\
@@ -190,7 +189,8 @@ Die Steigungen sind in vor und nach dem Knick allerdings annähernd linear.
  10   & 0.837 & 23   & 0.024 \\
  12.5 & 0.475 & 24   & 0.02  \\
  15   & 0.212 & 25   & 0.027 \\
- 16   & 0.16 & &  \\
+ 16   & 0.16   \\
+ \bottomrule
   \end{tabular}
 \end{table} 
 
@@ -208,7 +208,7 @@ Nun wird auf die Spannungsamplituden eine Ausgleichsfunktion der Form
 \begin{equation*}
   U\left(\tau\right) = U_0 \exp{\left(-\frac{2\tau}{T_2}\right)} \exp{\left(-\frac{\tau^3}{T_D}\right)} + U_3
 \end{equation*}
-berechnet. Dabei ergibt sich
+berechnet. Dabei ergeben sich
 \begin{align*}
   U_0 &= \SI{1.4621(34)}{\volt}\\
   T_\t{D} &= \SI{1677.8387(141057)e3}{\milli\second^3}\\
