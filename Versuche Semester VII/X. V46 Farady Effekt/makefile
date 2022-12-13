@@ -5,7 +5,7 @@ all: build/Protokoll_V46.pdf
 #hier Python-Skripte
 
 
-build/plots/probe1.pdf:	header-matplotlib.tex  matplotlibrc |build
+build/plots/probe1.pdf: python/V46.py	header-matplotlib.tex  matplotlibrc |build
 	TEXINPUTS=$$(pwd): python python/V46.py
 
 

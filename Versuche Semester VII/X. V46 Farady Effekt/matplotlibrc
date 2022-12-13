@@ -10,8 +10,8 @@ font.family : serif
 # Fontgrößen
 font.size : 11
 legend.fontsize : medium
-xtick.labelsize : 9
-ytick.labelsize : 9
+xtick.labelsize : 7
+ytick.labelsize : 7
 
 # unsere Fonteinstellungen benutzen
 pgf.rcfonts : False
