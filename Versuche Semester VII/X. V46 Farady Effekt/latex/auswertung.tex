@@ -3,8 +3,8 @@
 
 \subsection{Bestimmung des maximalen Magnetfeldes}
 
-    \noindent Zuerst wird das Magentfeld am Feld der Probe ermittelt. Dazu wird das Magentfeld in Abhängigkeit der $z$-Komponente gemessen, die Werte 
-    sind in \autoref{tab:bfeld} aufgelistet. 
+    \noindent Zuerst wird das Magnetfeld am Feld der Probe ermittelt. Dazu wird das Magnetfeld in Abhängigkeit der $z$-Komponente gemessen.
+    Die Werte sind in \autoref{tab:bfeld} aufgelistet. 
 
     \begin{table}
         \centering
@@ -29,10 +29,10 @@
         \end{tabular}
     \end{table}
 
-    \noindent Die absoluten Messwerte sind in \autoref{fig:bfeld} graphisch dargestellt. Die maximal Magnetfeldstärke entspricht der am Ort der Proben, 
-    dieser Wert lautet
+    \noindent Die absoluten Messwerte sind in \autoref{fig:bfeld} grafisch dargestellt. Die maximal Magnetfeldstärke entspricht der am Ort der Proben.
+    Der damit korrespondierende Wert lautet
     \begin{equation} 
-        B_\text{max} = \SI{422}{\milli\tesla}\, .
+        B_\text{max} = \SI{422}{\milli\tesla}\quad .
     \end{equation}
 
     \begin{figure}[H]
@@ -44,21 +44,21 @@
 
 \subsection{Darstellung der Messergebnisse}
 
-    \noindent Es werden für die beiden Polungsrichtungen jeweils ein Winkel $\theta_i$ ermittelt, wie es in der Durchführung beschrieben ist. 
-    Der eigentliche Winkel mit dem die Polarisation gedreht wird ist somit 
+    \noindent Es werden für die beiden Polungsrichtungen des Magnetfeldes jeweils ein Winkel $\theta_i$ ermittelt, wie es in der Durchführung beschrieben ist. 
+    Der eigentliche Winkel, mit dem die Polarisation gedreht wird, ist somit 
     \begin{equation*}
-        \theta = \frac{1}{2}\left( \theta_1 - \theta_2\right)\, .
+        \theta = \frac{1}{2}\left( \theta_1 - \theta_2\right)\quad .
     \end{equation*}
-    Zur Ermittlung der Effektiven Masse werden die gemessenen Winkel auf die Länge der Probe normiert. 
+    Zur Ermittlung der effektiven Masse werden die gemessenen Winkel auf die Länge der Probe normiert. 
 
     \noindent Für die reine $\ce{GaAs}$-Probe sind die Daten in \autoref{tab:hochrein} zu finden. Für die $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ dotierte 
-    Probe sind die Winkel in \autoref{tab:probe_12} und für die mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierte Probe in \autoref{tab:probe_28}. \\
+    Probe sind die Winkel in \autoref{tab:probe_12} und für die mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierte Probe in \autoref{tab:probe_28} zu finden. \\
     In \autoref{fig:firstplot} sind die normierten Winkel $\theta_\text{frei}$ gegen $\lambda^2$ aufgetragen. 
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{build/plots/firstplot.pdf}
-        \caption{Die auf die Länge normierten Winkel der verschiedenen Proben}
+        \caption{Die auf die Länge normierten Winkel der verschiedenen Proben.}
         \label{fig:firstplot}
     \end{figure}
 
@@ -131,24 +131,24 @@
     \begin{equation*}
         \increment \theta = \left(\frac{\theta}{d}\right)_\text{rein} - \left(\frac{\theta}{d}\right)_\text{Probe}
     \end{equation*}
-    eine lineare Ausgleichsrechnung der Form 
+    eine lineare Ausgleichsfunktion der Form 
     \begin{equation*}
         \increment \theta = a \cdot \lambda^2 + b
     \end{equation*}
     angepasst. Hier wird \textit{curve-fit} von Scipy genutzt.
     Anschließend kann aus der Steigung $a$ wie folgt die effektive Masse bestimmt werden
     \begin{equation}
-        m^* = \sqrt{\frac{e^3}{8 \pi^2 \epsilon_0 c^3} \frac{N\cdot B_\text{max}}{n} \frac{1}{a}}\, .
+        m^* = \sqrt{\frac{e^3}{8 \pi^2 \epsilon_0 c^3} \frac{N\cdot B_\text{max}}{n} \frac{1}{a}}\quad .
         \label{eqn:effmass}
     \end{equation}
-    Dabei ist $N$ die Donatorenkonzentration, $n$ der Brechungsindex von reinem GaAs, welches sich zu $\num{3.3543}$ ergibt \cite{n}. 
+    Dabei ist $N$ die Donatorenkonzentration, $n$ der Brechungsindex von reinem $\ce{GaAs}$, welcher sich zu $\num{3.3543}$ ergibt \cite{n}. 
 
-    \noindent Zu der Probe mit $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ findet sich in \autoref{fig:probe_12_diff} die Gerade graphisch dargestellt. 
-    Die Parameter aus der Ausgleichsrechung ergeben sich zu 
+    \noindent Zu der Probe mit $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ findet sich in \autoref{fig:probe_12_diff} die Gerade grafisch dargestellt. 
+    Die Parameter aus der Ausgleichsrechnung ergeben sich zu 
     \begin{align*}
-        a &= \SI{-8(4)e12}{1\per\metre\tothe{3}} & \text{und} & & b &= \SI{88(17)}{1\per\metre}\, .
+        a &= \SI{-8(4)e12}{1\per\metre\tothe{3}} & \text{und} & & b &= \SI{88(17)}{1\per\metre}\quad .
     \end{align*}
-    Nach dem Einsetzen aller Größen in SI-Einheiten in Gleichung \eqref{eqn:effmass} berechnet sich 
+    Nach dem Einsetzen aller Größen in SI-Einheiten in Gleichung \eqref{eqn:effmass}, ergibt sich 
     \begin{equation*}
         m^* = \SI{6.5(16)e-33}{\kilo\gram} = \left(\num{0.0071(18)}\right)\cdot m_\text{e}
     \end{equation*}
@@ -158,25 +158,25 @@
         \centering
         \includegraphics[width=0.8\textwidth]{build/plots/probe1_diff.pdf}
         \caption{Die Differenz der normierten mit $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ dotierten $\ce{InGaAs}$-Probe und undotierten Probe gegen 
-        die Wellenlänge zum Quadrat aufgetragen inklusive einer linearen Ausgelichsrechnung.}
+        die Wellenlänge zum Quadrat aufgetragen inklusive einer linearen Ausgleichsrechnung.}
         \label{fig:probe_12_diff}
     \end{figure}
 
-    \noindent Die Ergebnisse der mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierten Probe sind graphisch in \autoref{fig:probe_28_diff} zu sehen. 
-    Die Parameter der Ausgleichsrechnung ergeben sich zu 
+    \noindent Die Ergebnisse der mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierten Probe sind grafisch in \autoref{fig:probe_28_diff} zu sehen. 
+    Für die Ausgleichsrechnung ergeben sich die Parameter zu 
     \begin{align*}
-        a &= \SI{4(8)e12}{1\per\metre\tothe{3}} && \text{und} & & b &= \SI{74(33)}{1\per\metre}\, .
+        a &= \SI{4(8)e12}{1\per\metre\tothe{3}} && \text{und} & & b &= \SI{74(33)}{1\per\metre}\quad .
     \end{align*}
     Die effektive Masse der Elektronen berechnet sich zu 
     \begin{equation*}
-        m^* = \SI{1.3(12)e-32}{\kilo\gram} = \left(\num{0.015(13)}\right)\cdot m_\text{e}
+        m^* = \SI{1.3(12)e-32}{\kilo\gram} = \left(\num{0.015(13)}\right)\cdot m_\text{e} \quad ,
     \end{equation*}
-    nach der Gleichung \eqref{eqn:effmass}.
+    nach Gleichung \eqref{eqn:effmass}.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{build/plots/probe2_diff.pdf}
         \caption{Die Differenz der normierten mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierten $\ce{InGaAs}$-Probe und dotierten Probe gegen 
-        die Wellenlänge zum Quadrat aufgetragen inklusive einer linearen Ausgleichsrechnung.}
+        die Wellenlänge zum Quadrat aufgetragen, inklusive einer linearen Ausgleichsrechnung.}
         \label{fig:probe_28_diff}
     \end{figure}
