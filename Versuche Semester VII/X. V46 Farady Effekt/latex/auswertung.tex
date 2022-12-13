@@ -1,22 +1,146 @@
 \newpage 
 \section{Auswertung}
 
-\begin{table}[ht]
-  \centering
-  \small
-  \caption{Messdaten zur Wien-Robinson-Brücke}
-  \label{tab:tab2}
-  \begin{tabular}{S [table-format=5.0] S [table-format=1.3]}
-   \toprule
-   {$\nu \mathbin{\scalebox{1.5} / } \si{\hertz}$} & $\text{Amplitude} \mathbin{\scalebox{1.5} / } \si{\volt}$\\
-   \midrule
-  \end{tabular}
-\end{table} 
+\subsection{Bestimmung des maximalen Magnetfeldes}
 
+    \noindent Zuerst wird das Magentfeld am Feld der Probe ermittelt. Dazu wird das Magentfeld in Abhängigkeit der $z$-Komponente gemessen, die Werte 
+    sind in \autoref{tab:bfeld} aufgelistet. 
 
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.6\textwidth]{build/plots/plot1.pdf}
-%    \caption{Messdaten zur Wien-Robinson-Brücke}
-%  \label{fig:plot1}
-%\end{figure}
+    \begin{table}
+        \centering
+        \caption{Die aufgenommenen Werte der Messung des Magnetfeldes.}
+        \label{tab:bfeld}
+        \begin{tabular}{S[table-format=3.0] S[table-format=4.0] | S[table-format=3.0] S[table-format=4.0] }
+            \toprule
+            {$z \mathbin{/} \si{\centi\metre}$} & {$B \mathbin{/} \si{\milli\tesla}$} & {$z \mathbin{/} \si{\centi\metre}$} & {$B \mathbin{/} \si{\milli\tesla}$} \\
+            \midrule
+            -10     & -203 & 0     &  -422 \\
+            -9      & -261 & 1     &  -422 \\
+            -8      & -309 & 2     &  -422 \\
+            -7      & -344 & 3     &  -420 \\
+            -6      & -367 & 4     &  -416 \\
+            -5      & -389 & 5     &  -410 \\
+            -4      & -400 & 6     &  -401 \\
+            -3      & -409 & 7     &  -389 \\
+            -2      & -414 & 8     &  -372 \\
+            -1      & -418 & 9     &  -350 \\
+            0       & -422 & 10    &  -312 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+
+    \noindent Die absoluten Messwerte sind in \autoref{fig:bfeld} graphisch dargestellt. Die maximal Magnetfeldstärke entspricht der am Ort der Proben, 
+    dieser Wert lautet
+    \begin{equation} 
+        B_\text{max} = \SI{422}{\milli\tesla}\, .
+    \end{equation}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{build/plots/bfeld.pdf}
+        \caption{Die absoluten Werte der Magnetfeldmessung aufgetragen gegen den $z$-Abstand.}
+        \label{fig:bfeld}
+    \end{figure}
+
+\subsection{Darstellung der Messergebnisse}
+
+    \noindent Es werden für die beiden Polungsrichtungen jeweils ein Winkel $\theta_i$ ermittelt, wie es in der Durchführung beschrieben ist. 
+    Der eigentliche Winkel mit dem die Polarisation gedreht wird ist somit 
+    \begin{equation*}
+        \theta = \frac{1}{2}\left( \theta_1 - \theta_2\right)\, .
+    \end{equation*}
+    Zur Ermittlung der Effektiven Masse werden die gemessenen Winkel auf die Länge der Probe normiert. 
+
+    \noindent Für die reine $\che{GaAs}$-Probe sind die Daten in \autoref{tab:hochrein} zu finden. Für die $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ dotierte 
+    Probe sind die Winkel in \autoref{tab:probe_12} und für die mit $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$ dotierte Probe in \autoref{tab:probe_28}. \\
+    In \autoref{fig:firstplot} sind die normierten Winkel $\theta_\text{frei}$ gegen $\lambda^2$ aufgetragen. 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{build/plots/firstplot.pdf}
+        \caption{Die auf die Länge normierten Winkel der verschiedenen Proben}
+        \label{fig:firstplot}
+    \end{figure}
+
+    \begin{table}
+        \centering
+        \caption{Die gemessenen Winkel der reinen $\che{GaAs}$-Probe der Länge $d = \SI{5.11}{\milli\metre}$. }
+        \label{tab:hochrein}
+        \begin{tabular}{S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=2.3] S[table-format=3.3]}
+            \toprule
+            {$\lambda \mathbin{/} \si{\micro\metre}$} & {$\theta_1$} & {$\theta_2$} & {$\theta$} & {$\frac{\theta}{d}$}\\
+            \midrule
+            1.060 & 2.602 & 3.020 & -0.209 & -40.901 \\
+            1.290 & 4.277 & 4.559 & -0.141 & -27.552 \\
+            1.450 & 2.611 & 2.848 & -0.119 & -23.197 \\
+            1.720 & 2.683 & 2.850 & -0.084 & -16.366 \\
+            1.960 & 2.756 & 2.884 & -0.064 & -12.524 \\
+            2.156 & 2.915 & 2.816 & 0.049 & 9.620 \\
+            2.340 & 3.303 & 3.226 & 0.039 & 7.543 \\
+            2.510 & 3.730 & 3.655 & 0.038 & 7.343 \\
+            2.560 & 3.064 & 2.975 & 0.045 & 8.710 \\
+            \bottomrule            
+        \end{tabular}
+    \end{table}
+
+    \begin{table}
+        \centering
+        \caption{Die gemessenen Winkel einer $\che{InGaAs}$-Probe der Länge $d = \SI{1.36}{\milli\metre}$ und der Dotierung $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$. }
+        \label{tab:probe_12}
+        \begin{tabular}{S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=2.3] S[table-format=3.3]}
+            \toprule
+            {$\lambda \mathbin{/} \si{\micro\metre}$} & {$\theta_1$} & {$\theta_2$} & {$\theta$} & {$\frac{\theta}{d}$}\\
+            \midrule
+            1.060 & 4.349 & 4.200 & 0.075 & 54.862 \\
+            1.290 & 4.364 & 4.260 & 0.052 & 38.179 \\ 
+            1.450 & 4.373 & 4.275 & 0.049 & 35.826 \\
+            1.720 & 4.362 & 4.255 & 0.053 & 39.249 \\ 
+            1.960 & 4.390 & 4.191 & 0.100 & 73.471 \\ 
+            2.156 & 4.374 & 4.254 & 0.060 & 44.061 \\ 
+            2.340 & 3.347 & 3.220 & 0.063 & 46.521 \\ 
+            2.510 & 3.586 & 3.365 & 0.110 & 81.171 \\ 
+            2.560 & 3.023 & 2.967 & 0.028 & 20.426 \\ 
+            \bottomrule            
+        \end{tabular}
+    \end{table}
+
+    \begin{table}
+        \centering
+        \caption{Die gemessenen Winkel einer $\che{InGaAs}$-Probe der Länge $d = \SI{1.296}{\milli\metre}$ und der Dotierung $N = \SI{2.8e18}{\per\centi\metre\tothe{3}}$. }
+        \label{tab:probe_28}
+        \begin{tabular}{S[table-format=1.3] S[table-format=1.3] S[table-format=1.3] S[table-format=2.3] S[table-format=3.3]}
+            \toprule
+            {$\lambda \mathbin{/} \si{\micro\metre}$} & {$\theta_1$} & {$\theta_2$} & {$\theta$} & {$\frac{\theta}{d}$}\\
+            \midrule
+            1.060 & 4.330 & 4.150 & 0.090 & 69.804 \\
+            1.290 & 2.971 & 2.851 & 0.060 & 46.349 \\
+            1.450 & 2.944 & 2.788 & 0.078 & 60.153 \\
+            1.720 & 2.986 & 2.818 & 0.084 & 65.091 \\
+            1.960 & 3.092 & 2.880 & 0.106 & 81.700 \\
+            2.156 & 3.202 & 3.177 & 0.012 & 9.539 \\
+            2.340 & 3.495 & 3.156 & 0.170 & 130.967 \\
+            2.510 & 3.823 & 3.407 & 0.208 & 160.370 \\
+            2.560 & 3.247 & 2.987 & 0.130 & 100.105 \\
+            \bottomrule            
+        \end{tabular}
+    \end{table}
+
+\subsection{Ermittlung der effektiven Masse}
+
+    \noindent Zur Berechnung der effektiven Masse wird nun an den Ausdruck
+    \begin{equation*}
+        \increment \theta = \left(\frac{\theta}{d}\right)_\text{rein} - \left(\frac{\theta}{d}\right)_\text{Probe}
+    \end{equation*}
+    eine lineare Ausgleichsrechnung der Form 
+    \begin{equation*}
+        \increment \theta = a \cdot \lambda^2 + b
+    \end{equation*}
+    angepasst. Hier wird \textit{curve-fit} von Scipy genutzt.
+    Anschließend kann aus der Steigung $a$ wie folgt die effektive Masse bestimmt werden
+    \begin{equation*}
+        m^* = \sqrt{\frac{e^3}{8 \pi^2 \epsilon_0 c^3} \frac{N\cdot B_\text{max}}{n} \frac{1}{a}}\, .
+    \end{equation*}
+    Dabei ist $N$ die Donatorenkonzentration, $n$ der Brechungsindex von reinem GaAs, welches sich zu $\num{3.3543}$ ergibt \cite{n}. 
+
+    \noindent Zu der Probe mit $N = \SI{1.2e18}{\per\centi\metre\tothe{3}}$ findet sich in \autoref{fig:probe_12_diff} die Gerade graphisch dargestellt. 
+    Die Parameter aus der Ausgleichsrechung
