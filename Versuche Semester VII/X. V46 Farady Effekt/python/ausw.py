@@ -43,6 +43,9 @@ def effmass(steig, N):
     konst_n = 8*np.pi**2 * const.epsilon_0*const.c**3*n
     return unp.sqrt(konst_z/konst_n * N*B_maximum/steig)
 
+def relab(exp, theo):
+    return 1 - exp/theo
+
 ########Grafiken########
 
 
@@ -137,7 +140,7 @@ def secondplot(name, theta_probe, L_probe, N_probe, col):
     print(N_probe)
     m_eff = effmass(abs(a)*10**12, N_probe)
 
-    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e} m_e')
+    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e} m_e \n abweichung {relab(m_eff/const.m_e, 0.067)}')
     return
 
 secondplot('probe1', theta_12, L_12, N_12, 'red')
