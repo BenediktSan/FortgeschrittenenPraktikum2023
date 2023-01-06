@@ -5,7 +5,7 @@
 
         \noindent Der prinzipielle Aufbau des Experimentes ist in \autoref{fig:schema_aufbau} dargestellt. Die Probe befindet sich mitten in einer Spule in einem möglichst homogenen Magnetfeld, welches senkrecht zu der Spule steht.
         Mit dem \enquote{Sender} können Pulse an die Spule gegebn werden, sodass hochfrequente Magnetfelder in der Spule entstehen. Wird die Magnetisierung in der Spule angeregt, so präzediert diese in der 
-        $x$-$y$-Ebene und in der Spule wird durch das sich ändernde Magnetfeld eine Spannung induziert. Durch Relaxationsprozesse kehrt die Magnetisierung wieder in die Gleichgewichtslage zurück, dies wird 
+        $x$-$y$-Ebene und in der Spule wird durch das sich ändernde Magnetfeld eine Spannung induziert. Durch Dephasierung der Spins kehrt die Magnetisierung wieder in die Gleichgewichtslage zurück, dies wird 
         \enquote{freier Induktionszerfall} (FID) genannt. Die Spannung, welche durch den FID in der Spule entsteht, wird mit dem Empfänger gemessen. 
 
         \begin{figure}[H]
@@ -16,18 +16,18 @@
         \end{figure}
 
         \noindent In \autoref{fig:blockschaltbild} ist das Blockschaltbild eines NMR-Spektrometers zu sehen, wobei jedoch der Magnet, der das homogene Magnetfeld erzeugt, nicht eingezeichnet ist. Durch dieses Magnetfeld 
-        spalten sich die Kernspin-Niveaus auf und eine Magnetisierung tritt auf. Die Spule ist, wie im obigen Bild um die Probe gelegen und wird zur Anregung und zur Messung genutzt. \\
+        spalten sich die Kernspin-Niveaus auf und eine Magnetisierung tritt auf. Die Spule ist, wie im obigen Bild um die Probe angeordnet und wird zur Anregung und zur Messung genutzt. \\
         Das aufgenommene Signal der Spule geht nach einer Verstärkung in einen Splitter, genauso wie die hochfrequente (HF) Spannung für die Pulse. Diese werden dann so in einen Mischer gegeben, sodass sich 
-        eine Spannung proportional zum Spin-Echo-Signal und dem Kosinuswinkel zwischen Referenz- und Probenspannung und eine hochfrequente Komponente einer Frequenz von etwa $2\omega_\text{L}$ ergeben. 
+        eine Spannung proportional zum Spin-Echo-Signal und dem Kosinus-Anteil zwischen Referenz- und Probenspannung und eine hochfrequente Komponente einer Frequenz von etwa $2\omega_\text{L}$ ergeben. 
         In einen zweiten Mischer wird die Signalspannung aus dem anderen Splitterausgang mit der um $\SI{90}{\degree}$ verschobenen HF-Spannung gemischt. Hier ergibt sich als einziger Unterschied eine 
-        Propotionalität zum Sinuswinkel. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert. Dieses Verfahren entspricht der Quadraturdetektion. \\ 
-        Die Signale werden dann vom Computer aufgenommen oder am Oszilloskop angezeigt. 
-        Die Pulse werden mithilfe der Pulskarte, dem Frequenzgenerator, Schalter und Verstärker konfiguriert.
+        Propotionalität zum Sinus-Anteil. Die HF Anteile der Spannungen werden mithilfe eines Tiefpasses herausgefiltert. Dieses Verfahren entspricht der Quadraturdetektion. \\ 
+        Die Signale werden dann am Oszilloskop angezeigt. 
+        Die Pulse werden mithilfe dem Frequenzgenerator, Schalter und Verstärker konfiguriert.
 
         \begin{figure}[H]
             \centering
             \includegraphics[width=\textwidth]{latex/images/blockschaltbild_nmr.png}
-            \caption{Blockschaltbild eines NMR-Spektrometers. Der Magnet, in dem sich die Probe befindet, ist nicht dargestellt. \cite{grundlagen}}
+            \caption{Blockschaltbild eines NMR-Spektrometers. In dem Versuch wird kein Computer genutzt. Der Magnet, in dem sich die Probe befindet, ist nicht dargestellt. \cite{grundlagen}}
             \label{fig:blockschaltbild}
         \end{figure}
 
@@ -48,7 +48,7 @@
         \begin{equation*}
             M_z(t) = M_\infty \left(1 - 2e^{-\frac{t}{T_1}}\right)\, .
         \end{equation*}
-        Die Bedingung $M_z(0) = M_\infty$ ist wegen Inhomogenitäten des anregenden Magnetfeldes nicht erfüllt. \\
+        Die Bedingung $M_z(0) = M_\infty$ ist wegen nicht-perfekten $\SI{180}{\degree}$-Pulsen durch Inhomogenitäten im anregenden Magnetfeld nicht erfüllt. \\
         Das Verfahren ist graphisch noch in \autoref{fig:T_1} dargestellt. 
 
         \begin{figure}%
@@ -62,10 +62,10 @@
 
         \noindent Hier wird die Magnetisierung erst mit einem $\SI{90}{\degree}$-Puls in die $y'$-Richtung gelegt, wie es in \autoref{fig:hahn} Teil (a) gezeigt ist. Dann präzedieren die Spins 
         um die $z$-Achse. Da die einzelnen Spins alle leicht unterschiedliche Magnetfelder sehen, kommen sie bald aus der Phase, welches in (b) zu sehen ist. Die Spins sind soweit auseinandergelaufen, 
-        dass kein Induktionssignal mehr erzeugt wird. Zum Zeitpunkt $\tau$ nach dem ersten Puls wird ein $\SI{180}{\degree}$-Puls geschalten, sodass die Spins alle einzeln invertiert werden (c). 
+        dass kein Induktionssignal mehr erzeugt wird. Zum Zeitpunkt $\tau$ nach dem ersten Puls wird ein $\SI{180}{\degree}$-Puls ausgeführt, sodass die Spins alle einzeln invertiert werden (c). 
         Die Spins laufen jetzt wieder zusammen, dass bei $2 \tau$ die Spins wieder alle in Phase liegen und ein Induktionssignal gemessen werden kann, wie es in (d) zu sehen ist.  
 
-        \begin{figure}
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.7\textwidth]{latex/images/Hahn_echo.png}
             \caption{Zeitlicher Verlauf der Spin-Echo Methode. \cite{finke}}
@@ -81,10 +81,10 @@
         aufgestellt werden kann. 
         
         \noindent Da immer gewartet werden muss, bis die Magnetisierung komplett relaxiert ist, bevor eine neue Messung mit einem anderen $\tau$ gestartet werden kann, wurde diese Methodik verbessert. 
-        In der \textbf{Carr-Purcell} Methode wird nach dem ersten $\SI{90}{\degree}$-Puls eine Menge $\SI{180}{\degree}$-Pulse in einem Abstand von $2\tau$ geschalten. Dies ist in \autoref{fig:carr_purcell}
+        In der \textbf{Carr-Purcell} Methode werden nach dem ersten $\SI{90}{\degree}$-Puls weitere $\SI{180}{\degree}$-Pulse in einem Abstand von $2\tau$ geschalten. Dies ist in \autoref{fig:carr_purcell}
         dargestellt. 
 
-        \begin{figure}
+        \begin{figure}[H]
             \centering
             \includegraphics[width=0.7\textwidth]{latex/images/Carr_Purcell.png}
             \caption{Die Pulsfolge der Carr-Purcell-Methode. \cite{finke}}
@@ -92,7 +92,7 @@
         \end{figure}
 
         \noindent Die Spins werden also mit den wiederholten Pulsen wieder zu den Zeitpunkten $2 n \tau$, $n\in \symbb{N}$ fokussiert. Die Amplitude der Echos sinkt aufgrund der irreversiblen Dephasierungsprozesse. 
-        Jedoch funktioniert die erneute Fokussierung nur, wenn der Puls genau zu dem Zeitpunkt kommt, an dem die Spins in Phase sind. Dies ist sehr schwer zu ermöglichen im experimentellen Aufbau. 
+        Jedoch funktioniert die erneute Fokussierung nur, wenn der Puls die richtige Länge hat, sodass die Spins in einer Ebene sind. Dies ist sehr schwer zu ermöglichen im experimentellen Aufbau. 
         Daher wird in der \textbf{Meiboom-Gill} Methode die HF Schwingungen in den $\SI{180}{\degree}$-Pulsen um $\SI{90}{\degree}$ in der Phase gegenüber dem $\SI{90}{\degree}$-Puls verschoben. 
         Damit werden die Spins nach dem ersten $\SI{180}{\degree}$-Puls nur noch um die $y'$-Richtung geklappt. Damit wird bei einer Fehljustierung bei jedem zweiten Puls der Fehler korrigiert. Also kann 
         jeder zweite Peak, welche alle ein positives Vorzeichen haben, genutzt werden, um eine Funktion der Art \eqref{eqn:expT_2} daran zu fitten und so $T_2$ zu ermitteln.
@@ -103,12 +103,12 @@
         Bei einem inhomogenen Feldgradienten kann die Diffusionskonstante $D$ ermittelt werden, da sich nun bei dem bekannten Feldgradienten $G$ eine Bewegung aus der Brownschen Molekularbewegung messbar eine andere Lamorfrequenz ergibt. 
         Es ergibt sich ein exponentieller Zusammenhang 
         \begin{equation*}
-            A ( 2 \tau ) = \exp(-\frac{2}{3} D \gamma^2 G2 \tau^3)
+            A ( 2 \tau ) = \exp(-\frac{2}{3} D \gamma^2 G \tau^3)
         \end{equation*}
         für das erste Echo. Hierbei ist $\gamma$ das gyromagnetische Verhältnis. 
         Wird nun der Abstand $\tau$ zwischen dem $\SI{90}{\degree}$- und $\SI{180}{\degree}$-Puls erhöht kann die Funktion 
         \begin{equation*}
-            M_y (t) = M_0 \exp\left(- \frac{2 \tau}{T_2}\right)\exp\left(- \frac{D \gamma^2 G^2 2 \tau^3}{3}\right)
+            M_y (t) = M_0 \exp\left(- \frac{2 \tau}{T_2}\right)\exp\left(- \frac{D \gamma^2 G^2 2\tau^3}{3}\right)
         \end{equation*}
         an die Messwerte gefittet werden, solange der Zusammenhang 
         \begin{equation*}
@@ -167,6 +167,6 @@
     \subsection{Diffusionsmessung}
 
         \noindent Es wird der Feldgradient maximiert, in dem nur die $z$-Komponente auf ihren positiven maximalen Wert gestellt wird. Anschließend wird der A-Puls auf die $\SI{90}{\degree}$ Länge gestellt, 
-        der B-Puls auf die $\SI{180}{\degree}$ Länge. Der B-Puls soll $N=1$ mal wiederholt werden, die Periode bleibt bei $3 T_1$. Es wird nun $\tau$ variiert, beginnend bei $\SI{100}{\micro\metre}$ 
+        der B-Puls auf die $\SI{180}{\degree}$ Länge. Der B-Puls soll $N=1$ mal wiederholt werden, die Periode bleibt bei $3 T_1$. Es wird nun $\tau$ variiert, beginnend bei $\SI{100}{\micro\second}$ 
         bis schließlich das Echo im Rauschen veschwindet. Für ein ausgewähltes kleines $\tau$ wird das Signal von Real- und Imaginärteil am Oszilloskop gespeichert. \\
         Für die Untersuchung der Temperaturabhängigkeit wird noch die Temperatur in der Spule mit einem Thermoelement gemessen.

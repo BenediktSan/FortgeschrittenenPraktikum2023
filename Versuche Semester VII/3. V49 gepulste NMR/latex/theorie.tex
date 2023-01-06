@@ -1,6 +1,6 @@
 \section{Zielsetzung}
 
-    \noindent In diesem Versuch sollen mit Hilfe des Verfahrens von gepulster Kernspinresonanz (NMR) die Relaxationszeiten und die Diffusionskonstante einer Probe gemessen werden. 
+    \noindent In diesem Versuch sollen mit Hilfe des Verfahrens der gepulsten Kernspinresonanz (NMR) die Relaxationszeiten und die Diffusionskonstante einer Probe gemessen werden. 
     Dabei wird ein besonderer Wert auf die experimentelle Durchführung und auf die Pulsmethodik gelegt.  
 
 
@@ -44,16 +44,17 @@
             \left(\dot{M}_y\right)_{\text{RKS}} & = \left(\increment \omega M_x \right)_{\text{RKS}} \\
             \left(\dot{M}_z\right)_{\text{RKS}} & = \left( - \omega_1 M_x \right)_{\text{RKS}} 
         \end{align*} 
+        Hierbei entspricht $\omega_1 = - \frac{\gamma}{2} B_1$, der Präzessionsfrequenz bezüglich der Bewegung durch das Magnetfeld $\vec{B}_1$.
 
     \subsection{Radiowellenpuls}
 
         \noindent Mit Hilfe des RKS ($\vec{\omega}_0 = \vec{\omega}_\text{RKS}$) kann die Zeitentwicklung der Magnetisierung nach einem Hochfrequenzpulses leicht berechnet werden. 
-        Sie präzediert um das $\vec{B}_1$-Feld mit $\vec{\omega}_1 = - \gamma \vec{B}_1$. 
+        Sie präzediert um das $\vec{B}_1$-Feld mit $\vec{\omega}_1 = - \frac{\gamma}{2} \vec{B}_1$. 
         Wird das Magnetfeld nun für eine Zeit $t_p$ angeschalten, so wird von einem Puls gesprochen. Für den \enquote{Drehwinkel} der Magnetisierung ergibt sich 
         \begin{equation*}
-            \alpha = |\omega_1| t_p = \gamma B_1 t_p\, .
+            \alpha = |\omega_1| t_p = \frac{\gamma}{2} B_1 t_p\, .
         \end{equation*}
-        Mit einem $\SI{90}{\degree}_x$-Puls entspricht einem Puls, wo die Magnetisierung um die $x_\text{RKS}$ gedreht wird um den Drehwinkel $\SI{90}{\degree}$. 
+        Ein $\SI{90}{\degree}_x$-Puls dreht die Magnetisierung um die $x_\text{RKS}$-Achse um den Drehwinkel $\SI{90}{\degree}$. 
 
 
     \subsection{Relaxationseffekte}
@@ -62,13 +63,14 @@
         endliche Magnetisierung. Die einzelnen magnetische Momente richten sich entlang des thermodynamischen Gleichgewichtes aus. Bei dieser Ausrichtung wird Energie an das System abgegeben. \\
 
         \noindent Die transversale Relaxation, auch \textbf{Spin-Spin-Relaxation} genannt, wird duch $T_2$ charakterisiert. Ein $\SI{90}{\degree}$-Puls kippt die Magnetisierung in die $x$-$y$-Ebene. 
-        Durch die Spin-Gitter-Relaxation verlässt die Magnetisierung diese Ebene wieder, dabei gehen Phasenbeziehungen einzelner Spins verloren. Die Quermagnetisierung muss zerfallen, da es für $t \to \infty$ 
+        Die Magnetisierung verlässt diese Ebene wieder, es gehen Phasenbeziehungen einzelner Spins verloren. Die Quermagnetisierung muss zerfallen, da es für $t \to \infty$ 
         keine Magnetisierung senkrecht zu $\vec{B}_0$ gibt. Dieser Zerfall ist die Spin-Spin-Relaxation. Da sich die Gesamtenergie nicht ändert, aber Kohärenz verloren geht, wird auch von einem Entropieprozess 
         gesprochen. 
 
     \subsection{Die Blochgleichungen}
 
-        \noindent Die mathematische Beschreibung des Systems erfolgt über die messbare Magnetisierung und bei Beachtung der Relaxationsprozesse ergeben sich die Blochgleichungen: 
+        \noindent Die mathematische Beschreibung des Systems erfolgt über die messbare Magnetisierung und bei Beachtung der Relaxationsprozesse ergeben sich die Blochgleichungen.
+        Während eines Pulses lauten sie: 
         \begin{align*}
             \left(\dot{M}_x\right)_{\text{RKS}} & = \left(- \increment \omega M_y + \omega_1M_z - \frac{1}{T_2} M_x\right)_{\text{RKS}} \\
             \left(\dot{M}_y\right)_{\text{RKS}} & = \left(\increment \omega M_x - \frac{1}{T_2} M_y\right)_{\text{RKS}} \\
