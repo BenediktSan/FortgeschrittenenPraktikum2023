@@ -70,8 +70,12 @@ np.savetxt("build/plots/echo_gradient_fft.txt", np.array([freqs, np.real(fftdata
 peaks, peak_heights = find_peaks( -1 * np.real(fftdata), height = 18)
 print(np.real(fftdata)[peaks])
 
-lower = 5050
-upper = 5200
+print(peaks)
+save_peaks = peaks
+save_peaks[0] += 2
+save_peaks[1] -=1
+print(save_peaks)
+print(peaks)
 
 
 lower = 5050
@@ -94,10 +98,8 @@ gyro = 2.67*10**8 #für Protonen T/s
 d_f = 0 #Durchmesser Spektrum 
 
 
-peaks, peak_heights = find_peaks( -1 * np.real(fftdata), height = 18)
-print(np.real(fftdata)[peaks])
 
-d_f = freqs[peaks[1]] - freqs[peaks[0]] #Durchmesser Spektrum 
+d_f = freqs[save_peaks[1]] - freqs[save_peaks[0]] #Durchmesser Spektrum 
 
 G = (2 * np.pi * d_f)/(gyro * d)
 print(f"\nVerteilungsdicke d_f = {d_f:.4f}\nGradientenstärke G = {G:.4f}")

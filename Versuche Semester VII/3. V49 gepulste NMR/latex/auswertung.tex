@@ -5,8 +5,8 @@
 Um die unterschiedlichen Relaxationszeiten und die Diffusionskonstanten zu bestimmen muss der Aufbau zuerst justiert werden. 
 Dabei wir zuerst die Frequenz des \enquote{rotating frames}, welches ungefähr der Lamor-Frequenz entspricht, und die Phase eingestellt. Dies führt zu 
 \begin{align*}
-  \omega &= \SI{21.73738}{\mega\hertz}\\
-  \phi &= \SI{1040}{\degree} \quad .
+  \omega &= \SI{21.74}{\mega\hertz}\\
+  \phi &= \SI{104.0}{\degree} \quad .
 \end{align*}
 Des Weiteren wurden die Pulslägen für den $\SI{90}{\degree}$- und den $\SI{180}{\degree}$-Puls bestimmt. Dafür ergeben sich
 \begin{align*}
@@ -30,9 +30,9 @@ Auf die Messdaten wird eine Ausgleichsfunktion der Form
 \end{equation*}
 gefittet. Für die Parameter ergibt sich dabei
 \begin{align*}
-  U_0 &= \SI{-1.6019(154)}{\volt}\\
-  T_1 &= \SI{2839.8846(678907)}{\milli\second}\\
-  U_1 &= \SI{-0.638(170)}{\volt} \quad .
+  U_0 &= \SI{-1.60(1)}{\volt}\\
+  T_1 &= \SI{2839.88(6789)}{\milli\second}\\
+  U_1 &= \SI{-0.64(17)}{\volt} \quad .
 \end{align*}
 Der Fit ist dabei inklusive der Spannungsamplituden in Abbildung \ref{img:T1} grafisch dargestellt.
 
@@ -96,13 +96,13 @@ Das gesamte Signal des Oszilloskops ist in Abbildung \ref{img:Sig1} zu finden.
 Die ausgelesenen Spannungsamplituden sind in Tabelle \ref{tab:T2} dargestellt. 
 Auf diesen Daten wird eine Funktion der Form
 \begin{equation*}
-  U\left(t\right) = U_0 \exp{\left(-\frac{2\tau}{T_2}\right)} + U_2
+  U\left(t\right) = U_0 \exp{\left(-\frac{t}{T_2}\right)} + U_2
 \end{equation*}
 gefittet. Dies ergibt die Parameter
 \begin{align*}
-  U_0 &= \SI{-0.4435(118)}{\volt}\\
-  T_2 &= \SI{3.9523(1939)}{\second}\\
-  U_2 &= \SI{-0.4087(144)}{\volt} \quad .
+  U_0 &= \SI{-0.887(023)}{\volt}\\
+  T_2 &= \SI{1.976(097)}{\second}\\
+  U_2 &= \SI{-0.064(026)}{\volt} \quad .
 \end{align*}
 Die Ausgleichsfunktion ist inklusive der ausgelesenen Maxima in Abbildung \ref{img:T2} grafisch dargestellt.
 

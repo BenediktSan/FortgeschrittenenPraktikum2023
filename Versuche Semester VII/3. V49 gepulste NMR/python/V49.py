@@ -36,7 +36,7 @@ r_theo = (1.69e-10) #m
 #Justage
 
 f = 21.73738 #MHz
-phase = 1040
+phase = 104.0 ###Achtung evtl falsch
 
 #shim?
 
@@ -132,11 +132,15 @@ plt.savefig("build/plots/T1.pdf")
 print("\n\t##### T2- Auswertung ######")
 
 
+def fit_exp_neu(t, a, b, c):
+    return a*(np.exp(-t/b))+c
+
+
 U_2_peaks, peak_heights = find_peaks(U_2, height = 0.25)
 t_2_new = t_2[U_2_peaks]
 U_2_new = U_2[U_2_peaks]
 
-params2, cov2 = curve_fit(fit_exp,2 * t_2_new, U_2_new, p0 = (-0.44, 1.97, 0.4 ))
+params2, cov2 = curve_fit(fit_exp_neu, t_2_new, U_2_new, p0 = (-0.44, 1.97, 0.4 ))
 cov2 = np.sqrt(np.diag(abs(cov2)))
 uparams2 = unp.uarray(params2, cov2)
 
@@ -148,9 +152,9 @@ x2 = np.linspace(t_2_new[0], t_2_new[-1])
 plt.figure()
 #plt.plot(t_2, U_2,".",label="Messwerte")
 plt.plot(t_2_new, U_2_new, "x", label = "Peaks")
-plt.plot(x2, fit_exp(2 * x2, *params2), label = "Fit-Funktion")
+plt.plot(x2, fit_exp_neu(x2, *params2), label = "Fit-Funktion")
 #plt.xscale('log')
-plt.xlabel(r"$\tau$ $/$ $s$")
+plt.xlabel(r"$t$ $/$ $s$")
 plt.ylabel(r"$U$ $/$ $V$")
 plt.tight_layout()
 plt.legend()
@@ -189,7 +193,7 @@ plt.savefig("build/plots/diff1.pdf")
 print("\n\t##### Dffusionskonstante ######")
 
 
-G = 0.1203  #aus der fourier.py
+G = 0.0875  #aus der fourier.py
 gyro = 2.67*10**8 #für Protonen T/s
 
 
@@ -230,12 +234,40 @@ rel_abw(1.74e-10, r)
 
 
 
+#######DIFFUSIONSKONSTANTE ÜBER BESSEL#########
+print("\n\t##### Diffusionskonstante über Bessel  ######")
 
 
+def bessel(x, n, k_limit):
+    J = 0
+    for k in range(0, k_limit):
+        #print(J)
+        top = (-1)**k * ((x-10)/2)**(n + 2*k)
+        bot = (np.math.factorial(k) * np.math.factorial(n + k))
+
+        #print(top)
+
+        J = J + top / bot
+    return J 
+
+durchmesser = 4.2
+gyro = 2.67*10**8 #für Protonen T/s
 
 
+alpha = 1/2 * durchmesser * gyro
 
+x = np.linspace(0,20,1000)
 
+plt.figure()
+#plt.plot(t_2, U_2,".",label="Messwerte")
+plt.plot(x, bessel(x, 0, 90) , label = "Bessel 1. Art; n = 0")
+plt.plot(x, bessel(x, 1, 90) , label = "Bessel 1. Art; n = 1")
+#plt.xscale('log')
+plt.xlabel(r"$\tau$ $/$ $ms$")
+plt.ylabel(r"$U$ $/$ $V$")
+plt.tight_layout()
+plt.legend()
+plt.savefig("build/plots/bessel.pdf")
 
 
 

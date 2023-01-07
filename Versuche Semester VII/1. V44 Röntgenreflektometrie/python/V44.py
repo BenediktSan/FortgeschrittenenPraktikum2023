@@ -46,6 +46,7 @@ dicke = 20 # in mm
 lam = 1.54e-10      #K-alpha Linie
 n = 1 - 7.6e-6 + 1.54e-8j*141/(4*np.pi)
 k = 2*np.pi / lam
+print("\t\t k = ", k)
 
 #Silizium
 
@@ -106,26 +107,51 @@ def dispersion(k, rho_e):
     return 2* np.pi * rho_e * r_0/k**2
 
 
+#alter rauer parrat
 
-def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
-    n2 = 1. - delta2
-    n3 = 1. - delta3
+#def parrat_rau(a_i,delta2,delta3,sigma1,sigma2,z2):
+#    n2 = 1. - delta2
+#    n3 = 1. - delta3
+#
+#    a_i = a_i * np.pi/180
+#
+#    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos(a_i)**2))
+#    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos(a_i)**2))
+#    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos(a_i)**2))
+#
+#    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * sigma1**2)
+#    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * sigma2**2)
+#
+#    x2 = np.exp(-2j * kz2 * z2) * r23
+#    x1 = (r12 + x2) / (1 + r12 * x2)
+#    R_parr = np.abs(x1)**2
+#
+#    return R_parr
 
-    a_i = a_i * np.pi/180
+def parrat_neu(a_i, delta2, delta3, sigma2, sigma3, z2, beta2, beta3):
+    n2 = 1 - delta2 + 1j*beta2
+    n3 = 1 - delta3 + 1j*beta3
 
-    kz1 = k * np.sqrt(np.abs(n1**2 - np.cos(a_i)**2))
-    kz2 = k * np.sqrt(np.abs(n2**2 - np.cos(a_i)**2))
-    kz3 = k * np.sqrt(np.abs(n3**2 - np.cos(a_i)**2))
+    a_i = a_i * np.pi/180 #conversion to rad
 
-    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * kz1 * kz2 * sigma1**2)
-    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * kz2 * kz3 * sigma2**2)
+
+    kz1 = k * np.sqrt(n1**2-np.cos(a_i)**2)
+    kz2 = k * np.sqrt(n2**2-np.cos(a_i)**2)
+    kz3 = k * np.sqrt(n3**2-np.cos(a_i)**2)
+
+    print(kz1[100],"\t", kz2[100],"\t", kz3[100],"\t")
+
+    r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * sigma2**2 * kz1 * kz2 )
+    r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * sigma3**2 * kz2 * kz3 )
+
+    print(r12[100],"\t", r23[100])
 
     x2 = np.exp(-2j * kz2 * z2) * r23
     x1 = (r12 + x2) / (1 + r12 * x2)
+
     R_parr = np.abs(x1)**2
 
     return R_parr
-
 
 
 #def theorie_sil(alpha):
@@ -342,14 +368,26 @@ rel_abw(alpha_crit_theo, refl_2theta[ alpha_crit[1]])
 print(f"\n\n---Paratt---")
 print(f"Fit-Params direkt aus der V44.py nehmen")
 
+
+
+
+#old params 
+
+#n1 = 1 #Luft
+#delta2 = 8*10**(-7)
+#delta3 = 4*10**(-6)
+#sigma1 = 3*10**(-9) # m
+#sigma2 = 13*10**(-11) # m 
+#z2 = 8.55*10**(-8) # m   #verändert die Frequenz
+
 n1 = 1 #Luft
 delta2 = 8*10**(-7)
 delta3 = 4*10**(-6)
-sigma1 = 3*10**(-9) # m
-sigma2 = 13*10**(-11) # m 
+sigma2 = 3*10**(-9) # m
+sigma3 = 13*10**(-11) # m 
 z2 = 8.55*10**(-8) # m   #verändert die Frequenz
-
-
+beta2 = 7 * 10**(-7)
+beta3 = 1 * 10**(-7)
 
 #test mit hteo
 
@@ -364,7 +402,7 @@ z2 = 8.55*10**(-8) # m   #verändert die Frequenz
 
 
 plt.figure()
-plt.plot(refl_2theta, parrat_rau(refl_2theta, delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
+plt.plot(refl_2theta, parrat_neu(refl_2theta, delta2, delta3, sigma2, sigma3, z2, beta2, beta3), label = "Paratt-Fit (händisch)")
 #plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
 plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
 plt.yscale('log')
