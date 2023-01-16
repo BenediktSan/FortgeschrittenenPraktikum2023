@@ -169,12 +169,11 @@ plt.savefig("build/plots/T2.pdf")
 #######t^3 divergenz#########
 print("\n\t##### t^3 DIvergenz ######")
 
-global T2 
-T2 = uparams2[1] * 10**(3) # in ms
+T_2 =  noms(uparams2[1]) * 10**(3) # in ms
 
 plt.figure()
 #plt.plot(t_2, U_2,".",label="Messwerte")
-plt.plot(np.log(U_diff) - 2*t_diff/noms(T2), t_diff**3, "x", label = "Messwerte")
+plt.plot(t_diff**3, np.log(U_diff) - 2*t_diff/noms( T_2), "x", label = "Messwerte")
 #plt.xscale('log')
 plt.xlabel(r"$\tau^3$ $/$ $(ms)^3$")
 plt.ylabel(r"ln$(U(\tau)) - 2\frac{\tau}{T_2}$")
@@ -193,14 +192,12 @@ plt.savefig("build/plots/diff1.pdf")
 print("\n\t##### Dffusionskonstante ######")
 
 
-G = 0.0875  #aus der fourier.py
+G = 0.0984  #aus der fourier.py # alter wert über fourier
+G_fwhm = 0.09809 # Gradient über Halbwertsbreite
 gyro = 2.67*10**8 #für Protonen T/s
 
 
-
 def fit_diff(t, a, b, c):
-    #T2 = 3.9523
-    T_2 = 3.9523 * 10**(3)
     return a * np.exp(-(2*t)/T_2) * np.exp(-t**3/b)+c
 
 params3, cov3 = curve_fit(fit_diff, t_diff, U_diff, p0 = (1.46, 1677, 0.026))
@@ -208,10 +205,16 @@ cov3 = np.sqrt(np.diag(abs(cov3)))
 uparams3 = unp.uarray(params3, cov3)
 
 D = 3 / (2 * uparams3[1] * 10**(-9) * gyro**2 * G**2) 
+D_fwhm = 3 / (2 * uparams3[1] * 10**(-9) * gyro**2 * G_fwhm**2) 
+
 
 print(f"U_0 = {noms(uparams3[0]):.4f} \pm {stds(uparams3[0]):.4f} Volt\nT3 = {noms(uparams3[1]):.4f} \pm {stds(uparams3[1]):.4f} (ms)^3\nU_1 = {noms(uparams3[2]):.4f} \pm {stds(uparams3[2]):.4f} Volt\n")
 print(f"D = {noms(D* 10**9):.4f} \pm {stds(D * 10**9):.4f} nano m^2/s")
+print(f"D_FWHM = {noms(D_fwhm* 10**9):.4f} \pm {stds(D * 10**9):.4f} nano m^2/s")
+
 rel_abw(D_theo, D)
+rel_abw(D_theo, D_fwhm)
+
 
 x3 = np.linspace(t_diff[0], t_diff[-1])
 
@@ -228,14 +231,36 @@ plt.savefig("build/plots/diff2.pdf")
 
 
 r = const.k* Temp_2 / (6*np.pi * visko * D )
+r_fwhm = const.k* Temp_2 / (6*np.pi * visko * D_fwhm )
+
 
 print(f"Molekülradius = {r}")
 rel_abw(1.74e-10, r)
-
+print(f"Molekülradius FWHM = {r_fwhm}")
+rel_abw(1.74e-10, r_fwhm)
 
 
 #######DIFFUSIONSKONSTANTE ÜBER BESSEL#########
 print("\n\t##### Diffusionskonstante über Bessel  ######")
+
+print("\n\t Auwertung in fourier.py")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####This is irrelevant fun
+print("\n\t##### Alles hier nach irrelevante Ergebnisse #####")
 
 
 def bessel(x, n, k_limit):

@@ -189,35 +189,42 @@ poly_del = 3.5 * 10**(-6)
 #beta3 = 70 * 10**(-8)
 
 n1 = 1 #Luft
-delta2 = 1.5*10**(-7)
-delta3 = 8*10**(-6)
-sigma2 = 2.8*10**(-8) # m
-sigma3 =  5.3*10**(-10) # m 
-z2 = 6.5*10**(-8) # m   #verändert die Frequenz
-beta2 = 7.5 * 10**(-7)
+delta2 = 7*10**(-7)
+delta3 = 7*10**(-6)
+sigma2 = 4*10**(-10) # m
+sigma3 =  9*10**(-10) # m 
+z2 = 6*10**(-8) # m   #verändert die Frequenz
+beta2 = 8 * 10**(-7)
 beta3 = 40 * 10**(-8)
 
-
+n1 = 1 #Luft
+delta2 = 4*10**(-7)
+delta3 = 11*10**(-6)
+sigma2 = 4*10**(-10) # m
+sigma3 =  6*10**(-10) # m 
+z2 = 8.55*10**(-8) # m   #verändert die Frequenz
+beta2 = delta2/70 #3 * 10**(-7)
+beta3 = delta3/20  #4 * 10**(-8)
 
 #delta2 = poly_del
 #delta3 = sil_del
 
-delta2plus = delta2 + 0.1 * delta2
-delta3plus = delta3 + 0.1 * delta2 
-sigma1plus = sigma2 + 0.1 * sigma2
-sigma2plus = sigma3 + 0.1 * sigma3
-z2plus     = z2     + 0.1 * z2
-beta2plus  = beta2  + 0.1 * beta2
-beta3plus  = beta3  + 0.1 * beta3
+delta2plus = delta2  #+ 0.1 * delta2
+delta3plus = delta3  #+ 0.1 * delta2 
+sigma1plus = sigma2  #+ 0.1 * sigma2
+sigma2plus = sigma3  #+ 0.1 * sigma3
+z2plus     = z2      #+ 0.1 * z2
+beta2plus  = beta2   + 0.1 * beta2
+beta3plus  = beta3   #+ 0.1 * beta3
 
 
-delta2minus = delta2 - 0.1 * delta2
-delta3minus = delta3 - 0.1 * delta2 
-sigma1minus = sigma2 - 0.1 * sigma2
-sigma2minus = sigma3 - 0.1 * sigma3
-z2minus     = z2     - 0.1 * z2
-beta2minus  = beta2  - 0.1 * beta2
-beta3minus  = beta3  - 0.1 * beta3
+delta2minus = delta2  #- 0.1 * delta2
+delta3minus = delta3  #- 0.1 * delta2 
+sigma1minus = sigma2  #- 0.1 * sigma2
+sigma2minus = sigma3  #- 0.1 * sigma3
+z2minus     = z2      #- 0.1 * z2
+beta2minus  = beta2   - 0.1 * beta2
+beta3minus  = beta3   #- 0.1 * beta3
 
 #test mit hteo
 
@@ -233,8 +240,8 @@ beta3minus  = beta3  - 0.1 * beta3
 x = np.linspace(refl_2theta[0], refl_2theta[-1],10000)
 plt.figure()
 plt.plot(x, parrat_neu(x, delta2, delta3, sigma2, sigma3, z2, beta2, beta3), label = "Paratt-Fit (händisch)")
-#plt.plot(x, parrat_neu(x, delta2plus, delta3plus, sigma1plus, sigma2plus, z2plus, beta2plus, beta3plus), alpha = 0.5, label = "Paratt-Fit (+)")
-#plt.plot(x, parrat_neu(x, delta2minus, delta3minus, sigma1minus, sigma2minus, z2minus, beta2minus, beta3minus), alpha = 0.5, label = "Paratt-Fit (-)")
+plt.plot(x, parrat_neu(x, delta2plus, delta3plus, sigma1plus, sigma2plus, z2plus, beta2plus, beta3plus), alpha = 0.5, label = "Paratt-Fit (+)")
+plt.plot(x, parrat_neu(x, delta2minus, delta3minus, sigma1minus, sigma2minus, z2minus, beta2minus, beta3minus), alpha = 0.5, label = "Paratt-Fit (-)")
 #plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
 plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
 plt.yscale('log')
