@@ -1,3 +1,46 @@
-\section{Durchführung}
+\newpage
+\section{Aufbau und Durchführung}
 
-  
+    \noindent 
+    Zur Durchführung des Versuches stehen ein Frequenzgenerator, ein Spannungsgenerator und ein elektronisches Oszilloskop zur Verfügung. 
+    Die Schaltungen werden mithilfe von entsprechenden Steckelementen auf einer Steckplatte realisiert. \\ 
+    Alle Messungen wurden bei einer Betriebsspannung von $U_\text{S} = \SI{15}{\volt}$ gemacht.
+
+    \subsection{Linearverstärker}
+
+        \noindent 
+        Es wird die Schaltung, wie sie in \autoref{fig:invertierter_lin} zu sehen ist, aufgebaut mit den Widerständen $R_1 = \SI{1}{\kilo\ohm}$ und 
+        $R_2 = \SI{100}{\kilo\ohm}$. Dann wird die Frequenz der Eingangsspannung erhöht, sodass über mehrere Dekaden Werte aufgenommen werden, und bei 
+        den verschiedenen Frequenzen jeweils die Amplitude der Ausgangsspannung und die Phasendifferenz zwischen Ein- und Ausgangsspannung erfasst. \\
+        Das gleiche Vorgehen wird für zwei andere Widerstandsverhältnisse wiederholt. 
+
+    \subsection{Umkehrintegrator}
+
+        \noindent 
+        Die Schaltung wird analog zu \autoref{fig:umkehrint} aufgebaut mit $R = \SI{10}{\kilo\ohm}$ und $C = \SI{100}{\nano\farad}$. 
+        Es werden für verschiedene Frequenzen bei einer Sinuseingangsspannung die Amplitude der Ein- und Ausgangsspannungen gemessen. 
+        Anschließend werden für eine Sinus- , eine Dreiecks- und eine Rechteckspannung Fotos am Oszilloskop gemacht und die Rohdaten gespeichert.
+
+    \subsection{Invertierter Differenzierer}
+
+        \noindent
+        Die Schaltung wird nach \autoref{fig:inverdiff} aufgebaut, wobei der Widerstand hier $R= \SI{100}{\kilo\ohm}$ beträgt und der Kondensator 
+        $C = \SI{22}{\nano\farad}$. Analog zum Vorgehen beim Umkehrintegrator werden bei einer sinusförmigen Eingangsspannung bei verschiedenen 
+        Frequenzen die Amplitude der Ein- und Ausgangsspannung aufgenommen. Auch hier werden jeweils für eine Sinus-, Dreieck- und Rechteckspannung 
+        Fotos mit dem Oszilloskop gemacht und die Rohdaten gespeichert.
+
+    \subsection{Schmitt-Trigger}
+
+        \noindent 
+        Es wird die Schaltung analog zur \autoref{fig:schmitttrig} mit den Widerständen $R_1 = \SI{10}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$ 
+        aufgebaut. 
+        Es wird nun die Amplitude der Eingangsspannung langsam erhöht, bis die Ausgangsspannung kippt. Dieser Schwellenwert wird notiert. 
+        Sonst kann auch eine Dreiecksspannung mit einer Amplitude größer als der vermutete Schwellenwert eingestellt werden und dann die 
+        Schwellspannung mit dem Oszilloskop an mehreren Stellen ausgemessen werden. 
+
+    \subsection{Signalgenerator}
+
+        \noindent 
+        Die Schaltung wird anhand \autoref{fig:signal} aufgebaut mit den Bauteilen $R_1 = \SI{10}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$, 
+        $R_3 = \SI{1}{\kilo\ohm}$ und $C = \SI{1}{\micro\farad}$. 
+        Es werden am Oszilloskop die Spannungen $U_1$ und $U_\text{A}$ beobachtet und als Bild und Rohdatei gespeichert. 
