@@ -15,18 +15,19 @@ Dazu würden zum Beispiel gelöste Gase in Wasser gehören, welche die Messungen
 
 \begin{table}[H]
     \centering
-    \caption{Relative Abweichung von den Literaturwerten \protect\cite{theo}\protect\cite{radius} für die einzelnen über die Halbwertsbreite errechneten Parameter.}
+    \caption{Relative Abweichung von den Literaturwerten \protect\cite{theo}\protect\cite{radius} für die einzelnen über die Halbwertsbreite errechneten Parameter.
+    Die Relaxationszeiten wurden dabei bei Raumtemperatur gemessen.}
     \label{tab:rel}
         \begin{tabular}{S [table-format=4.4] S [table-format=4.4] S [table-format=4.4] S [table-format=4.4]}
         \toprule
             {Größe} & {Fit-Parameter} &{Literaturwert}& {$\text{relative Abweichung} $} \\
         \midrule
-        ${T_1}$   & $\SI{2839(67)}{\milli\second}$              & $\SI{3.09(15)}{\second}$                & $\SI{8.09(497)}{\percent}$\\
-        ${T_2}$   & $\SI{3.95(19)}{\second}$                    & $\SI{1.52(9)}{\second}$                 & $\SI{-30.01(1000)}{\percent}$\\\\
+        ${T_1}$   & $\SI{2.84(7)}{\second}$                     & $\SI{3.09(15)}{\second}$                & $\SI{8.09(497)}{\percent}$\\
+        ${T_2}$   & $\SI{1.98 (10)}{\second}$                    & $\SI{1.52(9)}{\second}$                 & $\SI{-30(10)}{\percent}$\\\\
             \hline
-        ${D}$   & $\SI{ 1.30(1)e-9}{\metre^2\per\second}$     & $ \SI{2.78(4)e-9}{\metre^2\per\second}$   & $\SI{53.40(77)}{\percent}$\\\\
+        ${D_\t{FWHM}}$   & $\SI{ 1.30(1)e-9}{\metre^2\per\second}$     & $ \SI{2.78(4)e-9}{\metre^2\per\second}$   & $\SI{53.40(77)}{\percent}$\\\\
             \hline
-        ${r}$     & $\SI{1.174(9)e-11}{\metre}$                & $\SI{1.69e-10}{\metre}$                  & $\SI{93.25(5)}{\percent}$\\
+        ${r_\t{FWHM}}$     & $\SI{1.174(9)e-11}{\metre}$                & $\SI{1.69e-10}{\metre}$                  & $\SI{93.25(5)}{\percent}$\\
         \bottomrule
     \end{tabular}
     \label{tab:rel}
@@ -34,19 +35,30 @@ Dazu würden zum Beispiel gelöste Gase in Wasser gehören, welche die Messungen
 
 \noindent
 In der Tabelle \ref{tab:rel} sind die relativen Abweichungen der Messwerte von den Literaturangaben aus den Quellen \cite{theo} und \cite{radius} dargestellt.
-Dabei ist zu erkennen, dass sich alle Werte in den korrekten Größenordnungen bewegen. Für die Relaxationszeit $T_1$ ist die relative Abweichung sehr gering. 
-Dies zeigt, das trotz nicht beachteter Verunreinigungen genaue Ergebnisse möglich sind. Da dies die erste Messung war, kann hier noch die Temperatur vernachlässigt werden. 
-Die Genauigkeit ist außerdem überraschend, da die Messreihe nicht bis weit nach denn Nulldurchgang der Spannungsamplitude fortgesetzt werden konnte. Dies ist in Abbildung \ref{img:T1} zu erkennen.\\
-Für $T_2$ zeigt die größte Abweichung aller Ergebnisse, obwohl für den Fit hinreichend viele Maxima ausgelesen werden konnten. 
-Hier kann natürlich die Temperatur ein Faktor für die Abweichung sein, sie erklärt aber keine so starke Abweichung. 
-Eine Erklärung könnte die Funktion \textit{scipy.find\_peaks} sein, die eventuell nicht den genauen Ort der Peaks gefunden hat. Dies ist allerdings unwahrscheinlich.\\
-Wie zuvor erklärt kann für die Diffusionskonstante $D$ die Temperatur der Probe als Faktor ausgeschlossen werden. 
-Allerdings wurde beim Überprüfen der $\tau^3$ Abhängigkeit der Messwerte festgestellt, dass diese nur auf Intervallen vorliegt, global allerdings nicht.
-Dies ist in Abbildung \ref{img:diff1} zu finden. Dies könnte einer Erklärung für die Abweichungen sein. Außerdem wurde hier mit $T_2$ weitergerechnet 
-und die Breite der Röhre im Frequenzraum $d_\t{f}$ nur ungenau abgelesen.\\
+Dabei ist zu erkennen, dass sich alle Werte, bis auf den Radius, in den korrekten Größenordnungen bewegen. 
+Für die Relaxationszeiten wurden die Literaturangaben bei Raumtemperatur gemessen. Dabei wurde keine Angabe gemacht ob die Proben entgast waren.
+Die Temperatur deckt sich dadurch vermutlich mit der unserer Probe, allerdings wurde keine Angabe gemacht ob das Wasser auch bidestilliert ist.\\
+Für die Relaxationszeit $T_1$ ist die relative Abweichung sehr gering. 
+Dies zeigt, das trotz nicht beachteter Verunreinigungen unserer Probe genaue Ergebnisse möglich sind. 
+Die Genauigkeit ist außerdem überraschend, da die Messreihe nicht bis weit nach denn Nulldurchgang der Spannungsamplitude fortgesetzt werden konnte. 
+Dies ist in Abbildung \ref{img:T1} zu erkennen.\\
+Für $T_2$ zeigt sich eine größere Abweichung von der Literatur. Diese ist aber in Anbetracht der nicht betrachteten Faktoren verhältnismäßig klein.
+Eine Erklärung für die Abweichung könnte die Funktion \textit{scipy.find\_peaks} sein, 
+die eventuell nicht den genauen Ort der Peaks gefunden hat. Dies ist allerdings unwahrscheinlich.\\
+Bei der Messung des Echo-Signals wurden die Messdaten nicht bis zum Verschwinden der letzten Schwingungen aufgenommen.
+Daher ist die Auflösung im Frequenzraum zu gering um über die Breite eine ausreichend genaue Bestimmung des Magnetfeldgradienten $G$ durchzuführen.
+Die deshalb zusätzlich durchgeführte Bestimmung über die Halbwertsbreite des Signals 
+führt dabei allerdings trotzdem auf einen ähnlichen Wert wie die Bestimmung über das fouriertransformierte Echo.
+Dabei ist zu beachten, dass die Halbwertsbreite nur grafisch bestimmt wurde, ebenso wie die Breite der Röhre im Frequenzraum $d_\t{f}$, 
+welche nur ungenau abgeschätzt werden konnte.
+Dies ist ein Faktor der zu der großen Abweichung beitragen kann.\\
+Bei der Bestimmung der Diffusionskonstante $D$ wurde zuerst Überprüft, ob die Messwerte einer $\tau^3$ Abhängigkeit folgen.
+Dabei wurde festgestellt, dass diese nur auf Intervallen vorliegt, global allerdings nicht.
+Dies ist in Abbildung \ref{img:diff1} zu finden. 
+Die große Abweichung des Werts lässt sich unter anderem darüber erklären. 
+Außerdem wurde die Diffusionskonstante über die fehlerbehafteten Größen $T_2$ und $D$ bestimmt, was zu einer zusätzlichen Abweichung führt. 
 Der Molekülradius ist wiederum von $D$ abhängig, wodurch sich ein Teil der Abweichung erklären lässt. 
-Außerdem war die Diffusionsmessung die letzte durchgeführte Messung, wodurch die Temperatur dort den größten Einfluss haben sollte.
-Die Abweichungen von dem Literaturangaben und der dichtesten Kugelpackung könnten sich mit der Begründung über Fehlerfortpflanzung und die Temperatur erklären.
+Die Abweichungen von dem Literaturangaben und der dichtesten Kugelpackung kann zu großen Teilen über Fehlerfortpflanzung begründet werden.
 
 
 \noindent

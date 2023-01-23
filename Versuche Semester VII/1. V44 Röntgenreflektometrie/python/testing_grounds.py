@@ -133,16 +133,22 @@ alpha_ges = 1/2 *(alpha_g1 - alpha_g2)
 ### Geometriefaktor###
 print("\n\n---Geometriefaktor---")
 
+print(refl_2theta[1] - refl_2theta[0])
+print(diffus_2theta[1] - diffus_2theta[0])
 
-refl_I_corr = geometrie_corr(refl_I, refl_2theta, alpha_ges, beam_width, dicke)
-diffus_I_corr = geometrie_corr(diffus_I, diffus_2theta, alpha_ges, beam_width, dicke)
+normierung_zeit = (refl_2theta[1] - refl_2theta[0]) * 10**3
+
+
+refl_I_corr = refl_I / (normierung_zeit)
+diffus_I_corr = diffus_I /(normierung_zeit)
+
+
+
+refl_I_corr = geometrie_corr(refl_I_corr, refl_2theta, alpha_ges, beam_width, dicke)
+diffus_I_corr = geometrie_corr(diffus_I_corr, diffus_2theta, alpha_ges, beam_width, dicke)
 
 
 corr_data = refl_I_corr - diffus_I_corr
-
-
-
-
 
 
 
@@ -206,25 +212,39 @@ z2 = 8.55*10**(-8) # m   #verändert die Frequenz
 beta2 = delta2/70 #3 * 10**(-7)
 beta3 = delta3/20  #4 * 10**(-8)
 
+########################## 2 entspricjht poly und 3 sil
+sil_del = 7.6 * 10**(-6)
+poly_del = 3.5 * 10**(-6)
+
+
+n1 = 1 #Luft
+delta2 = 10*10**(-7)
+delta3 = 8.15*10**(-6)
+sigma2 = 9*10**(-10) # m
+sigma3 = 7.8*10**(-10) # m 
+z2 = 8.8*10**(-8) # m   #verändert die Frequenz
+beta2 = 3 * 10**(-10)
+beta3 = delta3/50  #4 * 10**(-8)
+
 #delta2 = poly_del
 #delta3 = sil_del
 
-delta2plus = delta2  #+ 0.1 * delta2
-delta3plus = delta3  #+ 0.1 * delta2 
-sigma1plus = sigma2  #+ 0.1 * sigma2
-sigma2plus = sigma3  #+ 0.1 * sigma3
-z2plus     = z2      #+ 0.1 * z2
-beta2plus  = beta2   + 0.1 * beta2
-beta3plus  = beta3   #+ 0.1 * beta3
+delta2plus = delta2  #+ 0.3 * delta2
+delta3plus = delta3  #+ 0.1 * delta3 
+sigma1plus = sigma2  #+ 0.3 * sigma2
+sigma2plus = sigma3  #+ 0.3 * sigma3
+z2plus     = z2      #+ 0.3 * z2
+beta2plus  = beta2   #+ 0.3 * beta2
+beta3plus  = beta3   #+ 0.3 * beta3
 
 
-delta2minus = delta2  #- 0.1 * delta2
-delta3minus = delta3  #- 0.1 * delta2 
-sigma1minus = sigma2  #- 0.1 * sigma2
-sigma2minus = sigma3  #- 0.1 * sigma3
-z2minus     = z2      #- 0.1 * z2
-beta2minus  = beta2   - 0.1 * beta2
-beta3minus  = beta3   #- 0.1 * beta3
+delta2minus = delta2  #- 0.3 * delta2
+delta3minus = delta3  #- 0.1 * delta3
+sigma1minus = sigma2  #- 0.3 * sigma2
+sigma2minus = sigma3  #- 0.3 * sigma3
+z2minus     = z2      #- 0.3 * z2
+beta2minus  = beta2   #- 0.3 * beta2
+beta3minus  = beta3   #- 0.3 * beta3
 
 #test mit hteo
 
@@ -239,11 +259,11 @@ beta3minus  = beta3   #- 0.1 * beta3
 
 x = np.linspace(refl_2theta[0], refl_2theta[-1],10000)
 plt.figure()
-plt.plot(x, parrat_neu(x, delta2, delta3, sigma2, sigma3, z2, beta2, beta3), label = "Paratt-Fit (händisch)")
-plt.plot(x, parrat_neu(x, delta2plus, delta3plus, sigma1plus, sigma2plus, z2plus, beta2plus, beta3plus), alpha = 0.5, label = "Paratt-Fit (+)")
-plt.plot(x, parrat_neu(x, delta2minus, delta3minus, sigma1minus, sigma2minus, z2minus, beta2minus, beta3minus), alpha = 0.5, label = "Paratt-Fit (-)")
+plt.plot(x, parrat_neu(x, delta2, delta3, sigma2, sigma3, z2, beta2, beta3),color ="teal", label = "Paratt-Fit (händisch)")
+#plt.plot(x, parrat_neu(x, delta2plus, delta3plus, sigma1plus, sigma2plus, z2plus, beta2plus, beta3plus), alpha = 0.5, label = "Paratt-Fit (+)")
+#plt.plot(x, parrat_neu(x, delta2minus, delta3minus, sigma1minus, sigma2minus, z2minus, beta2minus, beta3minus), alpha = 0.5, label = "Paratt-Fit (-)")
 #plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
-plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
+plt.plot(refl_2theta, corr_data/ gauss_max, color = "orange", label="korrigierte Daten")
 plt.yscale('log')
 plt.ylabel(r"Reflektivität")
 plt.xlabel(r"$\alpha_{i}$ $/$ Grad")

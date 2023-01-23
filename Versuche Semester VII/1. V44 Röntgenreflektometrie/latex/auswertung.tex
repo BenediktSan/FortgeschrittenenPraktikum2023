@@ -92,7 +92,8 @@ sind in der Abbildung noch einmal hervorgehoben. Gemittelt ergibt sich nun
 
 \noindent
 Beim Reflektivitätsscan misst der Detektor die von der Probe zurückgeworfene Strahlung. 
-Über das Normieren der gemessenen Intensität auf die maximale Intensität $I_\t{max}$ lässt sich die Reflektivität betrachten. 
+Über das Normieren der gemessenen Intensität auf die maximale Intensität $I_\t{max}$ und auf die Messzeit zwischen zwei Datenaufnahmen, 
+lässt sich die Reflektivität betrachten. 
 Um Rückstreueffekte herauszurechnen werden die ebenfalls normierten Ergebnisse des diffusen Scans von denen der Reflektivität abgezogen.
 Des Weiteren werden die gemessenen Intensitäten noch über den Geometriefaktor $G$, nach Gleichung \eqref{eqn:G} korrigiert, 
 um zu berücksichtigen dass nicht der gesamte Strahl die Probe trifft.\\
@@ -118,7 +119,7 @@ Um diese zu erhalten, werden, wie in Abbildung \ref{img:refl2} dargestellt, die 
 und vor dem Ausfasern der Daten endet. Hier wurde $\alpha \in [\SI{0.2}{\degree},\SI{0.8}{\degree}]$ genutzt.\\
 Nun wurden mit der Funktion \textit{scipy.find\_peaks} die Maxima der Oszillationen bestimmt, 
 ihre Abstände berechnet und gemittelt und über die Gleichung \eqref{eqn:bragg} die Dicke der Fläche bestimmt.\\
-Für den gemittelten Abstand ergibt sich $\increment \alpha = \SI{0.046}{\degree}$, was zu einer Schichtdicke von $d_1 = \SI{ 9.68e-8}{\metre}$ führt.
+Für den gemittelten Abstand ergibt sich $\increment \alpha = \SI{0.051}{\degree}$, was zu einer Schichtdicke von $d_1 = \SI{ 8.68e-8}{\metre}$ führt.
 
 \begin{figure}[H]
   \centering
@@ -143,14 +144,14 @@ Die über $\frac{\alpha_\text{c,theo} -\alpha_\text{c}}{\alpha_\text{c,theo}}$ b
 
 \noindent
 Über den Parratt-Algorithmus lässt sich das Dispersionsprofil der Probe bestimmen. 
-Dazu gehört die Dicke der Schichten $d$, die Dispersion $\delta$ und die Rauigkeit $\sigma$. 
+Dazu gehört die Dicke der Schichten $d$, die Dispersion $\delta$, die Rauigkeit $\sigma$ und ein Absorptionsfaktor $\beta$. 
 %Um das Dispersionsprofil zu bestimmen wurden die korrigierten Messwerte nach den kritischen Winkeln, also ab $\alpha = \SI{0.2}{\degree}$, genutzt.
-Auf diese wurde die über den Parratt-Algorithmus berechnete Reflektivität grafisch aufgetragen.
+Auf die korrigierten und auf die Zeit normierten Messwerte wurde die über den Parratt-Algorithmus berechnete Reflektivität grafisch aufgetragen.
 Anschließend wird die Funktion über manuelles Variieren der Parameter möglichst genau an die gemessene Reflektivität angepasst.
 Das Ergebnis ist in Abbildung \ref{img:parratt} dargestellt.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{build/plots/paratt.pdf}
+  \includegraphics[width=0.8\textwidth]{build/plots/paratt.pdf}
   \caption{Die Messdaten der Reflektivität mit den auf ihnen gebildeten Ausgleichsfunktion des Parratt-Algorithmus.  }
 \label{img:parratt}
 \end{figure}
@@ -158,10 +159,12 @@ Das Ergebnis ist in Abbildung \ref{img:parratt} dargestellt.
 \noindent 
 Für die Parameter ergibt sich dabei 
 \begin{align*}
-  \delta_\t{Poly}       &= \SI{11.15e-6}{}\\
-  \delta_\t{Si}         &= \SI{10.5e-6}{}\\
-  \sigma_\t{Luft, Poly} &= \SI{6e-10}{\metre}\\ 
-  \sigma_\t{Poly, Si}   &= \SI{13e-10}{\metre} \\ 
-  d_2                   &= \SI{8.55e-8 }{\metre} \quad .
+  \delta_\t{Poly}       &= \SI{1e-6}{}\\
+  \delta_\t{Si}         &= \SI{8.15e-6}{}\\
+  \sigma_\t{Luft, Poly} &= \SI{9e-10}{\metre}\\ 
+  \sigma_\t{Poly, Si}   &= \SI{7.8e-10}{\metre} \\ 
+  d_2                   &= \SI{8.8e-8 }{\metre} \\
+  \beta_\t{Poly}        &= \SI{3e-10}{}\\
+  \beta_\t{Si}          &= \SI{1.63e-7}{} \quad .
 \end{align*} 
 

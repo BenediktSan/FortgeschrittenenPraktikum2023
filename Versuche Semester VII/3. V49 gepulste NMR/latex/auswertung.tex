@@ -120,7 +120,7 @@ Die Ausgleichsfunktion ist inklusive der ausgelesenen Maxima in Abbildung \ref{i
 
 
 \noindent
-Eine alternative zur Meiboom-Gill-Methode ist die Carr-Purcell-Methode. Bei der der $\symup{\Delta} t_{90}$-Puls und der $\symup{\Delta} t_{180}$-Puls die gleiche Phase besitzen.
+Eine Alternative zur Meiboom-Gill-Methode ist die Carr-Purcell-Methode. Bei der der $\symup{\Delta} t_{90}$-Puls und der $\symup{\Delta} t_{180}$-Puls die gleiche Phase besitzen.
 Eine Bestimmung der Relaxationszeit $T_2$ ist hieraus nicht möglich. Das gespeicherte Signal ist in Abbildung \ref{img:Sig2} zu finden.
 \begin{figure}[H]
   \centering
@@ -137,37 +137,39 @@ Um die Stärke des Magnetfeldgradienten zu bestimmen wird das in Abbildung \ref{
 Das daraus erhaltene Frequenzspektrum ist in Abbildung \ref{img:four2} zu finden.
 Dabei ist auch der Durchmesser des Probenröhrchens im Frequenzraum $d_\t{f}$ eingezeichnet.
 Des Weiteren wird der Magnetfeldgradient auch noch über die Halbwertsbreite des Signals ermittelt. 
-Dies wird gemacht, da die Messdaten nicht bis zum verschwinden aller Schwingungen aufgenommen wurden.
-Dies führt dazu, dass der Gradient im Frequenzraum nicht ausreichens genau bestimmt werden kann. Eine Alternative dazu ist die Methode über die Halbwertsbreite.\\
+Dies wird gemacht, da die Messdaten nicht bis zum Verschwinden aller Schwingungen aufgenommen wurden.
+Dies führt dazu, dass der Gradient im Frequenzraum nicht ausreichend genau bestimmt werden kann. Eine Alternative dazu ist die Methode über die Halbwertsbreite.\\
 Die grafisch ermittelte Halbwertsbreite $t_\frac{1}{2}$ ist dabei in Abbildung \ref{img:four1} abgebildet.
 Sie ergibt sich zu 
 \begin{equation*}
-  t_\frac{1}{2} = \SI{8 e-5}{\milli\second} \quad.
+  t_\frac{1}{2} = \SI{8000 (5)e-8}{\milli\second} \quad.
 \end{equation*}
+Die Ungenauigkeit ergibt sich hier aus dem Abstand der Messpunkte, da die Halbwertsbreite grafisch bestimmt wurde.
 Da das Signal die Form einer Besselfunktion besitzt, lässt sich über die Halbwertsbreite ein Zusammenhang zur Gradientenstärke $G$ herstellen.
 Dabei gilt für $G$ 
 \begin{align*}
   \frac{1}{4} d \gamma G t_\frac{1}{2} &= 2.2 \\
-  \Leftrightarrow G_\t{FWHM} &= \frac{4 \cdot 2.2}{d \gamma t_\frac{1}{2}} = \SI{0.0981}{\tesla\per\metre} \quad.
+  \Leftrightarrow G_\t{FWHM} &= \frac{4 \cdot 2.2}{d \gamma t_\frac{1}{2}} = \SI{9809(6)e-5}{\tesla\per\metre} \quad.
 \end{align*}
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/signal.pdf}
   \caption{Das Echo bei $\tau = \SI{5}{\milli\second}$, welches zur Bestimmung des Magnetfeldgradienten verwendet wird. 
-  Außerdem ist noch die Halbwertsbreite des REalteils des Echos eingezeichnet.}
+  Außerdem ist noch die Halbwertsbreite des Realteils des Echos eingezeichnet.}
 \label{img:four1}
 \end{figure}
 
 \noindent
 Für die Gradientenstärke, die über das fouriertransformierte Signal errechnet wird, ergibt sich
 \begin{equation*}
-  G_\t{Fourier} = \frac{2\pi d_\text{f}}{\gamma d} = \SI{0.0984}{\tesla\per\metre} \quad.
+  G_\t{Fourier} = \frac{2\pi d_\text{f}}{\gamma d} = \SI{0.0984(109)}{\tesla\per\metre} \quad.
 \end{equation*}
-Dabei ist  $d = \SI{4.2}{\milli\metre}$ \cite{V49} der Durchmesser des Probenröhrchens, $d_\text{f} \approx \SI{17564}{\hertz}$ der Durchmesser im Frequenzraum und
+Dabei ist  $d = \SI{4.2}{\milli\metre}$ \cite{V49} der Durchmesser des Probenröhrchens, $d_\text{f} \approx \SI{17564(1951)}{\hertz}$ der Durchmesser im Frequenzraum und
 $\gamma = \SI{2.67e8}{\per\second\tesla}$ \cite{gyro} das gyromagnetische Verhältnis für Protonen.
-Es ist zu erkennen dass die beiden Methoden zur Bestimmung der Gradientenstärke ähnliche Resultate liefern. 
-Im folgenden wird trotzdem mit $G_\t{FWHM}$ als Referenzwert für die Auswertung weitergerechnet.
+Die Ungenauigkeit von $d_\text{f}$ entspricht dem Abstand der Messwerte im Frequenzraum, da der Wert grafisch abgeschätzt wird. 
+Es ist zu erkennen, dass die beiden Methoden zur Bestimmung der Gradientenstärke ähnliche Resultate liefern. 
+Im Folgenden wird trotzdem mit $G_\t{FWHM}$ als Referenzwert für die Auswertung weitergerechnet.
 
 \begin{figure}[H]
   \centering
@@ -234,8 +236,8 @@ berechnet. Dabei ergeben sich
 Die Ausgleichsfunktion ist inklusive der Messwerte in Abbildung \ref{img:diff2} grafisch dargestellt.
 Mit dem Fitparameter $T_\t{D}$ lassen sich die Diffusionskonstanten zu 
 \begin{align*}
-  D_\t{Fourier}&  = \frac{3}{2\cdot T_\t{D} \gamma^2 G^2} &= \SI{1.29(001)e-9}{\metre^2\per\second}\\
-  D_\t{FWHM}&  &= \SI{ 1.30(1)e-9}{\metre^2\per\second}
+  D_\t{Fourier}&  = \frac{3}{2\cdot T_\t{D} \gamma^2 G^2} &= \SI{1.29(1)e-9}{\metre^2\per\second}\\
+  D_\t{FWHM}&  &= \SI{ 1.30(29)e-9}{\metre^2\per\second}
 \end{align*}
 berechnen. 
 

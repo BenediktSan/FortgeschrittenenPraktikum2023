@@ -55,7 +55,7 @@ print(f"Halbwertsbreite: {FWHM} \pm ({times[1] - times[0]}) ms")
 d = 4.2*10**(-3) # in m
 gyro = 2.67*10**8 #für Protonen T/s
 
-G_fwhm = 4 * 2.2 / ( d * gyro * FWHM)
+G_fwhm = 4 * 2.2 / ( d * gyro * uFWHM)
 
 print(f"Gradient über Halbwertsbreite: {noms(G_fwhm)} \pm {stds(G_fwhm) }")
 
@@ -141,5 +141,6 @@ d_f = 0 #Durchmesser Spektrum
 d_f = freqs[save_peaks[1]] - freqs[save_peaks[0]] #Durchmesser Spektrum 
 ud_f = ufloat(d_f, freqs[1] - freqs[0])
 
-G = (2 * np.pi * d_f)/(gyro * d)
+G = (2 * np.pi * ud_f)/(gyro * d)
 print(f"\nVerteilungsdicke d_f = {d_f:.4f} \pm {stds(ud_f)} \nGradientenstärke G = {noms(G)} \pm {stds(G)}\n")
+

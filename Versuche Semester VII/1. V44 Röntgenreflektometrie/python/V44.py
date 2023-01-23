@@ -139,12 +139,9 @@ def parrat_neu(a_i, delta2, delta3, sigma2, sigma3, z2, beta2, beta3):
     kz2 = k * np.sqrt(n2**2-np.cos(a_i)**2)
     kz3 = k * np.sqrt(n3**2-np.cos(a_i)**2)
 
-    print(kz1[100],"\t", kz2[100],"\t", kz3[100],"\t")
 
     r12 = (kz1 - kz2) / (kz1 + kz2) * np.exp(-2 * sigma2**2 * kz1 * kz2 )
     r23 = (kz2 - kz3) / (kz2 + kz3) * np.exp(-2 * sigma3**2 * kz2 * kz3 )
-
-    print(r12[100],"\t", r23[100])
 
     x2 = np.exp(-2j * kz2 * z2) * r23
     x1 = (r12 + x2) / (1 + r12 * x2)
@@ -266,8 +263,16 @@ plt.savefig("build/plots/dreieck.pdf")
 print("\n\n---Geometriefaktor---")
 
 
-refl_I_corr = geometrie_corr(refl_I, refl_2theta, alpha_ges, beam_width, dicke)
-diffus_I_corr = geometrie_corr(diffus_I, diffus_2theta, alpha_ges, beam_width, dicke)
+normierung_zeit = (refl_2theta[1] - refl_2theta[0]) * 10**3
+
+
+refl_I_corr = refl_I / (normierung_zeit)
+diffus_I_corr = diffus_I /(normierung_zeit)
+
+
+refl_I_corr = geometrie_corr(refl_I_corr, refl_2theta, alpha_ges, beam_width, dicke)
+diffus_I_corr = geometrie_corr(diffus_I_corr, diffus_2theta, alpha_ges, beam_width, dicke)
+
 
 
 corr_data = refl_I_corr - diffus_I_corr
@@ -310,7 +315,7 @@ print("\n\n---Peak Abstände & Schichtdicke---")
 thresh1 = 40        #Grenzen um nur bestimmten BEreih zu betrachten (Nach Anfangsbums und vorm ausfasern der Daten)
 thresh2 = 160
 
-peaks, peak_heights = find_peaks(corr_data[thresh1:thresh2]/ gauss_max, height = 0.00094)
+peaks, peak_heights = find_peaks(corr_data[thresh1:thresh2]/ gauss_max, height = 0.00044)
 diff = np.zeros(np.size(peaks) -1)
 
 for i in range(0,np.size(peaks) - 1):
@@ -380,14 +385,18 @@ print(f"Fit-Params direkt aus der V44.py nehmen")
 #sigma2 = 13*10**(-11) # m 
 #z2 = 8.55*10**(-8) # m   #verändert die Frequenz
 
+########################## 2 entspricht poly und 3 sil
+
 n1 = 1 #Luft
-delta2 = 8*10**(-7)
-delta3 = 4*10**(-6)
-sigma2 = 3*10**(-9) # m
-sigma3 = 13*10**(-11) # m 
-z2 = 8.55*10**(-8) # m   #verändert die Frequenz
-beta2 = 7 * 10**(-7)
-beta3 = 1 * 10**(-7)
+delta2 = 10*10**(-7)
+delta3 = 8.15*10**(-6)
+sigma2 = 9*10**(-10) # m
+sigma3 = 7.8*10**(-10) # m 
+z2 = 8.8*10**(-8) # m   #verändert die Frequenz
+beta2 = 3 * 10**(-10)
+beta3 = delta3/50  #4 * 10**(-8)
+
+print(f"beta_Si = {beta3}")
 
 #test mit hteo
 
@@ -400,11 +409,12 @@ beta3 = 1 * 10**(-7)
 #uparam2 = unp.uarray(params_par, cov_par)
 #print(uparam2)
 
+x = np.linspace(refl_2theta[0], refl_2theta[-1],10000)
 
 plt.figure()
-plt.plot(refl_2theta, parrat_neu(refl_2theta, delta2, delta3, sigma2, sigma3, z2, beta2, beta3), label = "Paratt-Fit (händisch)")
+plt.plot(x, parrat_neu(x, delta2, delta3, sigma2, sigma3, z2, beta2, beta3),color ="teal", label = "Paratt-Fit (händisch)")
 #plt.plot(refl_2theta[thresh1:thresh2 + 60], parrat_rau(refl_2theta[thresh1:thresh2 + 60],*params_par), label = "Paratt-Fit")
-plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
+plt.plot(refl_2theta, corr_data/ gauss_max, color = "orange", label="korrigierte Daten")
 plt.yscale('log')
 plt.ylabel(r"Reflektivität")
 plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
@@ -425,6 +435,7 @@ rel_abw(schichtdicke, z2)
 
 print("Delta. erst Poly dann Si")
 rel_abw(poly_del, delta2)
+print(sil_del,"\t", delta3)
 rel_abw(sil_del, delta3)
 
 

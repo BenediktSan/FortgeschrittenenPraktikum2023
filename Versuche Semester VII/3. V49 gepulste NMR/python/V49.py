@@ -192,8 +192,8 @@ plt.savefig("build/plots/diff1.pdf")
 print("\n\t##### Dffusionskonstante ######")
 
 
-G = 0.0984  #aus der fourier.py # alter wert über fourier
-G_fwhm = 0.09809 # Gradient über Halbwertsbreite
+G = ufloat(0.0984,0.0109)  #aus der fourier.py # alter wert über fourier
+G_fwhm = ufloat(0.09809,0.00006) # Gradient über Halbwertsbreite
 gyro = 2.67*10**8 #für Protonen T/s
 
 
@@ -210,7 +210,7 @@ D_fwhm = 3 / (2 * uparams3[1] * 10**(-9) * gyro**2 * G_fwhm**2)
 
 print(f"U_0 = {noms(uparams3[0]):.4f} \pm {stds(uparams3[0]):.4f} Volt\nT3 = {noms(uparams3[1]):.4f} \pm {stds(uparams3[1]):.4f} (ms)^3\nU_1 = {noms(uparams3[2]):.4f} \pm {stds(uparams3[2]):.4f} Volt\n")
 print(f"D = {noms(D* 10**9):.4f} \pm {stds(D * 10**9):.4f} nano m^2/s")
-print(f"D_FWHM = {noms(D_fwhm* 10**9):.4f} \pm {stds(D * 10**9):.4f} nano m^2/s")
+print(f"D_FWHM = {noms(D_fwhm* 10**9):.4f} \pm {stds(D_fwhm * 10**9):.4f} nano m^2/s")
 
 rel_abw(D_theo, D)
 rel_abw(D_theo, D_fwhm)
