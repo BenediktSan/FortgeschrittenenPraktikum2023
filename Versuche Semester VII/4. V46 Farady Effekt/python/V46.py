@@ -25,8 +25,10 @@ B_maximum = 0.422 #tesla
 L_rein = 5.11e-3 #metre
 L_12 = 1.36e-3 #metre
 L_28 = 1.296e-3 #metre
-N_12 = 1.2e22 #\per\metre\cubic
-N_28 = 2.8e22 #\per\metre\cubic
+N_12 = 1.2e24 #\per\metre\cubic
+N_28 = 2.8e24 #\per\metre\cubic
+print('epsilon0', const.epsilon_0)
+print('c', const.c)
 
 #####Funktionen#######
 
@@ -39,7 +41,7 @@ def line(x, a, b):
     return a*x + b
 
 def effmass(steig, N):
-    konst_z = const.e**3 *10**12
+    konst_z = const.e**3
     konst_n = 8*np.pi**2 * const.epsilon_0*const.c**3*n
     return unp.sqrt(konst_z/konst_n * N*B_maximum/steig)
 
@@ -135,9 +137,9 @@ def secondplot(name, theta_probe, L_probe, N_probe, col):
     plt.savefig('build/plots/'+name+'_diff.pdf')
 
     print(N_probe)
-    m_eff = effmass(abs(a), N_probe)
+    m_eff = effmass(abs(a)*10**12, N_probe)
 
-    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e} m_e')
+    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e:.4f} m_e')
     return
 
 secondplot('probe1', theta_12, L_12, N_12, 'red')

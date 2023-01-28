@@ -25,8 +25,8 @@ B_maximum = 0.422 #tesla
 L_rein = 5.11e-3 #metre
 L_12 = 1.36e-3 #metre
 L_28 = 1.296e-3 #metre
-N_12 = 1.2e22 #\per\metre\cubic
-N_28 = 2.8e22 #\per\metre\cubic
+N_12 = 1.2e24 #\per\metre\cubic
+N_28 = 2.8e24 #\per\metre\cubic
 
 #####Funktionen#######
 
@@ -140,7 +140,7 @@ def secondplot(name, theta_probe, L_probe, N_probe, col):
     print(N_probe)
     m_eff = effmass(abs(a)*10**12, N_probe)
 
-    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e} m_e \n abweichung {relab(m_eff/const.m_e, 0.067)}')
+    print(f'effektive Masse m* = {m_eff} kg = {m_eff/const.m_e} m_e \n abweichung {relab(m_eff/const.m_e, 0.067):.4f}')
     return
 
 secondplot('probe1', theta_12, L_12, N_12, 'red')
