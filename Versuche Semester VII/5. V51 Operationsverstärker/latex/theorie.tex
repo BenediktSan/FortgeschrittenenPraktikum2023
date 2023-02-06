@@ -45,7 +45,8 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
         groß, damit in dem Operationsverstärker kein Strom fließt. 
         Der Ausgangswiderstand $r_\text{A}$ ist dabei gleich $0$. Die Übertragungsbandbreite geht von $0$ bis $\infty$, es findet keine Phasendrehung statt. \\ 
         Im Gegensatz dazu hat ein realer Operationsverstärker eine Leerlaufverstärkung von $V \propto 10^4$-$10^6$. 
-        Die Eingangswiderstände sind nicht unendlich groß, aber üblicherweise größer als $\SI{1}{\mega\ohm}$, der Ausgangswiderstand ist im Bereich von $\SI{10}{\ohm}$ - $\SI{1000}{\ohm}$. 
+        Die Eingangswiderstände sind nicht unendlich groß, aber üblicherweise größer als $\SI{1}{\mega\ohm}$. 
+        Der Ausgangswiderstand ist im Bereich von $\SI{10}{\ohm}$ - $\SI{1000}{\ohm}$. 
         Die Übertragungsbandbreite hat eine obere Grenze, die sich im Bereich von $\SI{10}{\hertz}$ bis $\SI{10}{\kilo\hertz}$ liegt.
         Es tritt eine Phasendrehung auf. \\
         Aus den Unterschieden des realen Operationsverstärker zu einem Idealen, folgen nur geringe Unterschiede, die kleine Korrekturen in den Rechnungen fordern. 
@@ -98,13 +99,14 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
             genutzt werden. 
             Dazu wird die Ausgangsspannung über einen Widerstand $R_2$ in den invertierten Eingang des Operationsverstärkers gegeben, wie es in \autoref{fig:invertierter_lin}
             zu sehen ist.
-            Dieses Vorgehen wird auch Gegenkopplung genannt, bei einer Zunahme der Ausgangsspannung kommt es zu einer Abnahme der Eingangsspannung. 
+            Dieses Vorgehen wird auch Gegenkopplung genannt.Bei einer Zunahme der Ausgangsspannung kommt es zu einer Abnahme der Eingangsspannung. 
             \begin{figure}[H]%
                 \centering%
                 \includegraphics[width=0.4\textwidth]{images/invertierter_lin.png}%
                 \caption{Das Schaltbild eines gegengekoppelten invertierten Linearverstärker. \cite{V51}}%
                 \label{fig:invertierter_lin}%
             \end{figure}%
+            \noindent
             Nach der Proportionalität der Ausgangsspannung zur Differenz der Eingangsspannungen gilt hier 
             \begin{equation}
                 U_\text{N} = - \frac{U_\text{A}}{V}\, .
@@ -144,6 +146,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
                 \caption{Das Schaltbild eines Umkehrintegrators. \cite{V51}}
                 \label{fig:umkehrint}
             \end{figure}
+            \noindent
             Laut der Knotenregel ergibt sich für den Knotenpunkt vor dem invertierten Eingang 
             \begin{equation*}
                 I_1 + I_\text{C} = 0\, ,
@@ -177,6 +180,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
                 \caption{Das Schaltbild eines invertierten Differenzierer. \cite{V51}}
                 \label{fig:inverdiff}
             \end{figure}
+            \noindent
             Die Knotenregel für den Knotenpunkt vor dem invertierten Eingang ergibt hier 
             \begin{equation*}
                 I_1 + I_\text{A} = 0\, ,
@@ -209,6 +213,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
                 \caption{Das Schaltbild einer Schmitt-Triggerschaltung. \cite{V51}}
                 \label{fig:schmitttrig}
             \end{figure}
+            \noindent
             Es kommt somit zu einer Mitkopplung, ein größeres Ausgangssignal ergibt ein größeres Eingangssignal, sodass es ein recht instabiles Verhalten gibt 
             und die Ausgangsspannung sprungartig auf $\pm U_\text{S}$ geht, sobald die Eingangsspannung bestimmte Schwellenwerte erreicht. 
             Dies ist in \autoref{fig:abbschmitt} nochmal dargestellt. Das Ausgangssignal ist also eine Rechteckspannung.
@@ -234,6 +239,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
                 \caption{Das Schaltbild eines Signalgenerators. \cite{V51}}
                 \label{fig:signal}
             \end{figure}
+            \noindent
             Die konstante Spannung, die aus dem Schmitt-Trigger kommt, wird integriert. 
             Die Ausgangsspannung aus dem Umkehr-Integrator, wird als $U_1$ genutzt, sodass die Eingangsspannung des Schmitt-Triggers einen
             Schwellenwert erreicht. 

@@ -1,6 +1,10 @@
 \newpage 
 \section{Auswertung}
 
+\noindent
+Im Folgenden werden die Kenngrößen verschiedener Operationsverstärkeraufbauten untersucht.
+Außerdem werden auch Eigenschaften wie das Integrieren einer Eingangsspannung oder das generieren eines Signals betrachtet.
+
 
 \subsection{Invertierter-Linearverstärker}
 
@@ -30,7 +34,7 @@ Auf der Flanke eingezeichneten Messwerte wird ein linearer Fit der Form
 berechnet. Da die Linearität allerdings bei doppelt-logarithmischen Daten auftritt, ergibt sich für die Fit-Funktion
 \begin{equation}
   \ln(V) = m \cdot \ln\left(\frac{f}{\si{\hertz}}\right) + n \; .
-  \ref{eqn:lin} 
+  \label{eqn:lin} 
 \end{equation}
 Die Fitparameter errechnen sich damit zu 
 \begin{align*}
@@ -50,7 +54,7 @@ Des Weiteren wird noch das Bandbreitenprodukt, zu
 \end{equation*} 
 bestimmt. 
 Die große Abweichung bei der Grenzfrequenz lässt sich vermutlich auf den großen Einfluss der Fehlerfortpflanzung 
-über das viele Exponentieren und Logarithmieren in der Berechnung zurückführen.
+über das Exponentieren, Logarithmieren und Dividieren in der Berechnung zurückführen.
 
 \begin{figure}[H]
     \centering
@@ -131,7 +135,7 @@ Die Phasenverschiebung folgen dabei der Form einer Sigmoid- oder $\t{arccot}$-Fu
 Für den Umkehr-Integrator wurde ein Widerstand $R_1 = \SI{10}{\kilo\ohm}$ und ein Kondensator mit der Kapazität $C = \SI{100}{\nano\farad}$ verwendet.
 Die aufgenommenen Messwerte der Eingangs- und Ausgangsspannung, die damit korrespondierenden Frequenzen und Phasen sind in Tabelle \ref{tab:int} zu finden.
 Für die Auswertung wurden aus den Spannungen die Verstärkungsfaktoren berechnet und diese über die Frequenz $f$ gegen die Kreisfrequenz $\omega = 2\pi f $ doppelt-logarithmisch aufgetragen.
-Dies ist in Abbildung \ref{fig:int} dargestellt. 
+Dies ist in Abbildung \ref{fig:int1} dargestellt. 
 Auf die dargestellten Messdaten wird nach Gleichung \ref{eqn:lin} eine Ausgleichsrechnung durchgeführt. 
 Dabei soll die Proportionalität zum Inversen von $\omega$ für den Integrator und zu $\omega$ für den Differenzierer gezeigt werden. 
 Außerdem soll der Faktor $RC$ identifiziert werden. 
@@ -143,17 +147,17 @@ Für den Koeffizienten-Vergleich muss die Fit-Funktion umgestellt werden.
 \end{align*}
 Im Vergleich mit den Gleichungen \ref{eqn:int} und \ref{eqn:dif} zeigt sich, dass für den Integrator 
 \begin{align}
-  m &\approx -1 &\t{und}\quad\quad \exp(n)&= \frac{1}{RC}\label{eqn:int_RC}\\
+  m \approx -1 && \text{und} && \exp(n)= \frac{1}{RC}\label{eqn:int_RC}\\
   \intertext{gelten muss. Für den Differenzierer gilt}
-  m &\approx 1 &\t{und}\quad\quad \exp(n)&= RC\; . \label{eqn:dif_RC}
+  m \approx 1 && \text{und} && \exp(n)= RC\; . \label{eqn:dif_RC}
 \end{align}
-Für den in Abbildung \ref{fig:int} dargestellten Fit wurden die Parameter
+Für den in Abbildung \ref{fig:int1} dargestellten Fit wurden die Parameter
 \begin{align*}
   m&=\SI{-0.81(2)}{}\\
   n&= \SI{5.83(11)}{}\\
   RC_\t{Int} &= \SI{2.9(3)}{\milli\second}\; .
 \end{align*}
-Der theoretische Wert 
+errechnet. Der theoretische Wert 
 \begin{equation*}
   RC_\t{Theo,Int} = \SI{1}{\milli\second} 
 \end{equation*}
@@ -209,7 +213,7 @@ Die Parameter der Ausgleichsrechnung wurden zu
   n&= \SI{-6.02(14)}{}\\
   RC_\t{Diff} &= \SI{2.4(3)}{\milli\second}\; .
 \end{align*}
-Fürden theoretischen Wert gilt
+errechnet. Für den theoretischen Wert gilt
 \begin{equation*}
   RC_\t{Theo,Diff} = \SI{2.2}{\milli\second}\;. 
 \end{equation*}
@@ -262,10 +266,10 @@ Für die Dreiecksspannung ergibt sich an den Kuspen eine starke Anregung, deren 
 Für den Schmitt-Trigger werden für ein angelegtes Dreieckssignal die Kippspannungen der Ausgangsspannung abgelesen. 
 Die abgelesen Werte sind in Tabelle \ref{tab:schmitt} zu finden, das Messsignal in Abbildung \ref{fig:schmitt}. 
 Außerdem wurden die Widerstände $R_1 = \SI{10}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$ verwendet.
-Da die Ausgangsspannung $U_\t{a} = \SI{14}{\volt}$, die am Schmitt-Trigger anliegt, symmetrisch ist, berechnet sich die theoretische
+Da die Betriebsspannung $U_\t{b} = \SI{14}{\volt}$, die am Schmitt-Trigger anliegt, symmetrisch ist, berechnet sich die theoretische
 Kippspannung $U_\t{Kipp,Theo}$ zu
 \begin{equation*}
-  U_\t{Kipp,Theo} = \frac{R_1}{R_2} U_\text{a} = \pm \SI{1.4}{\volt}\; .
+  U_\t{Kipp,Theo} = \frac{R_1}{R_2} U_\text{b} = \pm \SI{1.4}{\volt}\; .
 \end{equation*}
 
 \begin{table}[H]
@@ -307,10 +311,10 @@ Kippspannung $U_\t{Kipp,Theo}$ zu
 Zuletzt wird hinter dem Schmitt-Trigger noch ein Integrator aufgebaut, um ein Signal zu erzeugen.
 Dafür werden die Bauteile $R_1 = \SI{10}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$, $R_3 = \SI{1}{\kilo\ohm}$, $C = \SI{1}{\micro\farad}$ verwendet.
 Darüber lassen sich die theoretische maximale Amplitude $U_\t{max,Theo}$ und die theoretische Frequenz $f_\t{Theo}$ des Dreieckssignals bestimmen.
-Dies ergibt sich zu
+Diese ergiben sich zu
 \begin{align*}
-  U_\t{max,Theo} &= U_\t{a} \frac{R_1}{R_2} &= \SI{1.375}{\volt} \\
-  f_\t{Theo} &= \frac{R_2}{4 R_1 R_3 C} &= \SI{2.5}{\kilo\hertz}  \; .
+  U_\t{max,Theo} &= U_\t{b} \frac{R_1}{R_2} &= \SI{1.375}{\volt} \\
+  f_\t{Theo} &= \frac{R_2}{4 R_1 R_3 C}     &= \SI{2.5}{\kilo\hertz}  \; .
 \end{align*}
 Dabei wurde $U_\t{a} = \SI{13.75}{\volt}$ als halbe "Peak-to-Peak"-Amplitude des Rechtecksignals aus Abbildung \ref{fig:sig} abgelesen.
 Für die mit dem Oszilloskop bestimmten Werte gilt 
