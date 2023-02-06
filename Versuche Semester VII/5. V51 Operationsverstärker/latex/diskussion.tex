@@ -1,26 +1,51 @@
 \newpage
 \section{Diskussion}
 
+\noindent
+Die Durchführung des Versuchs lief ohne Probleme ab. Es konnte für die Operationsverstärker symmetrische Betriebsspannungen eingestellt werden.\\
+Für die Auswertung des Linearverstärkers gab es keine Probleme, bis auf die Grenzfrequenzen, die teilweise Abweichungen besitzen, die nominal größer sind als die errechneten Frequenzen.
+Dies lässt sich vermutlich darauf zurückführen, dass bei der Berechnung logarithmiert, Exponentiert und dividiert wird, wodurch die Fehlerfortpflanzung einen großen Einfluss besitzt.
+Die errechneten Leerlaufverstärkungen besitzen aber, wie in Tabelle \ref{tab:rel} zu erkennen, nur eine geringe Abweichung von den Theoriewerten.\\
+Der für den Integrator errechnete Wert besitzt zwar eine große relative Abweichung, bewegt sich aber in der richtigen Größenordnung. 
+Die Grafiken der integrierten Funktionen entsprechen den Erwartungen.\\
+Für den Differenzierer sind die Abweichungen von der Theorie deutlich kleiner, allerdings entsprechen die Grafiken für die Dreiecksspannung und die Rechteckspannung nicht den Erwartungen.
+Dies ist in den Abbildungen \ref{fig:diff_dre} und \ref{fig:diff_recht} zu finden. 
+Da das Ergebnis für die Sinusspannung stimmt, ist nicht davon auszugehen, dass etwas falsch verkabelt ist. 
+Dies wird auch dadurch unterstrichen, dass die Werte nah an der Theorie liegen und zur vorigen Messung nur zwei Bauteile ausgetauscht werden mussten.
+Ein Grund könnten langsame Entladungen des Kondensators sein, wodurch keine klaren Peaks entstehen, sondern die auftretenden Entladungen. 
 
 
-\begin{table}[ht]
+\begin{table}[H]
     \centering
-    \caption{Relative Aweichung von den Theoriewerten für die einzelnen Messungen}
+    \caption{Relative Abweichung von den errechneten Theoriewerten für die einzelnen errechneten Parameter.
+    Dabei werden die Ergebnisse in der Reihenfolge invertierter Linearverstärker, Integrator, Differenzierer, Schmitt-Trigger und Signalgenerator aufgeführt. }
     \label{tab:rel}
-        \begin{tabular}{S [table-format=4.0] S [table-format=2.0] S [table-format=1.4]}
+        \begin{tabular}{S [table-format=4.4] S [table-format=4.4] S [table-format=4.4] S [table-format=4.4]}
         \toprule
-            {$\text{Brückenart}$} &{Messgröße}& {$\text{relative Abweichung von der Theorie} $} \\
+            {Größe} & {Parameter} &{Literaturwert}& {$\text{relative Abweichung} $} \\
         \midrule
-            $\text{Wheatstone}$  & $R_{1}$ & $\SI{0.0023}{\percent}$\\
-                                 & $R_{2}$ & $\SI{0.75}{\percent}$\\
-            \hline
-            $\text{Kapazität}$  & $R$ & $\SI{-0.0027}{\percent}$\\
-                                & $C$ & $\SI{-0.41}{\percent}$\\
-            \hline
-            $\text{Maxwell}$ & $R$&     $\SI{7.72}{\percent}$\\
-                       & $L$&     $\SI{5.07}{\percent}$\\
-            \hline
+        ${V_1}$   & $\SI{10.27(13)}{}$                     & $\SI{10}{}$                & $\SI{-2.70}{\percent}$\\      
+        ${V_2}$   & $\SI{96.00(115)}{}$                     & $\SI{100}{}$                & $\SI{4}{\percent}$\\
+        ${V_3}$   & $\SI{67.45(140)}{}$                     & $\SI{68}{}$                & $\SI{0.81}{\percent}$\\\\
+        \hline
+        ${RC_\t{Int}}$   & $\SI{2.9(3)}{\milli\second}$  & $\SI{1}{\milli\second}$    & $\SI{-192.76 (3200)}{\percent}$\\\\
+        \hline
+        ${RC_\t{Diff}}$   & $\SI{2.4(3)}{\milli\second}$ & $\SI{2.2}{\milli\second}$    & $\SI{ -10.76(1504)}{\percent}$\\\\
+        \hline
+        $U_\t{Kipp,+}$   & $\SI{1.86}{\volt}$      & $\SI{1.4}{\volt}$    & $\SI{  -33.04}{\percent}$\\
+        $U_\t{Kipp,-}$   & $\SI{-1.669(6)}{\volt}$ & $\SI{1.4}{\volt}$    & $\SI{ -19.20(045)}{\percent}$\\\\
+        \hline
+        $U_\t{max}$       & $\SI{2.65}{\volt}$        & $\SI{1.375}{\volt}$         & $\SI{  80.73}{\percent}$\\
+        $f_\t{Dreieck}$   & $\SI{1.64}{\kilo\hertz}$ & $\SI{2.5}{\kilo\hertz}$    & $\SI{ 34}{\percent}$\\\\
         \bottomrule
     \end{tabular}
+    \label{tab:rel}
 \end{table} 
 
+\noindent
+Die Ergebnisse des Schmitt-Triggers liegen über den errechneten, sind aber trotzdem in derselben Größenordnung.
+Dieses Ergebnis könnte verbessert werden, wenn für jeden der Werte über mehr als zwei Messwerte gemittelt werden würde.\\
+Der Signalgenerator liefert wie zu erwarten ein Dreieckssignal. Allerdings ist die gemessene Frequenz größer und die maximale Amplitude kleiner als die 
+theoretisch berechneten. Dies könnte sich darüber erklären lassen, dass hier ein sehr komplizierter Aufbau betrachtet wird, 
+in dem nicht betrachtete Innenwiderstände, Leerlaufspannungen oder Toleranzbereiche, einen größeren Einfluss haben können.\\
+Alles in allem liegen die Ergebnisse aber nah an der Theorie und sind somit zufriedenstellend.

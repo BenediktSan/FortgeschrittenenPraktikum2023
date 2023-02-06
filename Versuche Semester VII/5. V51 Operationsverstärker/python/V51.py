@@ -125,6 +125,8 @@ print(np.size(diff_f), np.size(diff_Ue), np.size(diff_Ua), np.size(diff_phase))
 schmitt_R1 = 10000 #Ohm
 schmitt_R2 = 100000 #Ohm
 
+schmitt_Ue = 14 #Volt # max spannung ds schmitt
+
 #Kipppunkte
 
 schmitt_x = np.array([0.396, 1.71, -1.04, -2.35]) * 10**(-3) #second
@@ -132,6 +134,12 @@ schmitt_x = np.array([0.396, 1.71, -1.04, -2.35]) * 10**(-3) #second
 schmitt_y = np.array([1.86250, -1.6625, -1.675, 1.8625])    #volt
 
 
+###Signalverstärker
+
+signal_R1 = 10000 #Ohm
+signal_R2 = 100000 #Ohm
+signal_R3 = 1000
+signal_C = 1e-6 #farad
 
 
 
@@ -142,9 +150,16 @@ schmitt_y = np.array([1.86250, -1.6625, -1.675, 1.8625])    #volt
 def lin(x,m,n):
     return m*x + n
 
-def hyperbel(x, A, B):
-    return A/x +B
+def hyperbel(x, A):
+    return 1/(A*x) 
 
+def weirdfunc(x, A, B):
+    if B < 0:
+        return (x)**B * 1/A 
+    elif B > 0:
+        return (x)**B * A
+
+    return 0 
 
 def rel_abw(theo,a):
     c = (theo - a)/theo
@@ -172,7 +187,7 @@ plt.rc('axes', labelsize=size_label)
 
 
 #### Invertierter Linearverstärker ####
-print("\n\t#### Invertierter Linearverstärker ####\n")
+print("\n\n\t#### Invertierter Linearverstärker ####\n")
 
 
 def inv_lin(R1, R2, f, Ue, Ua, thresh, name):
@@ -188,8 +203,8 @@ def inv_lin(R1, R2, f, Ue, Ua, thresh, name):
 
     mittel = np.mean( (Ua/Ue)[:thresh])
     std = np.std((Ua/Ue)[:thresh])
-    umittel = ufloat(mittel, std)
-    print(f"\n\tPlateau:\nmean = {noms(umittel):.4f} \pm {stds(umittel):.4f} s\n")
+    umittel = ufloat(mittel, std)       #Leerlaufverstärkung
+    print(f"\n\tLeerlaufverstärkung übers Plateau:\nmean = {noms(umittel):.4f} \pm {stds(umittel):.4f} s\n")
 
     #Flankenfit
     
@@ -203,12 +218,10 @@ def inv_lin(R1, R2, f, Ue, Ua, thresh, name):
     #other stuff
 
 
-    f_grenz = unp.exp((unp.log(umittel/ np.sqrt(2))  - uparams1[1] ) / uparams1[0])
-    V_leer = 0
-    band_prod = 0
+    f_grenz = unp.exp((unp.log((umittel)/ np.sqrt(2))  - uparams1[1] ) / uparams1[0])
+    band_prod = f_grenz * umittel
 
-    print(f"\tother stuff:\nf_grenz = {noms(f_grenz):.4f} \pm {stds(f_grenz):.4f} 1/s\n")
-    print(f"Leerlauf_V = {noms(V_leer):.4f} \pm {stds(V_leer):.4f} 1/s\n")
+    print(f"\tother stuff:\nf_grenz = {noms(f_grenz):.4f} \pm {stds(f_grenz):.4f} 1/s")
     print(f"Bandbreitenprod = {noms(band_prod):.4f} \pm {stds(band_prod):.4f} 1/s\n")
 
 
@@ -219,7 +232,7 @@ def inv_lin(R1, R2, f, Ue, Ua, thresh, name):
     plt.plot(f[thresh:], (Ua/Ue)[thresh:],"x",label="Messwerte")
     plt.plot(f[(thresh-2):-1], np.exp(lin(np.log(f[(thresh-2):-1]),*params1)), label="Flankenfit")
     plt.axhline(y = noms(mittel), xmax = np.log(f[thresh + 2]) / np.log(f[-1]), label = "Mittelwert")
-    plt.axhline(y = noms(mittel) / np.sqrt(2), color = "red", label = r"$V / \sqrt{2}$")
+    plt.axhline(y = noms(mittel) / np.sqrt(2),xmax = np.log(f[thresh + 4]), color = "red", label = r"V / $\sqrt{2}$")
     #plt.axvline(x = noms(f_grenz),color = "red")
     plt.xscale('log')
     plt.yscale('log')
@@ -276,37 +289,54 @@ plt.savefig("build/plots/lin_phase.pdf")
 
 
 #### Umkehr Integrator ####
-print("\n\t#### Umkehr Integrator & Differenzierer ####\n")
+print("\n\n\n\t#### Umkehr Integrator & Differenzierer ####\n")
 
 def intdiff(R, C, f, Ue, Ua, name):
 
     print(f"#### {name} ####")
 
- 
+
+    #Umrechnung von f zu omega
+    omega = 2 * np.pi * f 
+
+    RC_theo = R * C
 
 
     #Flankenfit
     
-    params1, cov1 = curve_fit(lin, np.log(f), np.log(Ua/Ue))
+    params1, cov1 = curve_fit(lin, np.log(omega), np.log(Ua/Ue))
     cov1 = np.sqrt(np.diag(abs(cov1)))
     uparams1 = unp.uarray(params1, cov1)
 
 
-    #params2, cov2 = curve_fit(hyperbel, f, Ua/Ue)
 
     
-    print(f"\n m = {noms(uparams1[0]):.4f} \pm {stds(uparams1[0]):.4f} s\nn = {noms(uparams1[1]):.4f} \pm {stds(uparams1[1]):.4f}\n")
+    print(f"\nm = {noms(uparams1[0]):.4f} \pm {stds(uparams1[0]):.4f} s\nn = {noms(uparams1[1]):.4f} \pm {stds(uparams1[1]):.4f}")
+    m_theo = 0
+
+    if name == "integrator":
+        m_theo = -1
+        RC = 1/unp.exp(uparams1[1])
+    elif name == "differenzierer":
+        m_theo = 1
+        RC = unp.exp(uparams1[1])
+    else:
+        print("\nFalscher name")
     
+    print(f"RC_theo = {RC_theo:.4f} s")
+    print(f"RC = {noms(RC):.4f} \pm {stds(RC):.4f} s")
+    rel_abw(RC_theo, RC)
 
     plt.figure()
     plt.rc('axes', labelsize=size_label)
-    plt.plot(f, (Ua/Ue), "x", label="Messwerte")
-    #plt.plot(f, hyperbel(f,params1[0],0), label="Fit-Funktion")
-    plt.plot(f, np.exp(lin(np.log(f),*params1)), label="Fit-Funktion")
+    plt.plot(omega, (Ua/Ue), "x", label="Messwerte")
+    #plt.plot(omega, weirdfunc(omega, noms(RC), noms(uparams1[0])), label = "RC-test")
+    plt.plot(omega, weirdfunc(omega, noms(RC_theo), m_theo), label = "Theorierkurve")
+    plt.plot(omega, np.exp(lin(np.log(omega),*params1)), label="Fit-Funktion")
     plt.xscale('log')
     plt.yscale('log')
     plt.ylabel(r"$V=\frac{U_e}{U_a}$")
-    plt.xlabel(r"$f  $ / $ Hz$")
+    plt.xlabel(r"$\omega  $ / $ Hz$")
     #plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
     #plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
     plt.tight_layout()
@@ -320,20 +350,81 @@ intdiff(diff_R1, diff_C, diff_f, diff_Ue, diff_Ua,"differenzierer")
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 #### nicht-invertierende-Schmitt-Trigger ####
-print("\n\t#### nicht-invertierende-Schmitt-Trigger ####\n")
+print("\n\n\n\t#### nicht-invertierende-Schmitt-Trigger ####\n")
 
-def schmitt(x,y):
+def schmitt(x, y, R1, R2, Ue):
     
+    kipp_theo = R1/R2 * Ue
 
+    x_pos = np.array([x[0], x[-1]])
+    y_pos = np.array([y[0], y[-1]])
+    kipp_pos = ufloat(np.mean(y_pos), np.std(y_pos))
 
+    x_neg = np.array([x[1], x[2]])
+    y_neg = np.array([y[1], y[2]])
+    kipp_neg = ufloat(np.mean(y_neg), np.std(y_neg))
 
+    print(f"\nKipp_theo = {kipp_theo} V")
+    print(f"\nkipp_pos = {kipp_pos} V")
+    rel_abw(kipp_theo, kipp_pos)
+    print(f"\nkipp_neg = {kipp_neg} V")
+    rel_abw(kipp_theo, np.absolute(kipp_neg))
 
     return
 
-#### Signalgenerator ####
-print("\n\t#### Signalgenerator ####\n")
 
+
+schmitt(schmitt_x, schmitt_y, schmitt_R1, schmitt_R2, schmitt_Ue)
+
+
+
+
+
+
+
+
+
+
+
+#### Signalgenerator ####
+print("\n\n\n\t#### Signalgenerator ####\n")
+
+def signal(R1, R2, R3, C):
+
+    U_mess = 5.3 / 2
+    f_mess = 1.64e3
+
+    U_max = 27.5 / 2
+    f_theo = R2 / (4 * C * R1 * R3 )
+    Amp_theo = U_max * R1/R2
+
+    print(f"\nf_theo = {f_theo:.4f} 1/s")
+    rel_abw(f_theo, f_mess)
+    print(f"Amp_theo = {Amp_theo:.4f} 1/s")
+    rel_abw(U_max, U_mess)
+
+    #print(f"\nm = {noms(uparams1[0]):.4f} \pm {stds(uparams1[0]):.4f} s\nn = {noms(uparams1[1]):.4f} \pm {stds(uparams1[1]):.4f}")
+
+    return
+
+
+
+
+
+signal(signal_R1, signal_R2, signal_R3, signal_C)
 
 ########Grafiken########
 
@@ -353,8 +444,13 @@ plt.savefig("build/plots/hehehe.pdf")
 
 
 ######Messdaten###########
-print("\n\t#########MESSDATEN#######")
+print("\n\n\n\t#########MESSDATEN#######")
 
 #printer4(lin1_f, lin1_Ue, lin1_Ua, lin1_phase, "lin1")
 #printer4(lin2_f, lin2_Ue, lin2_Ua, lin2_phase, "lin2")
 #printer4(lin3_f, lin3_Ue, lin3_Ua, lin3_phase, "lin3")
+
+#printer4(int_f, int_Ue, int_Ua, int_phase, "int")
+#printer4(diff_f, diff_Ue, diff_Ua, diff_phase, "diff")
+
+#printer2(schmitt_x, schmitt_y, "Schmitt")

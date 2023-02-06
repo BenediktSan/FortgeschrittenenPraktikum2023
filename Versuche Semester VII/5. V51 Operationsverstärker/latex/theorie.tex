@@ -86,7 +86,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
         zu nennen. \\
         Durch diese Phänomene ist die leicht unterschiedliche Kennlinie in \autoref{fig:kennlinie} zu erklären. 
 
-    \subsection{Schaltbeipiele mit Operationsverstärkern}
+    \subsection{Schaltbeispiele mit Operationsverstärkern}
 
         \noindent 
         Im folgenden Abschnitt werden die im Versuch genutzten Schaltungen vorgestellt. 
@@ -161,9 +161,10 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
             berechnet. 
             Die Ausgangsspannung ergibt sich also aus dem Integral der Eingangsspannung, welches den Namen der Schaltung motiviert. \\
             Für eine Eingangsspannung $U_1 = U_0 \sin(\omega t)$ folgt somit eine Ausgangsspannung 
-            \begin{equation*}
+            \begin{equation}
                 U_\text{A} = \frac{U_0}{RC\omega} \cos(\omega t)\, .
-            \end{equation*}
+                \label{eqn:int}
+            \end{equation}
 
         \subsubsection{Invertierter Differenzierer}
 
@@ -191,9 +192,10 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
                 U_\text{A} = - RC \cdot \dot{U_1}\, .
             \end{equation*}
             Für eine sinusförmige Eingangsspannung $U_1 = U_0 \sin(\omega t)$ ergibt sich dann eine Ausgangsspannung 
-            \begin{equation*}
+            \begin{equation}
                 U_\text{A} = - R C U_0 \omega \cdot \cos(\omega t)\, ,
-            \end{equation*}
+                \label{eqn:dif}
+            \end{equation}
             welche eine lineare Proportionalität zur Frequenz hat.
 
         \subsubsection{Nichtinvertierter Schmitt-Trigger}
@@ -204,7 +206,7 @@ und auf ihre Eigenschaften untersucht. Insbesondere werden die Unterschiede eine
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=0.4\textwidth]{images/schmitt_trigger.png}
-                \caption{Das Schaltbild einer Schmitt-Tiggerschaltung. \cite{V51}}
+                \caption{Das Schaltbild einer Schmitt-Triggerschaltung. \cite{V51}}
                 \label{fig:schmitttrig}
             \end{figure}
             Es kommt somit zu einer Mitkopplung, ein größeres Ausgangssignal ergibt ein größeres Eingangssignal, sodass es ein recht instabiles Verhalten gibt 
