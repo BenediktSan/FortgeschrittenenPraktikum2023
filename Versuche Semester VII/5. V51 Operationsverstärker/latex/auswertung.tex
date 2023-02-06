@@ -6,10 +6,10 @@ Im Folgenden werden die Kenngrößen verschiedener Operationsverstärkeraufbaute
 Außerdem werden auch Eigenschaften wie das Integrieren einer Eingangsspannung oder das generieren eines Signals betrachtet.
 
 
-\subsection{Invertierter-Linearverstärker}
+\subsection{Invertierter Linearverstärker}
 
 \noindent
-Für den invertierten Linearverstärker wurden die Amplituden des Eingangssignals $U_\t{e}$ und des Ausgangssignals $U_\t{a}$ für drei verschiedene Verstärkungsfaktoren $V$ aufgenommen.
+Für den invertierten Linearverstärker wurden die Amplituden des Eingangssignals $U_\t{E}$ und des Ausgangssignals $U_\t{A}$ für drei verschiedene Verstärkungsfaktoren $V$ aufgenommen.
 Dies ergibt die theoretischen Leerlaufverstärkungen
 \begin{align*}
   V_\t{1,theo}&= \frac{R_2}{R_1} &=\;\; \frac{\SI{10e3}{\ohm}}{\SI{1e3}{\ohm}} &= \num{10}\\
@@ -104,8 +104,8 @@ Die Fitparameter des Flanken-Fits errechnen sich zu
 \end{align*}
 Damit ergibt sich für die Grenzfrequenz und das Bandbreitenprodukt
 \begin{align*}
-  f_\t{Grenz,2} &= \SI{ 94.92(5861)}{\kilo\hertz}\\ % \SI{94.92(5861)}{\kilo\hertz}
-  V_2 \cdot f_\t{Grenz,2} &= \SI{640.26(39513)}{\kilo\hertz} \; .%\SI{640.26(39513)}{\kilo\hertz}} \; .
+  f_\t{Grenz,3} &= \SI{ 94.92(5861)}{\kilo\hertz}\\ % \SI{94.92(5861)}{\kilo\hertz}
+  V_3 \cdot f_\t{Grenz,3} &= \SI{640.26(39513)}{\kilo\hertz} \; .%\SI{640.26(39513)}{\kilo\hertz}} \; .
 \end{align*}
 
 
@@ -113,7 +113,7 @@ Damit ergibt sich für die Grenzfrequenz und das Bandbreitenprodukt
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/lin3.pdf}
   \caption{Die Messwerte des Verstärkungsfaktors des invertierenden Linearverstärkers für 
-  $V_\t{3,theo}$ doppelt-logarithmisch aufgetragen.}
+  $V_\t{3,theo}$ doppellogarithmisch aufgetragen.}
 \label{fig:lin1}
 \end{figure}
 
@@ -129,10 +129,10 @@ Die Phasenverschiebung folgen dabei der Form einer Sigmoid- oder $\t{arccot}$-Fu
 \label{fig:phase}
 \end{figure}
 
-\subsection{Umkehr-Integrator}
+\subsection{Umkehrintegrator}
 
 \noindent
-Für den Umkehr-Integrator wurde ein Widerstand $R_1 = \SI{10}{\kilo\ohm}$ und ein Kondensator mit der Kapazität $C = \SI{100}{\nano\farad}$ verwendet.
+Für den Umkehrintegrator wurde ein Widerstand $R_1 = \SI{10}{\kilo\ohm}$ und ein Kondensator mit der Kapazität $C = \SI{100}{\nano\farad}$ verwendet.
 Die aufgenommenen Messwerte der Eingangs- und Ausgangsspannung, die damit korrespondierenden Frequenzen und Phasen sind in Tabelle \ref{tab:int} zu finden.
 Für die Auswertung wurden aus den Spannungen die Verstärkungsfaktoren berechnet und diese über die Frequenz $f$ gegen die Kreisfrequenz $\omega = 2\pi f $ doppelt-logarithmisch aufgetragen.
 Dies ist in Abbildung \ref{fig:int1} dargestellt. 
@@ -165,7 +165,7 @@ ist dabei über die Proportionalität auch abgebildet.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{build/plots/integrator.pdf}
-  \caption{Die Messwerte des Verstärkungsfaktors des Umkehr-Integrators gegen die Kreisfrequenz aufgetragen.
+  \caption{Die Messwerte des Verstärkungsfaktors des Umkehrintegrators gegen die Kreisfrequenz aufgetragen.
   Des Weiteren ist noch eine Theoriekurve und der Fit eingezeichnet.}
 \label{fig:int1}
 \end{figure}
@@ -201,7 +201,7 @@ die Dreiecksspannung zu einer Sinusspannung und die Rechteckspannung zu einer Dr
 \end{figure}
 
 
-\subsection{Invertierter-Differenzierer}
+\subsection{Invertierter Differenzierer}
 
 \noindent
 Für den Differenzierer mit $R_1 = \SI{100}{\kilo\ohm}$ und dem Kondensator $C = \SI{22}{\nano\farad}$ ist das Vorgehen analog.
@@ -259,7 +259,7 @@ Für die Dreiecksspannung ergibt sich an den Kuspen eine starke Anregung, deren 
 \end{figure}
 
 
-\subsection{Nicht-invertierter-Schmitt-Trigger}
+\subsection{Nichtinvertierter Schmitt-Trigger}
 
 
 \noindent
@@ -316,7 +316,7 @@ Diese ergiben sich zu
   U_\t{max,Theo} &= U_\t{b} \frac{R_1}{R_2} &= \SI{1.375}{\volt} \\
   f_\t{Theo} &= \frac{R_2}{4 R_1 R_3 C}     &= \SI{2.5}{\kilo\hertz}  \; .
 \end{align*}
-Dabei wurde $U_\t{a} = \SI{13.75}{\volt}$ als halbe "Peak-to-Peak"-Amplitude des Rechtecksignals aus Abbildung \ref{fig:sig} abgelesen.
+Dabei wurde $U_\t{a} = \SI{13.75}{\volt}$ als halbe \enquote{Peak-to-Peak}-Amplitude des Rechtecksignals aus Abbildung \ref{fig:sig} abgelesen.
 Für die mit dem Oszilloskop bestimmten Werte gilt 
 \begin{align*}
   U_\t{max,mess}  &= \SI{2.65}{\volt}\\
