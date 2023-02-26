@@ -286,12 +286,18 @@ print("\n\n---Reflekitvitäts & Diffuser Scan---")
 
 alpha_crit_theo = np.sqrt(2 * sil_del) * 180/np.pi # in Grad #nur hier fürs plotten der THeo. kommt später nochmal
 
+thresh1 = 40        #Grenzen um nur bestimmten BEreih zu betrachten (Nach Anfangsbums und vorm ausfasern der Daten)
+
+
+alpha_crit, crit_height = find_peaks(refl_I[:thresh1 +10]/ gauss_max)       # Das hier später auch nochmal
+print(f"kritische Winkel = {refl_2theta[ alpha_crit]}")
 
 plt.figure()
 plt.plot(diffus_2theta, diffus_I/ gauss_max, label="normierter Diffuserscan")
 plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitätsscan")
 plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
 plt.plot(refl_2theta, theorie_sil(refl_2theta , alpha_crit_theo, sil_mu, lam) , label = "Theoriekurve Silizium")
+plt.plot(refl_2theta[ alpha_crit], refl_I[alpha_crit]/ gauss_max, "x", label = "kritischer Winkel" )
 plt.yscale('log')
 plt.ylabel(r"Reflektivität")
 plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
@@ -441,19 +447,39 @@ rel_abw(sil_del, delta3)
 
 
 
-#plt.figure()
-#plt.plot(diffus_2theta, diffus_I/ gauss_max, label="normierter Diffuserscan")
-#plt.plot(refl_2theta , refl_I/ gauss_max, label="normierter Refklektivitäätsscan")
-#plt.plot(refl_2theta, corr_data/ gauss_max, label="korrigierte Daten")
-#plt.plot(refl_2theta, theorie_sil(refl_2theta * np.pi /180), label = "Theoriekurve Silizium")
-#plt.plot(refl_2theta[thresh1:], parrat_rau(refl_2theta[thresh1:], delta2, delta3, sigma1, sigma2, z2), label = "Paratt-Fit (händisch)")
-#plt.yscale('log')
-#plt.ylabel(r"Reflektivität")
-#plt.xlabel(r"$\alpha_{i}$ $/$ Grad")
-##plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
-##plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
-#plt.tight_layout()
-#plt.legend()
-#plt.savefig("build/plots/refl1.pdf")
+plt.figure()
+plt.plot(x1_2theta, x1_I, "x")
+plt.ylabel(r"Intensität")
+plt.xlabel(r"$x$")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.savefig("build/plots/x_scan.pdf")
 
+plt.figure()
+plt.plot(just_rock2_2theta, just_rock2_I, "x")
+plt.ylabel(r"Intensität")
+plt.xlabel(r"$2\theta$")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.savefig("build/plots/just_rock2_scan.pdf")
+
+plt.figure()
+plt.plot(z2_2theta, z2_I, "x")
+plt.ylabel(r"Intensität")
+plt.xlabel(r"$z$")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.savefig("build/plots/z2_scan.pdf")
+
+plt.figure()
+plt.plot(z3_2theta, z3_I, "x")
+plt.ylabel(r"Intensität")
+plt.xlabel(r"$z$")
+#plt.xticks([5*10**3,10**4,2*10**4,4*10**4],[r"$5*10^3$", r"$10^4$", r"$2*10^4$", r"$4*10^4$"])
+#plt.yticks([0,np.pi/8,np.pi/4,3*np.pi/8,np.pi/2],[r"$0$",r"$\frac{\pi}{8}$", r"$\frac{\pi}{4}$",r"$\frac{3\pi}{8}$", r"$\frac{\pi}{2}$"])
+plt.tight_layout()
+plt.savefig("build/plots/z3_scan.pdf")
 
